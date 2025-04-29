@@ -1,0 +1,53 @@
+@use '../../styles/variables.scss' as *;
+
+.btn {
+  border: none;
+  border-radius: 30px;
+  transition: all 0.3s ease-in-out;
+  line-height: 24px;
+
+  &:hover,
+  &:focus {
+    background-color: $primary-color;
+  }
+
+  // Size
+  &-small {
+    padding: 14px 30px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  &-publish {
+    padding: 16px 39px;
+  }
+
+  &-add-recipe {
+    padding: 16px 32px;
+  }
+
+  &-large {
+    width: 25rem;
+    padding: 1rem;
+  }
+
+  // Variant
+  &-outline {
+    background-color: transparent;
+    border: 1px solid $primary-color;
+    color: $primary-color;
+
+    &:hover,
+    &:focus {
+      color: $white-color;
+      background-color: $primary-color;
+    }
+  }
+
+  // Disabled State
+  &-disabled {
+    color: $white-color;
+    background-color: $btn-disabled-color;
+    cursor: not-allowed;
+  }
+}
