@@ -1,0 +1,1 @@
+# flavorly-client
