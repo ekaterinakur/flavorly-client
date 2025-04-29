@@ -1,10 +1,9 @@
-import './Layout.scss';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 const Layout = ({ children }) => {
   return (
-    <div className="container">
+    <div className="main-layout">
       <Header />
       <main className="page-content">{children}</main>
       <Footer />

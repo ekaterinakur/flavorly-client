@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import App from './App';
 import './index.scss';
-import './config/axios.js';
+import './config/client.js';
 import { store } from './redux/store.js';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
