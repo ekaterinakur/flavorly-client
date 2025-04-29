@@ -39,15 +39,15 @@
 
     &:hover,
     &:focus {
-      color: $secondary-color;
+      color: $white-color;
       background-color: $primary-color;
     }
   }
 
   // Disabled State
   &-disabled {
-    color: $secondary-color;
-    background-color: $btn-desabled-color;
+    color: $white-color;
+    background-color: $btn-disabled-color;
     cursor: not-allowed;
   }
 }
