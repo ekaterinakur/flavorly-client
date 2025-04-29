@@ -1,0 +1,26 @@
+@use '../../styles/variables' as *;
+
+.header {
+  background-color: $primary-color;
+  padding: 1rem 0;
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-weight: 500;
+  }
+}

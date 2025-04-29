@@ -1,0 +1,26 @@
+@use './variables' as *;
+
+body {
+  margin: 0;
+  font-family: $font-stack;
+  background-color: #f8f9fa;
+  color: $primary-color;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+	width: 100%;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.page-content {
+  flex: 1;
+  width: 100%;
+}
