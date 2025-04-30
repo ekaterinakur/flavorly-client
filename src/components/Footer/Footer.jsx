@@ -18,7 +18,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               aria-label="Facebook"
             >
-              <Icon name="facebook" size={20} color="#000000" />
+              <Icon name="facebook" size={20} color="#050505" />
             </a>
           </li>
           <li>
@@ -28,7 +28,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               aria-label="Instagram"
             >
-              <Icon name="instagram" size={20} color="#000000" />
+              <Icon name="instagram" size={20} color="#050505" />
             </a>
           </li>
           <li>
@@ -38,7 +38,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               aria-label="YouTube"
             >
-              <Icon name="youtube" size={20} color="#000000" />
+              <Icon name="youtube" size={20} color="#050505" />
             </a>
           </li>
         </ul>
@@ -52,3 +52,4 @@ export default function Footer() {
     </footer>
   );
 }
+

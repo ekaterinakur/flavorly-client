@@ -1,5 +1,7 @@
+@use '../../styles/variables' as *;
+
 .footer {
-  background-color: #fff;
+  background-color: $white-color;
   padding: 1rem 0;
   margin-top: auto;
 
@@ -18,7 +20,7 @@
   }
 
   .footer-logo {
-    color: #050505;
+    color: $primary-color;
     font-size: 1.25rem;
     text-decoration: none;
     font-weight: bold;
@@ -26,7 +28,7 @@
 
   .footer-socials {
     display: flex;
-    gap: 1 rem;;
+    gap: 1rem;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -37,23 +39,22 @@
       justify-content: center;
       width: 2rem;
       height: 2rem;
-      border: 1px solid #BFBEBE;
+      border: 1px solid $btn-disabled-color;
       border-radius: 50%;
-      color: #050505;
+      color: $primary-color;
       transition: all 0.3s;
     }
   }
 
   .footer-divider {
-    border: none;
-    border-top: 1px solid #BFBEBE;
+    border-top: 1px solid $btn-disabled-color;
     margin: 2.5rem 0;
   }
 
   .footer-copy {
     text-align: center;
     font-size: 0.875rem;
-    color: #1A1A1A;
+    color: $btn-color;
     margin: 0;
   }
 }
@@ -66,15 +67,6 @@
 
     .footer-logo {
       font-size: 1.5rem;
-    }
-
-    .footer-socials {
-      gap: 1rem;
-
-      a {
-        width: 34px;
-        height: 34px;
-      }
     }
 
     .footer-copy {
