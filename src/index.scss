@@ -2,6 +2,9 @@
 
 @use './styles/main' as *;
 
+@import '@fontsource/mulish/800.css';
+@import '@fontsource/mulish/500.css';
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

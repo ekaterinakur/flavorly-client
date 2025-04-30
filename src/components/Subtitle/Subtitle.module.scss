@@ -1,0 +1,13 @@
+@import '../../styles/variables.scss';
+
+.subtitle {
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  color: $btn-color;
+}
+
+.muted {
+  color: $btn-disabled-color;
+}
