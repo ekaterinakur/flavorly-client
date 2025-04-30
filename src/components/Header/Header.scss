@@ -3,12 +3,11 @@
 .header {
   background-color: transparent;
 
-
   .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1rem; 
+    padding: 1rem 1rem;
   }
 
   .logo {
@@ -24,15 +23,15 @@
     align-items: center;
 
     &.sign-in {
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 18px;
-        text-transform: uppercase;
-        background-color: white;
-        color: $primary-color;
-        padding: 10px 16px;
-      }
-    
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 18px;
+      text-transform: uppercase;
+      background-color: white;
+      color: $primary-color;
+      padding: 10px 16px;
+    }
+
     &.sign-out {
       font-size: 12px;
       font-weight: 700;
@@ -42,7 +41,6 @@
       border: 1px solid $btn-disabled-color;
       min-height: 38px;
     }
-
   }
 
   .user-name {
@@ -61,20 +59,20 @@
     margin-right: 6px;
     transition: transform 0.2s ease;
 
-      &.open {          
-          transform: rotate(180deg);
-              top: 1px;
-        }
+    &.open {
+      transform: rotate(180deg);
+      top: 1px;
+    }
   }
 
   .user-info {
     position: relative;
     display: inline-block;
   }
-  
-  .user-menu {    
+
+  .user-menu {
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 15px;    
+    border-radius: 15px;
     color: white;
     padding: 16px;
     position: absolute;
@@ -96,26 +94,26 @@
     text-transform: uppercase;
   }
 
-
-  
   .header-login-list {
     display: flex;
     align-items: center;
   }
 
   .header-login-item {
-    background: linear-gradient(to left, rgb(255, 255, 255) 50%, rgba(255, 0, 0, 0) 50%);
+    background: linear-gradient(
+      to left,
+      rgb(255, 255, 255) 50%,
+      rgba(255, 0, 0, 0) 50%
+    );
   }
 
-    .header-login-item:last-child {
-      background: linear-gradient(to right, rgb(255, 255, 255) 50%, rgba(255, 0, 0, 0) 50%);
-    }
-  
-      
-  
-
-
-
+  .header-login-item:last-child {
+    background: linear-gradient(
+      to right,
+      rgb(255, 255, 255) 50%,
+      rgba(255, 0, 0, 0) 50%
+    );
+  }
 
   nav a {
     color: white;

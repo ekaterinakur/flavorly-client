@@ -5,7 +5,9 @@ export default function HomePage() {
     <>
       <div className="container main-container">
         <h1>Welcome to the Recipe App</h1>
-        <Button variant='grey' size="small">SIGN IN</Button>
+        <Button variant="grey" size="small">
+          SIGN IN
+        </Button>
       </div>
     </>
   );

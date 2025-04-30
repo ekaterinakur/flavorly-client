@@ -1,8 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
-export default function PrivateRoute({
-  redirectPath = '/',
-}) {
+export default function PrivateRoute({ redirectPath = '/' }) {
   const isAuthenticated = true; // TODO auth check
 
   if (!isAuthenticated) {

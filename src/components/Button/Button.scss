@@ -39,9 +39,9 @@
     background-color: $btn-disabled-color;
 
     &:hover,
-      &:focus {
-        background-color: $primary-color;
-      }
+    &:focus {
+      background-color: $primary-color;
+    }
   }
 
   &-outline {

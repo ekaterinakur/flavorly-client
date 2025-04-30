@@ -1,6 +1,5 @@
 @use '@fontsource/mulish' as *;
 
-
 @use './styles/main' as *;
 
 @import '@fontsource/mulish/400.css';
@@ -43,7 +42,8 @@ h1 {
   line-height: 1.1;
 }
 
-ul, li {
+ul,
+li {
   list-style: none;
   padding: 0;
   margin: 0;
