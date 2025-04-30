@@ -2,20 +2,11 @@ import classNames from 'classnames';
 import styles from './Subtitle.module.scss';
 import PropTypes from 'prop-types';
 
-export function Subtitle({ className, isMuted, children }) {
-  return (
-    <p
-      className={classNames(styles.subtitle, className, {
-        [styles.muted]: isMuted,
-      })}
-    >
-      {children}
-    </p>
-  );
+export function Subtitle({ className, children }) {
+  return <p className={classNames(styles.subtitle, className)}>{children}</p>;
 }
 
 Subtitle.propTypes = {
   className: PropTypes.string,
-  isMuted: PropTypes.bool,
   children: PropTypes.node.isRequired,
 };
