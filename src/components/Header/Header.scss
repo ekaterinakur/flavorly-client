@@ -1,21 +1,121 @@
 @use '../../styles/variables' as *;
 
 .header {
-  background-color: $primary-color;
-  padding: 1rem 0;
+  background-color: transparent;
+
 
   .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem 1rem; 
   }
 
   .logo {
     color: white;
     font-size: 1.5rem;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 800;
   }
+
+  .btn {
+    padding: 0;
+    display: flex;
+    align-items: center;
+
+    &.sign-in {
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 18px;
+        text-transform: uppercase;
+        background-color: white;
+        color: $primary-color;
+        padding: 10px 16px;
+      }
+    
+    &.sign-out {
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 18px;
+      text-transform: uppercase;
+      padding: 9px 16px;
+      border: 1px solid $btn-disabled-color;
+      min-height: 38px;
+    }
+
+  }
+
+  .user-name {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 18px;
+    text-transform: uppercase;
+    color: white;
+    margin-left: 6px;
+    margin-right: 4px;
+  }
+
+  .chevron-icon {
+    position: relative;
+    top: -2px;
+    margin-right: 6px;
+    transition: transform 0.2s ease;
+
+      &.open {          
+          transform: rotate(180deg);
+              top: 1px;
+        }
+  }
+
+  .user-info {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .user-menu {    
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;    
+    color: white;
+    padding: 16px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: auto;
+    margin-top: 8px;
+  }
+
+  .user-menu-item {
+    display: flex;
+    align-items: center;
+  }
+
+  .user-menu-link {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+
+  
+  .header-login-list {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-login-item {
+    background: linear-gradient(to left, rgb(255, 255, 255) 50%, rgba(255, 0, 0, 0) 50%);
+  }
+
+    .header-login-item:last-child {
+      background: linear-gradient(to right, rgb(255, 255, 255) 50%, rgba(255, 0, 0, 0) 50%);
+    }
+  
+      
+  
+
+
+
 
   nav a {
     color: white;
