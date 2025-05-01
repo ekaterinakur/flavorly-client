@@ -18,11 +18,11 @@
   font-weight: 500;
   margin-top: 16px;
   margin-bottom: 32px;
-  color: $btn-disabled-color;
+  color: $silver;
 
   @media screen and (min-width: 768px) {
     margin-top: 20px;
     margin-bottom: 40px;
-    color: $btn-color;
+    color: $secondary-black;
   }
 }

@@ -19,7 +19,7 @@
   }
 
   .footer-logo {
-    color: $primary-color;
+    color: $primary-black;
     font-size: 1.25rem;
     text-decoration: none;
     font-weight: bold;
@@ -38,22 +38,22 @@
       justify-content: center;
       width: 2rem;
       height: 2rem;
-      border: 1px solid $btn-disabled-color;
+      border: 1px solid $silver;
       border-radius: 50%;
-      color: $primary-color;
+      color: $primary-black;
       transition: all 0.3s;
     }
   }
 
   .footer-divider {
-    border-top: 1px solid $btn-disabled-color;
+    border-top: 1px solid $silver;
     margin: 2.5rem 0;
   }
 
   .footer-copy {
     text-align: center;
     font-size: 0.875rem;
-    color: $btn-color;
+    color: $secondary-black;
     margin: 0;
   }
 }

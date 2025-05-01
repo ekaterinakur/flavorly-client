@@ -10,7 +10,7 @@
   &:hover,
   &:focus {
     color: $white-color;
-    background-color: $primary-color;
+    background-color: $primary-black;
   }
 
   // Size
@@ -36,20 +36,20 @@
   // Variant
   &-outline {
     background-color: transparent;
-    border: 1px solid $primary-color;
-    color: $primary-color;
+    border: 1px solid $primary-black;
+    color: $primary-black;
 
     &:hover,
     &:focus {
       color: $white-color;
-      background-color: $primary-color;
+      background-color: $primary-black;
     }
   }
 
   // Disabled State
   &-disabled {
     color: $white-color;
-    background-color: $btn-disabled-color;
+    background-color: $silver;
     cursor: not-allowed;
   }
 }
