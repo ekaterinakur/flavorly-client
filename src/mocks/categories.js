@@ -54,9 +54,5 @@ export const CATEGORIES_LIST = [
     name: 'Starter',
     imageUrl: 'https://picsum.photos/400/311?random=1',
   },
-  {
-    id: 12,
-    name: 'Starter',
-    imageUrl: 'https://picsum.photos/400/312?random=1',
-  },
+  { id: 'all', name: 'All Categories', imageUrl: null },
 ];
