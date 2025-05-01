@@ -1,6 +1,7 @@
 import './UserInfo.scss';
 import Button from '../Button/Button';
 import { Link } from 'react-router-dom';
+import Icon from '../Icon/icon.jsx';
 
 const UserInfo = ({ handleClick, user, open }) => {
   return (
@@ -8,13 +9,12 @@ const UserInfo = ({ handleClick, user, open }) => {
       <Button onClick={handleClick}>
         <img className="user-avatar" src={user.avatar} alt="user-image"></img>
         <span className="user-name">{user.name.toUpperCase()}</span>
-        <svg
+        <Icon
           className={`chevron-icon ${open ? 'open' : ''}`}
-          width={18}
-          height={18}
-        >
-          <use href="/src/assets/sprite.svg#icon-chevron" />
-        </svg>
+          name="chevron-up"
+          size={18}
+          color="#ffffff"
+        />
       </Button>
 
       {open && (
@@ -29,9 +29,7 @@ const UserInfo = ({ handleClick, user, open }) => {
             <Link className="user-menu-link" to="/logout">
               Log out
             </Link>
-            <svg width={18} height={18}>
-              <use href="/src/assets/sprite.svg#icon-arrow-up-right" />
-            </svg>
+            <Icon name="arrow-up-right" size={18} color="#ffffff" />
           </li>
         </ul>
       )}

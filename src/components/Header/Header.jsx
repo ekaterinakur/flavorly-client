@@ -8,6 +8,8 @@ import AuthButtons from '../AuthButtons/AuthButtons.jsx';
 import UserInfo from '../UserInfo/UserInfo.jsx';
 import Button from '../Button/Button.jsx';
 import NavBar from '../NavBar/NavBar.jsx';
+import Icon from '../Icon/icon.jsx';
+
 
 const Header = () => {
   // const { isLogged, user } = useSelector();
@@ -37,9 +39,7 @@ const Header = () => {
             <div className="user-wrapper">
               <UserInfo user={user} handleClick={handleClick} open={open} />
               <Button className="burger-menu-btn" onClick={() => {}}>
-                <svg width={28} height={28}>
-                  <use href="/src/assets/sprite.svg#burger-menu-icon"></use>
-                </svg>
+                <Icon name="burger" size={28} color="#ffffff" />
               </Button>
             </div>
           </>
