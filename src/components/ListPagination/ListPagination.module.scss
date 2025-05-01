@@ -1,0 +1,41 @@
+@use 'sass:color';
+
+@use '../../styles/variables' as *;
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.button {
+  background-color: transparent;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  width: 36px;
+  height: 36px;
+  color: $primary-black;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+
+  @media (min-width: 768px) {
+    width: 40px;
+    height: 40px;
+  }
+
+  &:hover:not(.active) {
+    border-color: color.adjust($silver, $lightness: 10%);
+  }
+}
+
+.active {
+  border-color: $silver;
+
+  &:hover {
+    border-color: color.adjust($silver, $lightness: 10%);
+  }
+}
