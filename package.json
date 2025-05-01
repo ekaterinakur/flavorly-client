@@ -12,14 +12,18 @@
   },
   "dependencies": {
     "@fontsource/mulish": "^5.2.5",
+    "@hookform/resolvers": "^5.0.1",
     "@reduxjs/toolkit": "^2.7.0",
     "axios": "^1.9.0",
     "classnames": "^2.5.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.56.1",
+    "react-hot-toast": "^2.5.2",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.5.3",
-    "react-spinners": "^0.17.0"
+    "react-spinners": "^0.17.0",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",

@@ -12,6 +12,8 @@ export default function Header() {
         <nav className="navbar">
           <Link to="/">Home</Link>
         </nav>
+
+        
       </div>
     </header>
   );
