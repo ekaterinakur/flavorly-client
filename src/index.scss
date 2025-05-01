@@ -4,6 +4,10 @@
 
 @use './styles/main' as *;
 
+@use '@fontsource/mulish/800.css' as *;
+@use '@fontsource/mulish/700.css' as *;
+@use '@fontsource/mulish/500.css' as *;
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
