@@ -10,7 +10,6 @@ import Button from '../Button/Button.jsx';
 import NavBar from '../NavBar/NavBar.jsx';
 import Icon from '../Icon/icon.jsx';
 
-
 const Header = () => {
   // const { isLogged, user } = useSelector();
 

@@ -1,7 +1,6 @@
 @use '../../styles/variables' as *;
 
 .header {
-
   .header-wrapper {
     display: flex;
     justify-content: space-between;
@@ -64,7 +63,9 @@
     }
 
     &.burger-menu-btn {
-      background-color: transparent;
+      @media screen and (min-width: 768px) {
+        display: none;
+      }
     }
   }
 }
