@@ -5,7 +5,7 @@ export default function ProfilePage() {
 
   return (
     <div className="container main-container">
-			Profile Page {id}
+      Profile Page {id}
       <Outlet />
     </div>
   );

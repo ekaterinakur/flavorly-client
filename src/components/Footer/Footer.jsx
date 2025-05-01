@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Icon from '../components/Icon/icon.jsx'; 
+import Icon from '../components/Icon/icon.jsx';
 import './Footer.scss';
 
 export default function Footer() {
@@ -46,11 +46,8 @@ export default function Footer() {
 
       <div className="footer-low container">
         <hr className="footer-divider" />
-        <p className="footer-copy">
-          © 2024, Foodies. All rights reserved
-        </p>
+        <p className="footer-copy">© 2024, Foodies. All rights reserved</p>
       </div>
-
     </footer>
   );
 }
