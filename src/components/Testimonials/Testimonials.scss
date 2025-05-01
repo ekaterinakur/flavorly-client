@@ -1,0 +1,97 @@
+@use '../../styles/variables.scss' as *;
+
+.testimonials {
+  text-align: center;
+  max-width: 822px;
+  margin: 0 auto;
+  position: relative;
+
+  &-title {
+    color: $primary-black;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 32px;
+    letter-spacing: -0.56px;
+    text-transform: uppercase;
+    text-align: center;
+
+    @media (min-width: 768px) {
+      font-size: 40px;
+      line-height: 44px;
+      letter-spacing: -0.8px;
+    }
+  }
+
+  &-subtitle {
+    color: $secondary-black;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: -0.28px;
+    margin-bottom: 16px;
+
+    @media (min-width: 768px) {
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: -0.32px;
+    }
+  }
+
+  &-icon {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: 80px;
+    left: 8px;
+
+    @media (min-width: 768px) {
+      width: 59px;
+      height: 48px;
+      top: 76px;
+      left: 40px;
+    }
+  }
+
+  .testimonial {
+    &-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 208px;
+      margin-top: 64px;
+
+      @media (min-width: 768px) {
+        margin-top: 80px;
+      }
+
+      &-text {
+        color: $primary-black;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+        letter-spacing: -0.36px;
+
+        @media (min-width: 768px) {
+          font-size: 24px;
+          line-height: 36px;
+          letter-spacing: -0.48px;
+        }
+      }
+
+      &-author {
+        color: $primary-black;
+        font-weight: 800;
+        line-height: 24px;
+        letter-spacing: -0.32px;
+        text-transform: uppercase;
+
+        @media (min-width: 768px) {
+          font-size: 20px;
+          letter-spacing: -0.4px;
+        }
+      }
+    }
+  }
+}

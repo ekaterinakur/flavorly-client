@@ -1,0 +1,37 @@
+@use 'sass:color';
+
+@use '../../styles/variables' as *;
+
+.button {
+  background-color: transparent;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $silver;
+  width: 36px;
+  height: 36px;
+  color: $primary-black;
+
+  @media (min-width: 768px) {
+    width: 42px;
+    height: 42px;
+  }
+
+  &:hover:not(.active) {
+    border-color: color.adjust($silver, $lightness: 10%);
+  }
+}
+
+.active {
+  background-color: $primary-black;
+  border-color: $primary-black;
+
+  svg {
+    color: $white-color !important;
+  }
+
+  &:hover {
+    background-color: color.adjust($primary-black, $lightness: 10%);
+  }
+}

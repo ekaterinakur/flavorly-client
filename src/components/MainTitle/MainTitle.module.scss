@@ -1,0 +1,28 @@
+@use '../../styles/variables.scss' as *;
+
+.title {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-transform: uppercase;
+
+  @media screen and (min-width: 768px) {
+    font-size: 40px;
+  }
+}
+
+.subtitle {
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 16px;
+  margin-bottom: 32px;
+  color: $silver;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    color: $secondary-black;
+  }
+}
