@@ -6,7 +6,6 @@ import 'swiper/css/pagination';
 import './Swiper.scss';
 
 const Swiper = ({ slides }) => {
-
   return (
     <SwiperJs
       pagination={true}

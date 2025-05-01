@@ -70,6 +70,13 @@
         line-height: 20px;
         padding: 12px 24px;
 
+        &:hover,
+        &:focus {
+          background-color: $white-color;
+          color: $primary-black;
+          border: 1px solid $primary-black;
+        }
+
         @media screen and (min-width: 768px) {
           font-size: 16px;
           line-height: 24px;
