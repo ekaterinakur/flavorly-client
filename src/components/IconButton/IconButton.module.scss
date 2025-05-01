@@ -1,4 +1,6 @@
-@import '../../styles/variables.scss';
+@use 'sass:color';
+
+@use '../../styles/variables' as *;
 
 .button {
   background-color: transparent;
@@ -17,7 +19,7 @@
   }
 
   &:hover:not(.active) {
-    border-color: darken($btn-disabled-color, 20);
+    border-color: color.adjust($btn-disabled-color, $lightness: 10%);
   }
 }
 
@@ -27,6 +29,6 @@
   border-color: $primary-color;
 
   &:hover {
-    background-color: lighten($primary-color, 10);
+    background-color: color.adjust($primary-color, $lightness: 10%);
   }
 }
