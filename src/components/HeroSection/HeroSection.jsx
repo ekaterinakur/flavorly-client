@@ -22,14 +22,14 @@ const HeroSection = () => {
         <div className="hero-img">
           <img
             className="hero-img-desert"
-            src="/public/HeroImg/sub_main_img.webp"
-            srcSet="/public/HeroImg/sub_main_img@2x.webp 2x"
+            src="/HeroImg/sub_main_img.webp"
+            srcSet="/HeroImg/sub_main_img@2x.webp 2x"
             alt="desert photo"
           />
           <img
             className="hero-img-dish"
-            src="/public/HeroImg/main_img.webp"
-            srcSet="/public/HeroImg/main_img@2x.webp 2x"
+            src="/HeroImg/main_img.webp"
+            srcSet="/HeroImg/main_img@2x.webp 2x"
             alt="desert photo"
           />
         </div>

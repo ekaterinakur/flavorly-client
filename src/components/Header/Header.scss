@@ -1,26 +1,27 @@
 @use '../../styles/variables' as *;
 
 .header {
-  &.container {
-    padding-top: $main-mobile-padding;
-
-    @media screen and (min-width: 768px) {
-      padding-top: $main-tablet-padding;
-    }
-
-    @media screen and (min-width: 1440px) {
-      padding-top: $main-desktop-padding;
-    }
-  }
-
+  
   .header-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1rem;
+    padding: 1rem 1rem 0;
     background-color: $primary-color;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+
+    margin-top: $main-mobile-padding;
+    
+      @media screen and (min-width: 768px) {
+        padding: 1.25rem 2rem 0;
+        margin-top: $main-tablet-padding;
+      }
+    
+      @media screen and (min-width: 1440px) {
+        padding: 1.25rem 3.75rem 0;
+        margin-top: $main-desktop-padding;
+      }
   }
 
   .logo {

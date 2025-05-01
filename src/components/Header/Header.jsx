@@ -26,7 +26,7 @@ const Header = () => {
 
   return (
     <header className="header container ">
-      <div className=" header-wrapper">
+      <div className="header-wrapper">
         <Link to="/" className="logo">
           foodies
         </Link>
