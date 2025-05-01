@@ -1,0 +1,50 @@
+.user-name {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  text-transform: uppercase;
+  color: white;
+  margin-left: 6px;
+  margin-right: 4px;
+}
+
+.chevron-icon {
+  position: relative;
+
+  margin-right: 6px;
+  transition: transform 0.2s ease;
+
+  &.open {
+    transform: rotate(180deg);
+    top: 1px;
+  }
+}
+
+.user-info {
+  position: relative;
+  display: inline-block;
+}
+
+.user-menu {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  color: white;
+  padding: 16px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: auto;
+  margin-top: 8px;
+}
+
+.user-menu-item {
+  display: flex;
+  align-items: center;
+}
+
+.user-menu-link {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}

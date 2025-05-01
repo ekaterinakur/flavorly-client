@@ -1,26 +1,70 @@
 @use '../../styles/variables' as *;
 
 .header {
-  background-color: $primary-black;
-  padding: 1rem 0;
 
-  .header-container {
+  .header-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem 1rem 0;
+    background-color: $primary-color;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+    margin-top: $main-mobile-padding;
+
+    @media screen and (min-width: 768px) {
+      padding: 1.25rem 2rem 0;
+      margin-top: $main-tablet-padding;
+    }
+
+    @media screen and (min-width: 1440px) {
+      padding: 1.25rem 3.75rem 0;
+      margin-top: $main-desktop-padding;
+    }
   }
 
   .logo {
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    line-height: 24px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 800;
   }
 
-  nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 1.5rem;
-    font-weight: 500;
+  .user-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .btn {
+    padding: 0;
+    display: flex;
+    align-items: center;
+
+    &.sign-in {
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 18px;
+      text-transform: uppercase;
+      background-color: white;
+      color: $primary-color;
+      padding: 10px 16px;
+    }
+
+    &.sign-out {
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 18px;
+      text-transform: uppercase;
+      padding: 9px 16px;
+      border: 1px solid $btn-disabled-color;
+      min-height: 38px;
+    }
+
+    &.burger-menu-btn {
+      background-color: transparent;
+    }
   }
 }
