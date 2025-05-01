@@ -43,9 +43,8 @@ export default function Footer() {
           </li>
         </ul>
       </div>
-
+      <hr className="footer-divider" />
       <div className="footer-low container">
-        <hr className="footer-divider" />
         <p className="footer-copy">© 2024, Foodies. All rights reserved</p>
       </div>
     </footer>
