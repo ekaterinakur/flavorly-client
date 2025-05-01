@@ -44,12 +44,13 @@ export default function Footer() {
         </ul>
       </div>
 
-      <hr className="footer-divider" />
+      <div className="footer-low container">
+        <hr className="footer-divider" />
+        <p className="footer-copy">
+          © 2024, Foodies. All rights reserved
+        </p>
+      </div>
 
-      <p className="footer-copy">
-        © 2024, Foodies. All rights reserved
-      </p>
     </footer>
   );
 }
-
