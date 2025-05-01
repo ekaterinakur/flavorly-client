@@ -2,8 +2,8 @@
 
 @use './styles/main' as *;
 
-@import '@fontsource/mulish/800.css';
-@import '@fontsource/mulish/700.css';
+@use '@fontsource/mulish/800.css' as *;
+@use '@fontsource/mulish/700.css' as *;
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
