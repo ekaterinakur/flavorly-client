@@ -1,5 +1,6 @@
 import Button from '../components/Button/Button';
 import { RecipeList } from '../components/RecipeList/RecipeList';
+import Loader from '../components/Loader/Loader';
 
 export default function HomePage() {
   return (

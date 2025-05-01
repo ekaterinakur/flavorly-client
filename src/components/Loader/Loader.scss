@@ -1,0 +1,29 @@
+.loader-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+
+.loader-box {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 1rem;
+  width: 48px;
+  height: 48px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+}
