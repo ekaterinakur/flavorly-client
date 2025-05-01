@@ -6,6 +6,8 @@ import './Header.scss';
 import training_img from '../../assets/vika_must_be_deleted.png';
 import AuthButtons from '../AuthButtons/AuthButtons.jsx';
 import UserInfo from '../UserInfo/UserInfo.jsx';
+import Button from '../Button/Button.jsx';
+import NavBar from '../NavBar/NavBar.jsx';
 
 const Header = () => {
   // const { isLogged, user } = useSelector();
@@ -23,14 +25,24 @@ const Header = () => {
   };
 
   return (
-    <header className="container header">
-      <div className="header-container">
+    <header className="header container ">
+      <div className=" header-wrapper">
         <Link to="/" className="logo">
           foodies
         </Link>
 
         {isLogged ? (
-          <UserInfo user={user} handleClick={handleClick} open={open} />
+          <>
+            <NavBar />
+            <div className="user-wrapper">
+              <UserInfo user={user} handleClick={handleClick} open={open} />
+              <Button className="burger-menu-btn" onClick={() => {}}>
+                <svg width={28} height={28}>
+                  <use href="/src/assets/sprite.svg#burger-menu-icon"></use>
+                </svg>
+              </Button>
+            </div>
+          </>
         ) : (
           <AuthButtons />
         )}
@@ -40,9 +52,3 @@ const Header = () => {
 };
 
 export default Header;
-
-{
-  /* <nav className="navbar">
-  <Link to="/">Home</Link>
-</nav>; */
-}

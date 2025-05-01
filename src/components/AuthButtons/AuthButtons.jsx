@@ -1,4 +1,4 @@
-import './AuthButtons.scss'
+import './AuthButtons.scss';
 import Button from '../Button/Button.jsx';
 
 const AuthButtons = () => {
@@ -6,10 +6,10 @@ const AuthButtons = () => {
     <div className="header-login">
       <ul className="header-login-list">
         <li className="header-login-item">
-          <Button classname="sign-in">SIGN IN</Button>
+          <Button className="sign-in">SIGN IN</Button>
         </li>
         <li className="header-login-item">
-          <Button classname="sign-out">SIGN OUT</Button>
+          <Button className="sign-out">SIGN OUT</Button>
         </li>
       </ul>
     </div>

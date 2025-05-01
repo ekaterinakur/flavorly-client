@@ -1,16 +1,20 @@
 .header-login-list {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .header-login-item {
-    background: linear-gradient(to left,
-            rgb(255, 255, 255) 50%,
-            rgba(255, 0, 0, 0) 50%);
+  background: linear-gradient(
+    to left,
+    rgb(255, 255, 255) 50%,
+    rgba(255, 0, 0, 0) 50%
+  );
 }
 
 .header-login-item:last-child {
-    background: linear-gradient(to right,
-            rgb(255, 255, 255) 50%,
-            rgba(255, 0, 0, 0) 50%);
+  background: linear-gradient(
+    to right,
+    rgb(255, 255, 255) 50%,
+    rgba(255, 0, 0, 0) 50%
+  );
 }

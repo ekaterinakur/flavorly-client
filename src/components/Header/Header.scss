@@ -1,13 +1,26 @@
 @use '../../styles/variables' as *;
 
 .header {
-  background-color: transparent;
+  &.container {
+    padding-top: $main-mobile-padding;
 
-  .header-container {
+    @media screen and (min-width: 768px) {
+      padding-top: $main-tablet-padding;
+    }
+
+    @media screen and (min-width: 1440px) {
+      padding-top: $main-desktop-padding;
+    }
+  }
+
+  .header-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1rem;
+    background-color: $primary-color;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
   }
 
   .logo {
@@ -16,6 +29,12 @@
     line-height: 24px;
     text-decoration: none;
     font-weight: 800;
+  }
+
+  .user-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
 
   .btn {
@@ -42,16 +61,9 @@
       border: 1px solid $btn-disabled-color;
       min-height: 38px;
     }
-  }
 
-
-
-  
-
-  nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 1.5rem;
-    font-weight: 500;
+    &.burger-menu-btn {
+      background-color: transparent;
+    }
   }
 }

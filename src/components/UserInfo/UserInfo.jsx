@@ -2,7 +2,6 @@ import './UserInfo.scss';
 import Button from '../Button/Button';
 import { Link } from 'react-router-dom';
 
-
 const UserInfo = ({ handleClick, user, open }) => {
   return (
     <div className="user-info">

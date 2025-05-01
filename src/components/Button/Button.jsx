@@ -9,11 +9,11 @@ const Button = ({
   disabled,
   onClick,
   children,
-  classname,
+  className,
 }) => {
   return (
     <button
-      className={`btn btn-${variant} btn-${size} ${disabled ? 'btn-disabled' : ''} ${classname || ''}`}
+      className={`btn btn-${variant} btn-${size} ${disabled ? 'btn-disabled' : ''} ${className || ''}`}
       type={`${type}`}
       disabled={disabled}
       onClick={onClick}
@@ -26,13 +26,13 @@ const Button = ({
 // Example usage: <Button variant="outline" size="large"> / <Button size="small" disabled>
 
 Button.propTypes = {
-  variant: PropTypes.oneOf(['grey', 'outline']),
+  variant: PropTypes.oneOf(['grey', 'white-border', 'outline']),
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
   size: PropTypes.oneOf(['small', 'publish', 'add-recipe', 'large']),
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
   children: PropTypes.node.isRequired,
-  classname: PropTypes.string,
+  className: PropTypes.string,
 };
 
 Button.defaultProps = {

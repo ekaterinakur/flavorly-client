@@ -1,5 +1,5 @@
 @use '@fontsource/mulish' as *;
-
+@use './styles/variables.scss' as *;
 @use './styles/main' as *;
 
 @import '@fontsource/mulish/400.css';
@@ -24,7 +24,7 @@
 
 a {
   font-weight: 500;
-  color: #ffffff;
+  color: $white-color;
   text-decoration: inherit;
 }
 a:hover {
@@ -35,6 +35,15 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
 }
 
 h1 {

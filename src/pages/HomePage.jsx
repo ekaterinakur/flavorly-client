@@ -1,14 +1,14 @@
 import Button from '../components/Button/Button';
+import HeroSection from '../components/HeroSection/HeroSection';
 
-export default function HomePage() {
+const HomePage = () => {
   return (
     <>
       <div className="container main-container">
-        <h1>Welcome to the Recipe App</h1>
-        <Button variant="grey" size="small">
-          SIGN IN
-        </Button>
+        <HeroSection />
       </div>
     </>
   );
-}
+};
+
+export default HomePage;

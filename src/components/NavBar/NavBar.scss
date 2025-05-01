@@ -1,0 +1,27 @@
+@use '../../styles/variables' as *;
+
+.navbar {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: inline-flex;
+    font-weight: 500;
+  }
+
+  @media screen and (min-width: 1440px) {
+    gap: 40px;
+  }
+}
+
+.nav-link {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  text-transform: uppercase;
+  padding: 14px;
+
+  &.active {
+    border: 1px solid rgb(rgb(255, 255, 255), 20%);
+    border-radius: 30px;
+  }
+}
