@@ -1,4 +1,5 @@
 import Button from '../components/Button/Button';
+import Loader from '../components/Loader/Loader';
 
 export default function HomePage() {
   return (
