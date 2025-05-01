@@ -1,0 +1,65 @@
+.card {
+  position: relative;
+  width: 100%;
+  padding-top: 75%; /* 4:3 aspect ratio based on 400x300 images */
+  border: 1px solid #ccc; /* Thin light border */
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 10px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.card:hover .overlay {
+  background-color: rgba(0, 0, 0, 0.7); /* Darker overlay on hover */
+}
+
+.allCategories {
+  background-color: black;
+}
+
+.allCategories .overlay {
+  background-color: transparent;
+  justify-content: center;
+  align-items: center;
+}
+
+.allCategories .name {
+  margin-right: 0; /* No icon, so no margin needed */
+}
+
+.allCategories:hover {
+  background-color: #333; /* Darker gray on hover */
+}
