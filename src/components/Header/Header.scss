@@ -7,7 +7,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1rem 0;
-    background-color: $primary-color;
+    background-color: $primary-black;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 
@@ -49,7 +49,7 @@
       line-height: 18px;
       text-transform: uppercase;
       background-color: white;
-      color: $primary-color;
+      color: $primary-black;
       padding: 10px 16px;
     }
 
@@ -59,7 +59,7 @@
       line-height: 18px;
       text-transform: uppercase;
       padding: 9px 16px;
-      border: 1px solid $btn-disabled-color;
+      border: 1px solid $silver;
       min-height: 38px;
     }
 

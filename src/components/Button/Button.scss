@@ -43,11 +43,11 @@
 
   &-grey {
     color: $white-color;
-    background-color: $btn-disabled-color;
+    background-color: $silver;
 
     &:hover,
     &:focus {
-      background-color: $primary-color;
+      background-color: $primary-black;
     }
   }
 
