@@ -18,15 +18,15 @@ const Testimonials = () => {
   };
 
   return (
-    <div className="container">
-      <section className="testimonials">
+    <section className="testimonials">
+      <div className="container">
         <p className="testimonials-subtitle">What our customer say</p>
         <h2 className="testimonials-title">Testimonials</h2>
         <Icon name="quote" color="#BFBEBE" className="testimonials-icon" />
 
         <Swiper slides={renderSlides()} />
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 

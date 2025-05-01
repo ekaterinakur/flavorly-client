@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { testimonials } from '../../components/Testimonials/mock.js';
+import { testimonials } from '../../mocks/testimonials.js';
 
 const initialState = {
   items: testimonials,
