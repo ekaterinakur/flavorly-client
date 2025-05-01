@@ -1,27 +1,36 @@
 import classNames from 'classnames';
 import styles from './ListPagination.module.scss';
+import { getPaginateStructure } from './ListPaginationUtils';
 
-export function ListPagination({ page, totalPages, onPageChange }) {
+export function ListPagination({ currentPage, totalPages, onPageChange }) {
+  if (totalPages === 1) return null;
+
   const handlePageChange = (newPage) => {
-    if (newPage !== page) {
+    if (newPage !== currentPage) {
       onPageChange(newPage);
     }
   };
 
-  return (
-    <ul className={styles.wrapper}>
-      {Array.from({ length: totalPages }, (_, index) => (
-        <li key={index}>
-          <button
-            className={classNames(styles.button, {
-              [styles.active]: index + 1 === page,
-            })}
-            onClick={() => handlePageChange(index + 1)}
-          >
-            {index + 1}
-          </button>
-        </li>
-      ))}
-    </ul>
-  );
+  const buttons = (() => {
+    const pagesStructure = getPaginateStructure(totalPages, currentPage);
+    return pagesStructure.map((page, index) => {
+      const isActive = currentPage === page;
+
+      if (page === 'ellipsis') return <span key={index}>...</span>;
+
+      return (
+        <button
+          key={index}
+          className={classNames(styles.button, {
+            [styles.active]: isActive,
+          })}
+          onClick={() => handlePageChange(page)}
+        >
+          {page}
+        </button>
+      );
+    });
+  })();
+
+  return <nav className={styles.wrapper}>{buttons}</nav>;
 }
