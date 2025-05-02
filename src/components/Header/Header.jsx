@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -13,13 +13,16 @@ import Icon from '../Icon/icon.jsx';
 const Header = () => {
   // const { isLogged, user } = useSelector();
 
+  const { pathname } = useLocation();
+  const isHomePage = pathname === '/';
+
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
     setOpen(!open);
   };
 
-  const isLogged = true;
+  const isLoggedIn = true;
   const user = {
     name: 'Mike Milles',
     avatar: training_img,
@@ -28,18 +31,23 @@ const Header = () => {
   return (
     <header className="header">
       <div className="container">
-        <div className="header-wrapper">
+        <div className={`header-wrapper ${!isHomePage && 'transperent'}`}>
           <Link to="/" className="logo">
             foodies
           </Link>
 
-          {isLogged ? (
+          {isLoggedIn ? (
             <>
               <NavBar />
               <div className="user-wrapper">
                 <UserInfo user={user} handleClick={handleClick} open={open} />
                 <Button className="burger-menu-btn" onClick={() => {}}>
-                  <Icon name="burger" size={28} color="#ffffff" />
+                  <Icon
+                    className="burger-menu-icon"
+                    name="burger"
+                    size={28}
+                    color={isHomePage ? '#ffffff' : '#050505'}
+                  />
                 </Button>
               </div>
             </>
