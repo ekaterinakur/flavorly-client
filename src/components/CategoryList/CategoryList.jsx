@@ -22,20 +22,22 @@ export function CategoryList({ items, onSelect }) {
 
   return (
     <section aria-label="Categories">
-      <MainTitle
-        title="Categories"
-        subtitle="Discover a limitless world of culinary possibilities and enjoy exquisite recipes that combine taste, style and the warm atmosphere of the kitchen."
-      />
-      <div className={styles.grid}>
-        {visibleItems.map((cat) => (
-          <CategoryCard
-            key={cat.id}
-            id={cat.id}
-            name={cat.name}
-            imageUrl={cat.imageUrl}
-            onSelect={onSelect}
-          />
-        ))}
+      <div className="container">
+        <MainTitle
+          title="Categories"
+          subtitle="Discover a limitless world of culinary possibilities and enjoy exquisite recipes that combine taste, style and the warm atmosphere of the kitchen."
+        />
+        <div className={styles.grid}>
+          {visibleItems.map((cat) => (
+            <CategoryCard
+              key={cat.id}
+              id={cat.id}
+              name={cat.name}
+              imageUrl={cat.imageUrl}
+              onSelect={onSelect}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
