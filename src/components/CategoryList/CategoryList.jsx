@@ -21,7 +21,7 @@ export function CategoryList({ items, onSelect }) {
   }
 
   return (
-    <section aria-label="Categories" className='section'>
+    <section aria-label="Categories" className="section">
       <div className="container">
         <MainTitle
           title="Categories"

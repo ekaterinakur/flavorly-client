@@ -31,7 +31,7 @@
       padding: 1.25rem 3.75rem 0;
     }
 
-    &.transperent {
+    &.header--transparent {
       background-color: transparent;
 
       .logo {
@@ -41,6 +41,11 @@
       .nav-link {
         color: $primary-black;
         border-color: $silver;
+
+        &:hover {
+          transition: all 0.3s ease-in-out;
+          color: $silver;
+        }
       }
 
       .user-menu {
@@ -49,6 +54,11 @@
 
       .user-menu-link {
         color: $primary-black;
+
+        &:hover {
+          transition: all 0.3s ease-in-out;
+          color: $silver;
+        }
       }
 
       .burger-menu-btn {

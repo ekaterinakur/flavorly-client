@@ -1,9 +1,6 @@
-
 import { Link, useLocation } from 'react-router-dom';
 import React, { useState } from 'react';
 // import { useSelector } from 'react-redux';
-
-
 
 import './Header.scss';
 import training_img from '../../assets/vika_must_be_deleted.png';
@@ -34,7 +31,9 @@ const Header = () => {
   return (
     <header className="header">
       <div className="container">
-        <div className={`header-wrapper ${!isHomePage && 'transperent'}`}>
+        <div
+          className={`header-wrapper ${!isHomePage ? 'header--transparent' : ''}`}
+        >
           <Link to="/" className="logo">
             foodies
           </Link>
@@ -43,7 +42,12 @@ const Header = () => {
             <>
               <NavBar />
               <div className="user-wrapper">
-                <UserInfo user={user} handleClick={handleClick} open={open} />
+                <UserInfo
+                  user={user}
+                  handleClick={handleClick}
+                  open={open}
+                  isHomePage={isHomePage}
+                />
                 <Button className="burger-menu-btn" onClick={() => {}}>
                   <Icon
                     className="burger-menu-icon"
