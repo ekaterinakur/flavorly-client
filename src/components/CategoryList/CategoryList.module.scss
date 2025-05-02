@@ -19,7 +19,7 @@
 
   // --- Desktop Styles (>= 1440px) ---
   @media (min-width: 1440px) {
-    grid-template-columns: repeat(4, 325px);
+    grid-template-columns: repeat(4, 1fr);
     justify-content: center;
     align-items: start;
     & > * {
