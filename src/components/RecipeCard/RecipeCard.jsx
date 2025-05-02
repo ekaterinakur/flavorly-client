@@ -3,7 +3,7 @@ import { Avatar } from '../Avatar/Avatar';
 import { useState } from 'react';
 import { IconButton } from '../IconButton/IconButton';
 import { useMediaQuery } from 'react-responsive';
-import Icon from '../Icon/icon';
+import Icon from '../Icon/Icon';
 
 export function RecipeCard({ img, title, desc, authorAvatar, authorName }) {
   const isMdScreen = useMediaQuery({ query: '(min-width: 768px)' });
