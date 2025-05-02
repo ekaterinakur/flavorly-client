@@ -18,7 +18,7 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="testimonials">
+    <section className="testimonials section">
       <div className="container">
         <p className="testimonials-subtitle">What our customer say</p>
         <h2 className="testimonials-title">Testimonials</h2>
