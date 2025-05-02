@@ -36,6 +36,29 @@ body {
   }
 }
 
+.section {
+  margin-bottom: 64px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 100px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 120px;
+}
+  &:last-of-type {
+    margin-bottom: 80px;
+
+    @media screen and (min-width: 768px) {
+      margin-bottom: 100px;
+    }
+
+    @media screen and (min-width: 1440px) {
+      margin-bottom: 120px;
+    }
+  }
+}
+
 .page-content {
   flex: 1;
   width: 100%;
