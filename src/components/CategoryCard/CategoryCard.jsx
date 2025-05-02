@@ -1,42 +1,42 @@
 import PropTypes from 'prop-types';
-import css from './CategoryCard.module.scss';
+import classNames from 'classnames';
+import styles from './CategoryCard.module.scss';
 import { IconButton } from '../IconButton/IconButton';
-import Icon from '../Icon/icon';
+import Icon from '../Icon/Icon';
 
 export function CategoryCard({ id, name, imageUrl, onSelect }) {
-  const isAllCategories = !imageUrl;
-
-  const handleClick = () => {
-    onSelect(id);
-  };
+  const handleClick = () => onSelect(id);
+  const isAll = !imageUrl;
 
   return (
     <div
-      className={`${css.card} ${isAllCategories ? css.allCategories : ''}`}
+      className={classNames(styles.card, { [styles.all]: isAll })}
       role="button"
       tabIndex={0}
       onClick={handleClick}
       aria-label={`Перейти до рецептів категорії ${name}`}
     >
-      {imageUrl && <img src={imageUrl} alt={name} className={css.image} />}
+      {imageUrl && <img src={imageUrl} alt={name} className={styles.image} />}
 
-      <div className={css.overlay}>
-        <div className={css.content}>
-          <span className={css.name}>{name}</span>
-          {!isAllCategories && (
-            <IconButton onClick={handleClick}>
-              <Icon name="arrow-up-right" size={18} color="#ffffff" />
-            </IconButton>
-          )}
-        </div>
+      <div className={styles.content}>
+        <span className={styles.name}>{name}</span>
+        {!isAll && (
+          <IconButton onClick={handleClick} className={styles.iconButton}>
+            <Icon name="arrow-up-right" size={18} color="#fff" />
+          </IconButton>
+        )}
       </div>
     </div>
   );
 }
 
 CategoryCard.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   name: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string, // Made optional for "ALL CATEGORIES"
+  imageUrl: PropTypes.string,
   onSelect: PropTypes.func.isRequired,
+};
+
+CategoryCard.defaultProps = {
+  imageUrl: null,
 };

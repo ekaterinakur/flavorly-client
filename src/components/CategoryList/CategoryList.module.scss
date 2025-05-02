@@ -1,21 +1,36 @@
-.list {
+.grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); // 3 колонки
-  gap: 20px;
-  padding: 0;
-  list-style: none;
+  gap: 16px;
+  margin: 40px 0;
 
-  // Широкі картки займають 2 колонки
-  .wideItem {
-    grid-column: span 2;
+  // --- Mobile First ---
+  grid-template-columns: 1fr;
+
+  // --- Tablet Styles (>= 768px) ---
+  @media (min-width: 768px) {
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+
+    & > *:nth-child(3),
+    & > *:nth-child(8) {
+      grid-column: span 2;
+    }
   }
 
-  // Адаптив для мобільних
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-
-    .wideItem {
+  // --- Desktop Styles (>= 1440px) ---
+  @media (min-width: 1440px) {
+    grid-template-columns: repeat(4, 325px);
+    justify-content: center;
+    align-items: start;
+    & > * {
       grid-column: span 1;
+    }
+
+    & > *:nth-child(3),
+    & > *:nth-child(4),
+    & > *:nth-child(8),
+    & > *:nth-child(10) {
+      grid-column: span 2;
     }
   }
 }
