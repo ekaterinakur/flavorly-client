@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import Swiper from '../Swiper/Swiper.jsx';
 import { SwiperSlide } from 'swiper/react';
 import { Testimonial } from './Testimonial.jsx';
-import Icon from '../Icon/icon.jsx';
+import Icon from '../Icon/Icon.jsx';
 
 import './Testimonials.scss';
 
