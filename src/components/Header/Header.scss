@@ -44,22 +44,21 @@
 
         &:hover {
           transition: all 0.3s ease-in-out;
-            color: $silver;
-          }
-      } 
+          color: $silver;
+        }
+      }
 
       .user-menu {
         border-color: $primary-black;
-        
       }
-      
+
       .user-menu-link {
         color: $primary-black;
 
         &:hover {
           transition: all 0.3s ease-in-out;
-            color: $silver;
-          }
+          color: $silver;
+        }
       }
 
       .burger-menu-btn {
