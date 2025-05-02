@@ -1,102 +1,58 @@
 .card {
   position: relative;
-  border-radius: 30px;
+  height: 300px;
+  border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
-  aspect-ratio: 4 / 3;
-  transition: transform 0.3s ease-out;
-  background-color: #2a2a2a;
-  display: block;
-  &:hover,
-  &:focus-within {
-    transform: scale(1.04);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  }
+  transition: transform 0.3s ease;
 
-  &:focus {
-    outline: none;
-  }
-
-  &:focus-visible {
-    // Style keyboard focus distinctively
-    outline: 3px solid #4a90e2; // Example focus ring
-    outline-offset: 2px;
-  }
-
-  .image {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; // Scales the image nicely to cover the card
-    transition: transform 0.4s ease; // Smooth image transition on hover (optional)
-  }
-
-  // Optional: slightly zoom image inside card on hover
-  // &:hover .image {
-  //   transform: scale(1.1);
-  // }
-
-  .overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 12px 15px; // Adjust padding
-    // Gradient from dark semi-transparent to fully transparent
-    background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.85) 0%,
-      rgba(0, 0, 0, 0) 100%
-    );
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end; // Align items (text, button) to the bottom
-    // Prevent overlay from blocking clicks on the card itself initially
-    pointer-events: none;
-
-    // Re-enable pointer events for interactive elements *inside* the overlay
-    > * {
-      pointer-events: auto;
+  &:hover {
+    transform: scale(1.02);
+    .overlay {
+      background: rgba(0, 0, 0, 0.7);
     }
-  }
-
-  .name {
-    color: #ffffff;
-    font-size: 1rem; // Adjust size as needed
-    font-weight: 600;
-    margin: 0;
-    line-height: 1.3; // Adjust line height
-    // Prevent text selection if desired
-    user-select: none;
   }
 }
 
-// --- Styles for the "All Categories" variant ---
-.allCategoriesCard {
-  background-color: #000000; // Solid black background
-  display: flex; // Use flex to center content
-  justify-content: center;
-  align-items: center;
-  text-align: center; // Ensure text is centered if it wraps
+// Для широких карток
+.wideItem .card {
+  height: 300px; // Фіксована висота, як у звичайних
+}
 
-  &:hover,
-  &:focus-within {
-    background-color: #1a1a1a; // Slightly lighter black on hover/focus
-    // Keep other hover effects consistent if desired
-    transform: scale(1.04);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 24px;
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+// Адаптив
+@media (max-width: 768px) {
+  .card {
+    height: 200px;
   }
 
-  // Hide image and overlay elements if they were somehow rendered
-  .image,
-  .overlay {
-    display: none;
-  }
-
-  .allCategoriesText {
-    color: #ffffff;
-    font-size: 1.1rem; // Make text slightly larger
-    font-weight: 600;
-    padding: 10px; // Add some padding inside
+  .name {
+    font-size: 1.2rem;
   }
 }
