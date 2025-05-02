@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 import './HeroSection.scss';
 
-const HeroSection = () => {
+const HeroSection = ({ isLoggedIn = true }) => {
   return (
     <section className="hero-section section">
       <div className="container">
@@ -11,14 +12,27 @@ const HeroSection = () => {
             Amazing recipes for beginners in the world of cooking, enveloping
             you in the aromas and tastes of various cuisines.
           </h2>
-          <Button
-            variant="white-border"
-            size="add-recipe"
-            className="hero-btn"
-            onClick={() => {}}
-          >
-            Add recipe
-          </Button>
+
+          {isLoggedIn ? (
+            <Link to="/recipe/add">
+              <Button
+                variant="white-border"
+                size="add-recipe"
+                className="hero-btn"
+              >
+                Add recipe
+              </Button>
+            </Link>
+          ) : (
+            <Button
+              variant="white-border"
+              size="add-recipe"
+              className="hero-btn"
+              onClick={() => {}}
+            >
+              Add recipe
+            </Button>
+          )}
 
           <div className="hero-img">
             <img

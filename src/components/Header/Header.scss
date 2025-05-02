@@ -30,14 +30,46 @@
     @media screen and (min-width: 1440px) {
       padding: 1.25rem 3.75rem 0;
     }
+
+    &.transperent {
+      background-color: transparent;
+
+      .logo {
+        color: $primary-black;
+      }
+
+      .nav-link {
+        color: $primary-black;
+        border-color: $silver;
+      }
+
+      .user-menu {
+        border-color: $primary-black;
+      }
+
+      .user-menu-link {
+        color: $primary-black;
+      }
+
+      .burger-menu-btn {
+        background-color: transparent;
+      }
+      .burger-menu-icon {
+        color: $primary-black;
+      }
+    }
   }
 
   .logo {
-    color: white;
+    color: $white-color;
     font-size: 1.25rem;
     line-height: 24px;
     text-decoration: none;
     font-weight: 800;
+
+    @media screen and (min-width: 768px) {
+      font-size: 1.5rem;
+    }
   }
 
   .user-wrapper {
