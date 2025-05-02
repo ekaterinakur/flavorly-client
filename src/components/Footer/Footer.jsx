@@ -4,7 +4,7 @@ import './Footer.scss';
 
 export default function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer section">
       <div className="footer-top container">
         <Link to="/" className="footer-logo">
           foodies
