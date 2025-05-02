@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Icon from '../Icon/icon.jsx';
+import Icon from '../Icon/Icon.jsx';
 import './Footer.scss';
 
 export default function Footer() {

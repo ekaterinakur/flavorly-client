@@ -1,7 +1,7 @@
 import './UserInfo.scss';
 import Button from '../Button/Button';
 import { Link } from 'react-router-dom';
-import Icon from '../Icon/icon.jsx';
+import Icon from '../Icon/Icon.jsx';
 
 const UserInfo = ({ handleClick, user, open }) => {
   return (
