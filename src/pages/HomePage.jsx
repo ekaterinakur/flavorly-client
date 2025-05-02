@@ -8,7 +8,7 @@ import Testimonials from '../components/Testimonials/Testimonials.jsx';
 const HomePage = () => {
   return (
     <>
-      <div className="container main-container">
+      <div className="main-container">
         <HeroSection />
         <RecipeList items={RECIPES_LIST} />
         <Testimonials />
