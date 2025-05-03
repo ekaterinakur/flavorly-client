@@ -1,0 +1,23 @@
+@use '../../styles/variables' as *;
+
+.bread-crumb {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  text-transform: uppercase;
+
+  .bread-crumb-link {
+    color: $silver;
+    font-weight: 700;
+
+    &:hover {
+      color: $primary-black;
+    }
+  }
+
+  .bread-crumb-separator {
+    color: $silver;
+  }
+}
