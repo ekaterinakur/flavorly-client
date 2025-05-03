@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import Icon from '../Icon/icon.jsx';
+import Icon from '../Icon/Icon.jsx';
 import './Footer.scss';
 
 export default function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer section">
       <div className="footer-top container">
         <Link to="/" className="footer-logo">
           foodies

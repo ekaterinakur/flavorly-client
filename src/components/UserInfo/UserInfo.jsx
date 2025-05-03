@@ -1,9 +1,9 @@
 import './UserInfo.scss';
 import Button from '../Button/Button';
 import { Link } from 'react-router-dom';
-import Icon from '../Icon/icon.jsx';
+import Icon from '../Icon/Icon.jsx';
 
-const UserInfo = ({ handleClick, user, open }) => {
+const UserInfo = ({ handleClick, user, open, isHomePage }) => {
   return (
     <div className="user-info">
       <Button onClick={handleClick}>
@@ -29,7 +29,11 @@ const UserInfo = ({ handleClick, user, open }) => {
             <Link className="user-menu-link" to="/logout">
               Log out
             </Link>
-            <Icon name="arrow-up-right" size={18} color="#ffffff" />
+            <Icon
+              name="arrow-up-right"
+              size={18}
+              color={isHomePage ? '#ffffff' : '#050505'}
+            />
           </li>
         </ul>
       )}

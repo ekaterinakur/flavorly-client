@@ -1,11 +1,26 @@
 @use '../../styles/variables' as *;
 
 .hero-section {
-  background-color: $primary-black;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  &.section {
+    padding-top: 0;
+  }
+
+  .container {
+    padding: 0 0.5rem;
+
+    @media screen and (min-width: 768px) {
+      padding: 0 1rem;
+    }
+
+    @media screen and (min-width: 1440px) {
+      padding: 0 1.25rem;
+    }
+  }
 
   .hero-content {
+    background-color: $primary-black;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -69,6 +84,13 @@
         font-weight: 700;
         line-height: 20px;
         padding: 12px 24px;
+
+        &:hover,
+        &:focus {
+          background-color: $white-color;
+          color: $primary-black;
+          border: 1px solid $primary-black;
+        }
 
         @media screen and (min-width: 768px) {
           font-size: 16px;
