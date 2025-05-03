@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { INGREDIENTS_LIST } from '../../mocks/ingredients.js';
+import { fetchIngredients } from '../../api/ingredients.js';
 
 const initialState = {
-  items: INGREDIENTS_LIST,
+  items: [],
   loading: false,
   error: null,
+  selected: '',
 };
 
 const ingredientsSlice = createSlice({
@@ -12,18 +13,31 @@ const ingredientsSlice = createSlice({
   initialState: initialState,
   reducers: {
     changeIngredient(state, { payload }) {
-      state.name = payload;
+      state.selected = payload;
     },
   },
-  extraReducers: () => {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchIngredients.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchIngredients.fulfilled, (state, action) => {
+        state.loading = false;
+        state.items = action.payload;
+      })
+      .addCase(fetchIngredients.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+  },
 });
 
 // Actions generator
 export const { changeIngredient } = ingredientsSlice.actions;
 
 // Selector
-export const getIngredients = (state) => state.ingredients.items;
-export const selectIngredient = (state) => state.ingredients.name;
+export const selectIngredients = (state) => state.ingredients;
 
 // Reducer
 export const ingredientsReducer = ingredientsSlice.reducer;

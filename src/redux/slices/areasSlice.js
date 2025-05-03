@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { AREAS_LIST } from '../../mocks/areas.js';
+import { fetchAreas } from '../../api/areas.js';
 
 const initialState = {
-  items: AREAS_LIST,
+  items: [],
   loading: false,
   error: null,
+  selected: '',
 };
 
 const areasSlice = createSlice({
@@ -12,18 +13,31 @@ const areasSlice = createSlice({
   initialState: initialState,
   reducers: {
     changeArea(state, { payload }) {
-      state.name = payload;
+      state.selected = payload;
     },
   },
-  extraReducers: () => {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchAreas.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchAreas.fulfilled, (state, action) => {
+        state.loading = false;
+        state.items = action.payload;
+      })
+      .addCase(fetchAreas.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+  },
 });
 
 // Actions generator
 export const { changeArea } = areasSlice.actions;
 
 // Selector
-export const selectArea = (state) => state.areas.name;
-export const getAreas = (state) => state.areas.items;
+export const selectAreas = (state) => state.areas;
 
 // Reducer
 export const areasReducer = areasSlice.reducer;

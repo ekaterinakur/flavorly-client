@@ -2,12 +2,14 @@ import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import './Selector.scss';
 import Icon from '../Icon/Icon.jsx';
+import Loader from '../Loader/Loader.jsx';
 
 function Selector({
   label = 'Not selected',
   listSelector,
   selectedSelector,
   reducer,
+  loading,
 }) {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +29,6 @@ function Selector({
   // Close modal when click outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      console.log(ref.current);
       if (ref.current && !ref.current.contains(event.target)) {
         setIsOpen(false);
       }
@@ -50,7 +51,15 @@ function Selector({
         )) || <Icon name="chevron-up" size={18} color="#000000" />}
       </button>
 
-      {isOpen && (
+      {isOpen && loading && (
+        <ul className="list">
+          <li>
+            <Loader />
+          </li>
+        </ul>
+      )}
+
+      {isOpen && !loading && (
         <ul className="list">
           {selectedSelector && (
             <li className="list-item-reset" onClick={handleReset}>
@@ -61,7 +70,7 @@ function Selector({
           {listSelector?.map((item) => (
             <li
               className="list-item"
-              key={item._id}
+              key={item.id}
               onClick={() => handleSelect(item.name)}
             >
               {item.name}
