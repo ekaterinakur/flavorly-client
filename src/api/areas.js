@@ -5,7 +5,9 @@ export const fetchAreas = createAsyncThunk(
   'areas/fetchAll',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('/areas');
+      const response = await axios.get(
+        'https://flavorly-api-gpdc.onrender.com/api/areas'
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
