@@ -4,20 +4,28 @@ import * as yup from 'yup';
 import PropTypes from 'prop-types';
 import { toast } from 'react-hot-toast';
 import './SignUpModal.scss';
+import Button from '../Button/Button';
 
 const schema = yup.object({
-  name: yup.string().min(2, 'Minimum 2 characters').required('Name is required'),
+  name: yup
+    .string()
+    .min(2, 'Minimum 2 characters')
+    .required('Name is required'),
   email: yup.string().email('Invalid email').required('Email is required'),
-  password: yup.string().min(6, 'Minimum 6 characters').required('Password is required'),
+  password: yup
+    .string()
+    .min(6, 'Minimum 6 characters')
+    .required('Password is required'),
 });
 
 const SignUpModal = ({ onSwitch, onSuccess }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isValid },
   } = useForm({
     resolver: yupResolver(schema),
+    mode: 'onChange',
   });
 
   const onSubmit = async (data) => {
@@ -41,15 +49,28 @@ const SignUpModal = ({ onSwitch, onSuccess }) => {
         <input type="email" placeholder="Email*" {...register('email')} />
         {errors.email && <span className="error">{errors.email.message}</span>}
 
-        <input type="password" placeholder="Password" {...register('password')} />
-        {errors.password && <span className="error">{errors.password.message}</span>}
+        <input
+          type="password"
+          placeholder="Password"
+          className="last-input"
+          {...register('password')}
+        />
+        {errors.password && (
+          <span className="error">{errors.password.message}</span>
+        )}
 
-        <button type="submit" disabled={isSubmitting}>
+        <Button
+          className="button"
+          type="submit"
+          variant="grey"
+          size="large"
+          disabled={!isValid || isSubmitting}
+        >
           {isSubmitting ? 'Signing up...' : 'CREATE'}
-        </button>
+        </Button>
       </form>
 
-      <p>
+      <p className="text">
         I already have an account?{' '}
         <span className="switch" onClick={onSwitch}>
           Sign in
@@ -66,7 +87,7 @@ SignUpModal.propTypes = {
 
 export default SignUpModal;
 
-// Тимчасовий запит
+// Temporary request
 const fakeRegisterRequest = (data) =>
   new Promise((resolve, reject) => {
     setTimeout(() => {
