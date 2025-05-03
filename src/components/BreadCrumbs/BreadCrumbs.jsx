@@ -3,10 +3,9 @@ import './BreadCrumbs.scss';
 
 const BreadCrumbs = ({ children }) => {
   const { pathname } = useLocation();
-  console.log(pathname);
+
   const profile = pathname.includes('profile');
 
-  console.log(profile);
 
   return (
     <div className="bread-crumb">
