@@ -5,7 +5,7 @@ export const fetchAreas = createAsyncThunk(
   'areas/fetchAll',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('http://localhost:3000/api/areas');
+      const response = await axios.get('/areas');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
