@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 // import { useSelector } from 'react-redux';
 
 import './Header.scss';
@@ -17,9 +17,16 @@ const Header = () => {
   const isHomePage = pathname === '/';
 
   const [open, setOpen] = useState(false);
+  const userMenuRef = useRef(null);
 
   const handleClick = () => {
     setOpen(!open);
+  };
+
+  const handleClickOutside = (event) => {
+    if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+      setOpen(false);
+    }
   };
 
   const isLoggedIn = true;
@@ -27,6 +34,16 @@ const Header = () => {
     name: 'Mike Milles',
     avatar: training_img,
   };
+
+  useEffect(() => {
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [open]);
 
   return (
     <header className="header">
@@ -41,7 +58,7 @@ const Header = () => {
           {isLoggedIn ? (
             <>
               <NavBar />
-              <div className="user-wrapper">
+              <div className="user-wrapper" ref={userMenuRef}>
                 <UserInfo
                   user={user}
                   handleClick={handleClick}
