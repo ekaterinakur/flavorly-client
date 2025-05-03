@@ -6,7 +6,6 @@ const BreadCrumbs = ({ children }) => {
 
   const profile = pathname.includes('profile');
 
-
   return (
     <div className="bread-crumb">
       <NavLink className="bread-crumb-link" to="/">
