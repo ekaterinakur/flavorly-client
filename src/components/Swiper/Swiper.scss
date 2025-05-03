@@ -1,0 +1,27 @@
+@use '../../styles/variables.scss' as *;
+
+.swiper {
+  &-pagination {
+    position: relative;
+    bottom: 0;
+    top: 0;
+    height: 14px;
+    margin-top: 40px;
+
+    &-bullet {
+      width: 14px;
+      height: 14px;
+      opacity: 1;
+      background: $silver;
+
+      @media (min-width: 768px) {
+        width: 16px;
+        height: 16px;
+      }
+
+      &-active {
+        background: $primary-black;
+      }
+    }
+  }
+}

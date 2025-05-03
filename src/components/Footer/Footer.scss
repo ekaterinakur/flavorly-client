@@ -1,9 +1,80 @@
+@use '../../styles/variables' as *;
+
 .footer {
+  background-color: $white-color;
   padding: 1rem 0;
   margin-top: auto;
 
   .footer-container {
     text-align: center;
     font-size: 0.9rem;
+  }
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+  }
+
+  .footer-logo {
+    color: $primary-black;
+    font-size: 1.25rem;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border: 1px solid $silver;
+      border-radius: 50%;
+      color: $primary-black;
+      transition: all 0.3s;
+    }
+  }
+
+  .footer-divider {
+    border-top: 1px solid $silver;
+    margin: 2.5rem 0;
+  }
+
+  .footer-copy {
+    text-align: center;
+    font-size: 0.875rem;
+    color: $secondary-black;
+    margin: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .footer {
+    .footer-logo {
+      font-size: 1.5rem;
+    }
+
+    .footer-copy {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .footer {
+    .footer-copy {
+      margin-bottom: 1.5rem;
+    }
   }
 }

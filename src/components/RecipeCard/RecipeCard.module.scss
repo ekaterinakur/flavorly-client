@@ -1,0 +1,76 @@
+@use '../../styles/variables' as *;
+
+.image {
+  display: block;
+  border-radius: 30px;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+.title {
+  margin-top: 16px;
+  margin-bottom: 0;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 18px;
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
+}
+
+.desc {
+  margin-top: 8px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: $secondary-black;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+
+  &:hover .authorName {
+    text-decoration: underline;
+  }
+}
+
+.authorName {
+  margin-left: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: $secondary-black;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

@@ -1,6 +1,13 @@
 @use '@fontsource/mulish' as *;
 
+@use './styles/variables.scss' as *;
 @use './styles/main' as *;
+
+@import '@fontsource/mulish/400.css';
+@import '@fontsource/mulish/600.css';
+@import '@fontsource/mulish/700.css';
+@import '@fontsource/mulish/800.css';
+
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -19,7 +26,7 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: $white-color;
   text-decoration: inherit;
 }
 a:hover {
@@ -32,9 +39,25 @@ body {
   min-height: 100vh;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 button {

@@ -1,0 +1,25 @@
+.wrapper {
+  column-gap: 20px;
+  row-gap: 32px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  padding: 0;
+  list-style: none;
+  margin: 0;
+
+  @media (min-width: 768px) {
+    row-gap: 40px;
+  }
+}
+
+.columns-3 {
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.columns-4 {
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

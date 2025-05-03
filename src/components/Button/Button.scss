@@ -6,11 +6,12 @@
   transition: all 0.3s ease-in-out;
   line-height: 24px;
   font-weight: 500;
+  text-transform: uppercase;
 
   &:hover,
   &:focus {
     color: $white-color;
-    background-color: $primary-color;
+    background-color: $primary-black;
   }
 
   // Size
@@ -34,22 +35,38 @@
   }
 
   // Variant
+  &-white-border {
+    border: 1px solid $white-color;
+    color: $white-color;
+    background-color: transparent;
+  }
+
+  &-grey {
+    color: $white-color;
+    background-color: $silver;
+
+    &:hover,
+    &:focus {
+      background-color: $primary-black;
+    }
+  }
+
   &-outline {
     background-color: transparent;
-    border: 1px solid $primary-color;
-    color: $primary-color;
+    border: 1px solid $primary-black;
+    color: $primary-black;
 
     &:hover,
     &:focus {
       color: $white-color;
-      background-color: $primary-color;
+      background-color: $primary-black;
     }
   }
 
   // Disabled State
   &-disabled {
     color: $white-color;
-    background-color: $btn-disabled-color;
+    background-color: $silver;
     cursor: not-allowed;
   }
 }
