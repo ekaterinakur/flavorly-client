@@ -22,11 +22,29 @@
   }
 
   &-publish {
-    padding: 16px 39px;
+    padding: 14px 32px;
+    font-size: 14px;
+    line-height: 20;
+    font-weight: 700;
+
+    @media screen and (min-width: 768px) {
+      font-size: 16px;
+      line-height: 24px;
+      padding: 16px 39px;
+    }
   }
 
   &-add-recipe {
-    padding: 16px 32px;
+    font-size: 14px;
+    padding: 12px 24px;
+    font-weight: 700;
+    line-height: 20px;
+
+    @media screen and (min-width: 768px) {
+      font-size: 16px;
+      line-height: 24px;
+      padding: 16px 32px;
+    }
   }
 
   &-large {
@@ -39,6 +57,13 @@
     border: 1px solid $white-color;
     color: $white-color;
     background-color: transparent;
+
+    &:hover,
+    &:focus {
+      background-color: $white-color;
+      color: $primary-black;
+      border: 1px solid $primary-black;
+    }
   }
 
   &-grey {

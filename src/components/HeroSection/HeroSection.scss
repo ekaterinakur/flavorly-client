@@ -78,28 +78,6 @@
       }
     }
 
-    .btn {
-      &.hero-btn {
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 20px;
-        padding: 12px 24px;
-
-        &:hover,
-        &:focus {
-          background-color: $white-color;
-          color: $primary-black;
-          border: 1px solid $primary-black;
-        }
-
-        @media screen and (min-width: 768px) {
-          font-size: 16px;
-          line-height: 24px;
-          padding: 16px 32px;
-        }
-      }
-    }
-
     .hero-img {
       margin-top: 29.5px;
       padding-bottom: 6.25rem;
