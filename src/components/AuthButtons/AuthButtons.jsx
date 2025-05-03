@@ -6,10 +6,10 @@ const AuthButtons = () => {
     <div className="header-login">
       <ul className="header-login-list">
         <li className="header-login-item">
-          <Button className="sign-in">SIGN IN</Button>
+          <Button className="sign-in">Sign In</Button>
         </li>
         <li className="header-login-item">
-          <Button className="sign-out">SIGN OUT</Button>
+          <Button className="sign-up">Sign Up</Button>
         </li>
       </ul>
     </div>
