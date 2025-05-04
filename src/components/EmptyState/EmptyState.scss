@@ -1,0 +1,32 @@
+@use '../../styles/variables.scss' as *;
+
+.message {
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 5rem;
+  padding-bottom: 6.25rem;
+  color: $silver;
+  text-align: center;
+
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+
+  @media (min-width: 768px) {
+    max-width: 610px;
+
+    padding-top: 6.25rem;
+    padding-bottom: 12.5rem;
+    color: $secondary-black;
+
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  @media (min-width: 1440px) {
+    padding-top: 8.75rem;
+    padding-bottom: 8.75rem;
+  }
+}

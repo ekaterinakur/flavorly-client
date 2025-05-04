@@ -97,20 +97,26 @@
       font-size: 12px;
       font-weight: 700;
       line-height: 18px;
-      text-transform: uppercase;
       background-color: white;
       color: $primary-black;
       padding: 10px 16px;
+
+      @media screen and (min-width: 768px) {
+        padding: 14px 30px;
+      }
     }
 
-    &.sign-out {
+    &.sign-up {
       font-size: 12px;
       font-weight: 700;
       line-height: 18px;
-      text-transform: uppercase;
       padding: 9px 16px;
       border: 1px solid $silver;
       min-height: 38px;
+
+      @media screen and (min-width: 768px) {
+        padding: 13.2px 28px;
+      }
     }
 
     &.burger-menu-btn {

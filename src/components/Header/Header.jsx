@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+
 import './Header.scss';
 import training_img from '../../assets/vika_must_be_deleted.png';
 import AuthButtons from '../AuthButtons/AuthButtons.jsx';
@@ -16,17 +17,33 @@ const Header = () => {
   const isHomePage = pathname === '/';
 
   const [open, setOpen] = useState(false);
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const userMenuRef = useRef(null);
 
   const handleClick = () => {
     setOpen(!open);
   };
 
-  const isLoggedIn = true; // temporary
+  const handleClickOutside = (event) => {
+    if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+      setOpen(false);
+    }
+  };
+
+  const isLoggedIn = true;
   const user = {
     name: 'Mike Milles',
     avatar: training_img,
   };
+
+  useEffect(() => {
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [open]);
 
   return (
     <header className="header">
@@ -41,7 +58,7 @@ const Header = () => {
           {isLoggedIn ? (
             <>
               <NavBar />
-              <div className="user-wrapper">
+              <div className="user-wrapper" ref={userMenuRef}>
                 <UserInfo
                   user={user}
                   handleClick={handleClick}
