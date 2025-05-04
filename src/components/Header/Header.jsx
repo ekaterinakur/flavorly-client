@@ -30,7 +30,7 @@ const Header = () => {
     }
   };
 
-  const isLoggedIn = false;
+  const isLoggedIn = true;
   const user = {
     name: 'Mike Milles',
     avatar: training_img,
