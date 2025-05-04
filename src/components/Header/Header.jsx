@@ -2,7 +2,10 @@ import { Link, useLocation } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
+
 import './Header.scss';
+import Modal from '../Modal/Modal';
+import SignUpModal from '../SignUpModal/SignUpModal';
 import AuthButtons from '../AuthButtons/AuthButtons.jsx';
 import UserInfo from '../UserInfo/UserInfo.jsx';
 import Button from '../Button/Button.jsx';
@@ -12,6 +15,7 @@ import {
   selectIsLoggedIn,
   selectUser,
 } from '../../redux/selectors/authSelectors.js';
+
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -74,10 +78,20 @@ const Header = () => {
               </div>
             </>
           ) : (
-            <AuthButtons />
+            <AuthButtons onSignUpClick={() => setIsSignUpOpen(true)} />
           )}
         </div>
       </div>
+
+      <Modal isOpen={isSignUpOpen}>
+        <SignUpModal
+          onSuccess={() => setIsSignUpOpen(false)}
+          onSwitch={() => {
+            setIsSignUpOpen(false);
+            // for SignInModalOpen()
+          }}
+        />
+      </Modal>
     </header>
   );
 };
