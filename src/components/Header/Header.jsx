@@ -16,6 +16,7 @@ const Header = () => {
   const { pathname } = useLocation();
   const isHomePage = pathname === '/';
 
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const userMenuRef = useRef(null);
 
@@ -29,7 +30,7 @@ const Header = () => {
     }
   };
 
-  const isLoggedIn = true;
+  const isLoggedIn = false;
   const user = {
     name: 'Mike Milles',
     avatar: training_img,
