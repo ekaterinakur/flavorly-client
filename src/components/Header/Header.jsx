@@ -1,6 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
-// import { useSelector } from 'react-redux';
 
 import './Header.scss';
 import training_img from '../../assets/vika_must_be_deleted.png';
@@ -10,9 +9,10 @@ import Button from '../Button/Button.jsx';
 import NavBar from '../NavBar/NavBar.jsx';
 import Icon from '../Icon/Icon.jsx';
 
-const Header = () => {
-  // const { isLogged, user } = useSelector();
+import Modal from '../Modal/Modal';
+import SignUpModal from '../SignUpModal/SignUpModal';
 
+const Header = () => {
   const { pathname } = useLocation();
   const isHomePage = pathname === '/';
 
@@ -76,10 +76,20 @@ const Header = () => {
               </div>
             </>
           ) : (
-            <AuthButtons />
+            <AuthButtons onSignUpClick={() => setIsSignUpOpen(true)} />
           )}
         </div>
       </div>
+
+      <Modal isOpen={isSignUpOpen}>
+        <SignUpModal
+          onSuccess={() => setIsSignUpOpen(false)}
+          onSwitch={() => {
+            setIsSignUpOpen(false);
+            // for SignInModalOpen()
+          }}
+        />
+      </Modal>
     </header>
   );
 };
