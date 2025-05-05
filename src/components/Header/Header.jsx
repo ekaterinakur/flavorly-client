@@ -9,6 +9,7 @@ import UserInfo from '../UserInfo/UserInfo.jsx';
 import Button from '../Button/Button.jsx';
 import NavBar from '../NavBar/NavBar.jsx';
 import Icon from '../Icon/Icon.jsx';
+import ModalMenu from '../ModalMenu/ModalMenu.jsx';
 
 const Header = () => {
   // const { isLogged, user } = useSelector();
@@ -48,7 +49,7 @@ const Header = () => {
                   open={open}
                   isHomePage={isHomePage}
                 />
-                <Button className="burger-menu-btn" onClick={() => {}}>
+                <Button className="burger-menu-btn" onClick={handleClick}>
                   <Icon
                     className="burger-menu-icon"
                     name="burger"
@@ -57,6 +58,7 @@ const Header = () => {
                   />
                 </Button>
               </div>
+              {open && <ModalMenu onClose={handleClick} />}
             </>
           ) : (
             <AuthButtons />
@@ -68,3 +70,4 @@ const Header = () => {
 };
 
 export default Header;
+
