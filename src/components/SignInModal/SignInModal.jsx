@@ -3,15 +3,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import PropTypes from 'prop-types';
 import { toast } from 'react-hot-toast';
-import './SignUpModal.scss';
+import { useState } from 'react';
+import './SignInModal.scss';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 
 const schema = yup.object({
-  name: yup
-    .string()
-    .min(2, 'Minimum 2 characters')
-    .required('Name is required'),
   email: yup.string().email('Invalid email').required('Email is required'),
   password: yup
     .string()
@@ -19,7 +16,9 @@ const schema = yup.object({
     .required('Password is required'),
 });
 
-const SignUpModal = ({ onSwitch, onSuccess }) => {
+const SignInModal = ({ onSwitch, onSuccess }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -31,26 +30,23 @@ const SignUpModal = ({ onSwitch, onSuccess }) => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fakeRegisterRequest(data);
-      toast.success('Account created!');
+      const response = await fakeLoginRequest(data);
+      toast.success('Logged in successfully!');
       if (onSuccess) onSuccess();
     } catch (err) {
-      toast.error(err.message || 'Registration failed');
+      toast.error(err.message || 'Login failed');
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
   };
 
   return (
     <div className="auth-modal">
-      <h2>SIGN UP</h2>
+      <h2>SIGN IN</h2>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="sign-up-form">
-        <Input
-          type="text"
-          placeholder="Name*"
-          register={register('name')}
-          error={errors.name?.message}
-        />
-
+      <form onSubmit={handleSubmit(onSubmit)} className="sign-in-form">
         <Input
           type="email"
           placeholder="Email*"
@@ -59,11 +55,14 @@ const SignUpModal = ({ onSwitch, onSuccess }) => {
         />
 
         <Input
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           placeholder="Password"
           register={register('password')}
           error={errors.password?.message}
-          className="last-input"
+          showPasswordToggle
+          icon={showPassword ? 'eye-off' : 'eye'}
+          onTogglePassword={togglePasswordVisibility}
+          className='last-input'
         />
 
         <Button
@@ -73,34 +72,34 @@ const SignUpModal = ({ onSwitch, onSuccess }) => {
           size="large"
           disabled={!isValid || isSubmitting}
         >
-          {isSubmitting ? 'Signing up...' : 'CREATE'}
+          {isSubmitting ? 'Signing in...' : 'SIGN IN'}
         </Button>
       </form>
 
       <p className="text">
-        I already have an account?{' '}
+        Don’t have an account?{' '}
         <span className="switch" onClick={onSwitch}>
-          Sign in
+          Create an account
         </span>
       </p>
     </div>
   );
 };
 
-SignUpModal.propTypes = {
+SignInModal.propTypes = {
   onSwitch: PropTypes.func.isRequired,
   onSuccess: PropTypes.func,
 };
 
-export default SignUpModal;
+export default SignInModal;
 
-const fakeRegisterRequest = (data) =>
+const fakeLoginRequest = (data) =>
   new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (data.email === 'existing@example.com') {
-        reject(new Error('User already exists'));
+      if (data.email !== 'test@example.com' || data.password !== '123456') {
+        reject(new Error('Invalid credentials'));
       } else {
-        resolve({ token: 'fake-token' });
+        resolve({ token: 'fake-login-token' });
       }
     }, 1000);
   });
