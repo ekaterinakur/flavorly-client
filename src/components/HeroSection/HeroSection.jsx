@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { selectIsLoggedIn } from '../../redux/selectors/authSelectors.js';
 import Button from '../Button/Button';
 import './HeroSection.scss';
 
-const HeroSection = ({ isLoggedIn = true }) => {
+const HeroSection = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <section className="hero-section section">
       <div className="container">
