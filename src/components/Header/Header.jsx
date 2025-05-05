@@ -2,7 +2,10 @@ import { Link, useLocation } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+
 import './Header.scss';
+import Modal from '../Modal/Modal';
+import SignUpModal from '../SignUpModal/SignUpModal';
 import AuthButtons from '../AuthButtons/AuthButtons.jsx';
 import Modal from '../Modal/Modal';
 import SignUpModal from '../SignUpModal/SignUpModal';
@@ -20,6 +23,7 @@ import {
 } from '../../redux/slices/modalSlice.js';
 import { selectIsSignUpOpen } from '../../redux/selectors/modalSelectors.js';
 
+
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(selectUser);
@@ -29,7 +33,6 @@ const Header = () => {
 
   const { pathname } = useLocation();
   const isHomePage = pathname === '/';
-
 
   const [open, setOpen] = useState(false);
   const userMenuRef = useRef(null);
