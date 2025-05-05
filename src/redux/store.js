@@ -1,9 +1,28 @@
 import { configureStore } from '@reduxjs/toolkit';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
 import { recipesReducer } from './slices/recipesSlice.js';
 import { testimonialsReducer } from './slices/testimonialsSlice.js';
 import { ingredientsReducer } from './slices/ingredientsSlice.js';
 import { areasReducer } from './slices/areasSlice.js';
-import userReducer from './slices/userSlice.js';
+import { authReducer } from './slices/authSlice.js';
+
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token'],
+};
+
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +30,15 @@ export const store = configureStore({
     testimonials: testimonialsReducer,
     ingredients: ingredientsReducer,
     areas: areasReducer,
-    user: userReducer,
+    auth: persistReducer(authPersistConfig, authReducer),
     // TODO: add needed reducers here
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
+
+export const persistor = persistStore(store);

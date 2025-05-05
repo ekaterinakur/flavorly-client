@@ -9,8 +9,17 @@ import ProfileRecipesPage from './pages/ProfileRecipesPage';
 import ProfileFavoritesPage from './pages/ProfileFavoritesPage';
 import ProfileFollowersPage from './pages/ProfileFollowersPage';
 import ProfileFollowingPage from './pages/ProfileFollowingPage';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { currentUser } from './api/current';
 
 export default function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(currentUser());
+  }, [dispatch]);
+
   return (
     <Layout>
       <Routes>

@@ -1,18 +1,26 @@
 import { Link, useLocation } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
+
 
 import './Header.scss';
-import training_img from '../../assets/vika_must_be_deleted.png';
+import Modal from '../Modal/Modal';
+import SignUpModal from '../SignUpModal/SignUpModal';
 import AuthButtons from '../AuthButtons/AuthButtons.jsx';
 import UserInfo from '../UserInfo/UserInfo.jsx';
 import Button from '../Button/Button.jsx';
 import NavBar from '../NavBar/NavBar.jsx';
 import Icon from '../Icon/Icon.jsx';
+import {
+  selectIsLoggedIn,
+  selectUser,
+} from '../../redux/selectors/authSelectors.js';
 
-import Modal from '../Modal/Modal';
-import SignUpModal from '../SignUpModal/SignUpModal';
 
 const Header = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const user = useSelector(selectUser);
+
   const { pathname } = useLocation();
   const isHomePage = pathname === '/';
 
@@ -28,12 +36,6 @@ const Header = () => {
     if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
       setOpen(false);
     }
-  };
-
-  const isLoggedIn = true;
-  const user = {
-    name: 'Mike Milles',
-    avatar: training_img,
   };
 
   useEffect(() => {
