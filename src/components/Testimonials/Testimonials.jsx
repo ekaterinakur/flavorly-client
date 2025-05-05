@@ -24,16 +24,18 @@ const Testimonials = () => {
     dispatch(fetchTestimonials());
   }, [dispatch]);
 
-  return testimonials?.length > 0 && (
-    <section className="testimonials section">
-      <div className="container ">
-        <p className="testimonials-subtitle">What our customer say</p>
-        <h2 className="testimonials-title">Testimonials</h2>
-        <Icon name="quote" color="#BFBEBE" className="testimonials-icon" />
+  return (
+    testimonials?.length > 0 && (
+      <section className="testimonials section">
+        <div className="container ">
+          <p className="testimonials-subtitle">What our customer say</p>
+          <h2 className="testimonials-title">Testimonials</h2>
+          <Icon name="quote" color="#BFBEBE" className="testimonials-icon" />
 
-        <Swiper slides={renderSlides()} />
-      </div>
-    </section>
+          <Swiper slides={renderSlides()} />
+        </div>
+      </section>
+    )
   );
 };
 

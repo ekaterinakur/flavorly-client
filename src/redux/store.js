@@ -23,7 +23,6 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
-
 export const store = configureStore({
   reducer: {
     recipes: recipesReducer,
