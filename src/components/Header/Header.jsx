@@ -24,6 +24,7 @@ const Header = () => {
   const { pathname } = useLocation();
   const isHomePage = pathname === '/';
 
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const userMenuRef = useRef(null);
 

@@ -1,11 +1,9 @@
-import { useState } from 'react';
+
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import { Toaster } from 'react-hot-toast';
 
 const Layout = ({ children }) => {
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
-
   return (
     <div className="main-layout">
       <Header />
