@@ -2,7 +2,6 @@ import { Link, useLocation } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
-
 import './Header.scss';
 import Modal from '../Modal/Modal';
 import SignUpModal from '../SignUpModal/SignUpModal';
@@ -15,7 +14,6 @@ import {
   selectIsLoggedIn,
   selectUser,
 } from '../../redux/selectors/authSelectors.js';
-
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);

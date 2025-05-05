@@ -9,7 +9,6 @@ import { loginUser } from '../api/login.js';
 import { registerUser } from '../api/register.js';
 
 const HomePage = () => {
-
   // Temporary
   const dispatch = useDispatch();
 
@@ -41,8 +40,6 @@ const HomePage = () => {
   return (
     <>
       <div className="main-container">
-
-        
         <button type="button" onClick={handleClick}>
           LOGIN
         </button>
@@ -50,7 +47,6 @@ const HomePage = () => {
           Register
         </button>
 
-        
         <HeroSection />
         <CategoryList items={CATEGORIES_LIST} />
         {/* <RecipeList items={RECIPES_LIST} /> */}

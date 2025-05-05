@@ -12,7 +12,6 @@ const AuthButtons = ({ onSignUpClick }) => {
           <Button className="sign-up" onClick={onSignUpClick}>
             SIGN UP
           </Button>
-
         </li>
       </ul>
     </div>

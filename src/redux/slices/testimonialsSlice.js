@@ -12,10 +12,11 @@ const testimonialsSlice = createSlice({
   initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchTestimonials.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    })
+    builder
+      .addCase(fetchTestimonials.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(fetchTestimonials.fulfilled, (state, action) => {
         state.loading = false;
         state.items = action.payload;
@@ -23,7 +24,7 @@ const testimonialsSlice = createSlice({
       .addCase(fetchTestimonials.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      })
+      });
   },
 });
 
