@@ -1,0 +1,79 @@
+@use '../../styles/variables' as *;
+
+.modal-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .modal-menu__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .modal-menu__logo {
+      color: $white-color;
+      font-size: 1.25rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .modal-menu__close {
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  .modal-menu__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    margin-top: 180px;
+
+    a {
+      font-size: 14px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  }
+
+  .modal-menu__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 9998;
+  }
+
+  .modal-img {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: flex-end;
+
+    .modal-img-desert {
+      width: 77px;
+      height: 70px;
+    }
+
+    .modal-img-dish {
+      width: 190px;
+      height: 170px;
+    }
+  }
+}
