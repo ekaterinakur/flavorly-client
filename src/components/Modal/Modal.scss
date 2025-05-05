@@ -4,37 +4,20 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: 16px;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  border-radius: 20px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 
-  width: 343px;
-  height: 408px;
+  width: 100%;
+  max-width: 343px;
+  max-height: 90vh;
+  overflow-y: auto;
 
   @media (min-width: 768px) {
-    width: 560px;
-    height: 500px;
-  }
-}
-
-.modal-button {
-  align-self: center;
-  color: #fff !important;
-  background-color: #bfbebe !important;
-  border: none !important;
-  box-shadow: none !important;
-  border-radius: 24px !important;
-  text-transform: none !important;
-  font-size: 16px;
-
-  width: 283px !important;
-  height: 48px !important;
-
-  @media (min-width: 768px) {
-    width: 400px !important;
-    height: 56px !important;
+    max-width: 560px;
+    max-height: none;
+    height: auto;
+    border-radius: 30px;
   }
 }

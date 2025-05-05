@@ -1,8 +1,16 @@
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
 import Button from '../Button/Button';
 import './HeroSection.scss';
+import { selectIsLoggedIn } from '../../redux/selectors/authSelectors.js';
+import { openSignUpModal } from '../../redux/slices/modalSlice.js'; 
 
-const HeroSection = ({ isLoggedIn = true }) => {
+
+const HeroSection = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch(); 
+
   return (
     <section className="hero-section section">
       <div className="container">
@@ -28,7 +36,7 @@ const HeroSection = ({ isLoggedIn = true }) => {
               variant="white-border"
               size="add-recipe"
               className="hero-btn"
-              onClick={() => {}}
+              onClick={() => dispatch(openSignUpModal())}
             >
               Add recipe
             </Button>
