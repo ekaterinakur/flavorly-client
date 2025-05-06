@@ -29,6 +29,11 @@ const Header = () => {
     avatar: training_img,
   };
 
+  const [openModalMenu, setOpenModalmenu] = useState(false);
+  const handleModalMenuClick = () => {
+    setOpenModalmenu(!openModalMenu);
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -49,7 +54,7 @@ const Header = () => {
                   open={open}
                   isHomePage={isHomePage}
                 />
-                <Button className="burger-menu-btn" onClick={handleClick}>
+                <Button className="burger-menu-btn" onClick={handleModalMenuClick}>
                   <Icon
                     className="burger-menu-icon"
                     name="burger"
@@ -58,7 +63,7 @@ const Header = () => {
                   />
                 </Button>
               </div>
-              {open && <ModalMenu onClose={handleClick} />}
+              {openModalMenu && <ModalMenu onClose={handleModalMenuClick}/>}
             </>
           ) : (
             <AuthButtons />
