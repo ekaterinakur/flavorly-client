@@ -10,11 +10,7 @@ const Input = ({
 }) => {
   return (
     <div className={`input-wrapper ${error ? 'input-error' : ''} ${className}`}>
-      <input
-        type={type}
-        placeholder={placeholder}
-        {...register}
-      />
+      <input type={type} placeholder={placeholder} {...register} />
       {error && <span className="error">{error}</span>}
     </div>
   );

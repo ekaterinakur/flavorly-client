@@ -4,9 +4,12 @@ import * as yup from 'yup';
 import PropTypes from 'prop-types';
 import { toast } from 'react-hot-toast';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import './SignInModal.scss';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
+import { loginUser } from '../../api/login.js';
 
 const schema = yup.object({
   email: yup.string().email('Invalid email').required('Email is required'),
@@ -18,6 +21,7 @@ const schema = yup.object({
 
 const SignInModal = ({ onSwitch, onSuccess }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -29,12 +33,15 @@ const SignInModal = ({ onSwitch, onSuccess }) => {
   });
 
   const onSubmit = async (data) => {
-    try {
-      const response = await fakeLoginRequest(data);
+    const resultAction = await dispatch(loginUser(data));
+
+    if (loginUser.fulfilled.match(resultAction)) {
       toast.success('Logged in successfully!');
-      if (onSuccess) onSuccess();
-    } catch (err) {
-      toast.error(err.message || 'Login failed');
+      onSuccess();
+    } else {
+      toast.error(
+        resultAction.payload || 'Login failed. Please check your credentials.'
+      );
     }
   };
 
@@ -62,7 +69,7 @@ const SignInModal = ({ onSwitch, onSuccess }) => {
           showPasswordToggle
           icon={showPassword ? 'eye-off' : 'eye'}
           onTogglePassword={togglePasswordVisibility}
-          className='last-input'
+          className="last-input"
         />
 
         <Button
@@ -92,14 +99,3 @@ SignInModal.propTypes = {
 };
 
 export default SignInModal;
-
-const fakeLoginRequest = (data) =>
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (data.email !== 'test@example.com' || data.password !== '123456') {
-        reject(new Error('Invalid credentials'));
-      } else {
-        resolve({ token: 'fake-login-token' });
-      }
-    }, 1000);
-  });
