@@ -17,42 +17,53 @@
     margin-bottom: 2.5rem;
   }
 
-  .sign-up-form {
+  .sign-in-form {
     max-width: 100%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 0.875rem;
 
-    input {
-      box-sizing: border-box;
-      padding: 1rem;
-      border-radius: 30px;
-      font-size: 16px;
-      border: 1px solid $silver;
-      color: $secondary-black;
-      background-color: $white-color;
-      width: 100%;
+      input {
+        box-sizing: border-box;
+        padding: 1rem;
+        border-radius: 30px;
+        font-size: 16px;
+        border: 1px solid $silver;
+        color: $secondary-black;
+        background-color: $white-color;
+        width: 100%;
 
-      &::placeholder {
-        opacity: 1;
+        &::placeholder {
+          opacity: 1;
+        }
+
+        &:focus {
+          border: 1px solid $primary-black;
+          outline: none;
+        }
+
+        &:not(:placeholder-shown) {
+          border: 1px solid $primary-black;
+        }
+
+        &:nth-of-type(2) {
+            margin-bottom: 2.5rem;
+          }
       }
 
-      &:focus {
-        border: 1px solid $primary-black;
-        outline: none;
-      }
+      
 
-      &:not(:placeholder-shown) {
-        border: 1px solid $primary-black;
+      .eye-button {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        cursor: pointer;
       }
-
-      .last-input {
-        margin-bottom: 2.5rem;
-      }
-    }
-
-   
+    
 
     .error {
       color: red;

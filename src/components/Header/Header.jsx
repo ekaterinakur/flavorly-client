@@ -3,8 +3,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 import './Header.scss';
+import training_img from '../../assets/vika_must_be_deleted.png';
 import Modal from '../Modal/Modal';
 import SignUpModal from '../SignUpModal/SignUpModal';
+import SignInModal from '../SignInModal/SignInModal';
 import AuthButtons from '../AuthButtons/AuthButtons.jsx';
 import UserInfo from '../UserInfo/UserInfo.jsx';
 import Button from '../Button/Button.jsx';
@@ -23,12 +25,11 @@ const Header = () => {
   const isHomePage = pathname === '/';
 
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const userMenuRef = useRef(null);
 
-  const handleClick = () => {
-    setOpen(!open);
-  };
+  const handleClick = () => setOpen(!open);
 
   const handleClickOutside = (event) => {
     if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
@@ -40,18 +41,35 @@ const Header = () => {
     if (open) {
       document.addEventListener('mousedown', handleClickOutside);
     }
-
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [open]);
 
+  const handleOpenSignUp = () => {
+    setIsSignUpOpen(true);
+    setIsSignInOpen(false);
+  };
+
+  const handleOpenSignIn = () => {
+    setIsSignInOpen(true);
+    setIsSignUpOpen(false);
+  };
+
+  const handleSwitch = () => {
+    setIsSignUpOpen(false);
+    setIsSignInOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsSignUpOpen(false);
+    setIsSignInOpen(false);
+  };
+
   return (
     <header className="header">
       <div className="container">
-        <div
-          className={`header-wrapper ${!isHomePage ? 'header--transparent' : ''}`}
-        >
+        <div className={`header-wrapper ${!isHomePage ? 'header--transparent' : ''}`}>
           <Link to="/" className="logo">
             foodies
           </Link>
@@ -77,20 +95,26 @@ const Header = () => {
               </div>
             </>
           ) : (
-            <AuthButtons onSignUpClick={() => setIsSignUpOpen(true)} />
+            <AuthButtons
+              onSignUpClick={handleOpenSignUp}
+              onSignInClick={handleOpenSignIn}
+              active={isSignUpOpen ? 'signup' : isSignInOpen ? 'signin' : ''}
+            />
           )}
         </div>
       </div>
 
-      <Modal isOpen={isSignUpOpen}>
-        <SignUpModal
-          onSuccess={() => setIsSignUpOpen(false)}
-          onSwitch={() => {
-            setIsSignUpOpen(false);
-            // for SignInModalOpen()
-          }}
-        />
-      </Modal>
+      {isSignUpOpen && (
+        <Modal isOpen={isSignUpOpen} onClose={handleClose}>
+          <SignUpModal onSuccess={handleClose} onSwitch={handleSwitch} />
+        </Modal>
+      )}
+
+      {isSignInOpen && (
+        <Modal isOpen={isSignInOpen} onClose={handleClose}>
+          <SignInModal onSuccess={handleClose} onSwitch={handleOpenSignUp} />
+        </Modal>
+      )}
     </header>
   );
 };
