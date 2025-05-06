@@ -1,20 +1,36 @@
-.header-login-list {
+@use '../../styles/variables.scss' as *;
+
+.header-login {
   display: flex;
-  align-items: center;
-}
+  justify-content: center;
 
-.header-login-item {
-  background: linear-gradient(
-    to left,
-    rgb(255, 255, 255) 50%,
-    rgba(255, 0, 0, 0) 50%
-  );
-}
+  .toggle-wrapper {
+    display: flex;
+    border: 1px $white-color;
+    border-radius: 30px;
+    padding: 1px;
+    overflow: hidden;
+    background-color: $white-color;
+  }
 
-.header-login-item:last-child {
-  background: linear-gradient(
-    to right,
-    rgb(255, 255, 255) 50%,
-    rgba(255, 0, 0, 0) 50%
-  );
+  .toggle-btn {
+    padding: 14px 28px;
+    background-color: $white-color;
+    color: $secondary-black;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    font-size: 12px;
+
+    border-radius: 30px;
+
+    &.active {
+      background-color: $secondary-black;
+      color: $white-color;
+      border: 1px $white-color;
+      border-color: $white-color;
+      
+    }
+  }
 }
