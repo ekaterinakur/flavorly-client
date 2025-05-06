@@ -1,9 +1,13 @@
 @use '../../styles/variables' as *;
 
 .modal-menu {
+  display: none;
+
+  @media (max-width: 767px) {
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100vw;
   height: 100vh;
   background: #000;
@@ -11,6 +15,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
 
   .modal-menu__header {
     display: flex;
