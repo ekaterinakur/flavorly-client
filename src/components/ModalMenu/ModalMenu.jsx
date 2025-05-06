@@ -5,7 +5,6 @@ import './ModalMenu.scss';
 const ModalMenu = ({ onClose }) => {
   return (
     <div className="container modal-menu">
-      <div className="modal-menu__overlay" onClick={onClose} />
       <div className="container modal-menu__content">
         <div className="modal-menu__header">
           <Link to="/" className="modal-menu__logo">

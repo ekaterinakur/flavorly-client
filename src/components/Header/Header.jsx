@@ -54,7 +54,10 @@ const Header = () => {
                   open={open}
                   isHomePage={isHomePage}
                 />
-                <Button className="burger-menu-btn" onClick={handleModalMenuClick}>
+                <Button
+                  className="burger-menu-btn"
+                  onClick={handleModalMenuClick}
+                >
                   <Icon
                     className="burger-menu-icon"
                     name="burger"
@@ -63,7 +66,7 @@ const Header = () => {
                   />
                 </Button>
               </div>
-              {openModalMenu && <ModalMenu onClose={handleModalMenuClick}/>}
+              {openModalMenu && <ModalMenu onClose={handleModalMenuClick} />}
             </>
           ) : (
             <AuthButtons />
@@ -75,4 +78,3 @@ const Header = () => {
 };
 
 export default Header;
-
