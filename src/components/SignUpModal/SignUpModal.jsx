@@ -3,9 +3,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import PropTypes from 'prop-types';
 import { toast } from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+
 import './SignUpModal.scss';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
+import { registerUser } from '../../api/register.js';
 
 const schema = yup.object({
   name: yup
@@ -20,6 +23,8 @@ const schema = yup.object({
 });
 
 const SignUpModal = ({ onSwitch, onSuccess }) => {
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -30,12 +35,15 @@ const SignUpModal = ({ onSwitch, onSuccess }) => {
   });
 
   const onSubmit = async (data) => {
-    try {
-      const response = await fakeRegisterRequest(data);
-      toast.success('Account created!');
-      if (onSuccess) onSuccess();
-    } catch (err) {
-      toast.error(err.message || 'Registration failed');
+    const resultAction = await dispatch(registerUser(data));
+
+    if (registerUser.fulfilled.match(resultAction)) {
+      toast.success('Account created successfully!');
+      onSuccess();
+    } else {
+      toast.error(
+        resultAction.payload || 'Registration failed. Please try again.'
+      );
     }
   };
 
@@ -93,14 +101,3 @@ SignUpModal.propTypes = {
 };
 
 export default SignUpModal;
-
-const fakeRegisterRequest = (data) =>
-  new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (data.email === 'existing@example.com') {
-        reject(new Error('User already exists'));
-      } else {
-        resolve({ token: 'fake-token' });
-      }
-    }, 1000);
-  });

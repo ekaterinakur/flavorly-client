@@ -4,9 +4,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectIsLoggedIn } from '../../redux/selectors/authSelectors.js';
 import Button from '../Button/Button';
 import './HeroSection.scss';
+import { openSignUpModal } from '../../redux/slices/modalSlice.js';
 
 const HeroSection = () => {
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  const handleOpenSignUp = () => {
+    dispatch(openSignUpModal());
+  };
   return (
     <section className="hero-section section">
       <div className="container">
@@ -32,7 +38,7 @@ const HeroSection = () => {
               variant="white-border"
               size="add-recipe"
               className="hero-btn"
-              onClick={() => {}}
+              onClick={handleOpenSignUp}
             >
               Add recipe
             </Button>

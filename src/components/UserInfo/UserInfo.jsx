@@ -29,6 +29,7 @@ const UserInfo = ({ handleClick, user, open, isHomePage }) => {
 
   const handleLogout = () => {
     dispath(logoutUser());
+    dispath(closeLogoutModal());
   };
 
   return (

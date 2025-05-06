@@ -1,9 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './Header.scss';
-import training_img from '../../assets/vika_must_be_deleted.png';
 import Modal from '../Modal/Modal';
 import SignUpModal from '../SignUpModal/SignUpModal';
 import SignInModal from '../SignInModal/SignInModal';
@@ -16,16 +15,28 @@ import {
   selectIsLoggedIn,
   selectUser,
 } from '../../redux/selectors/authSelectors.js';
+import {
+  selectIsSignInOpen,
+  selectIsSignUpOpen,
+} from '../../redux/selectors/modalSelectors.js';
+import {
+  openSignInModal,
+  closeSignInModal,
+  openSignUpModal,
+  closeSignUpModal,
+} from '../../redux/slices/modalSlice.js';
 
 const Header = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(selectUser);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isSignUpOpen = useSelector(selectIsSignUpOpen);
+  const isSignInOpen = useSelector(selectIsSignInOpen);
+
+  const dispatch = useDispatch();
 
   const { pathname } = useLocation();
   const isHomePage = pathname === '/';
 
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
-  const [isSignInOpen, setIsSignInOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const userMenuRef = useRef(null);
 
@@ -47,29 +58,26 @@ const Header = () => {
   }, [open]);
 
   const handleOpenSignUp = () => {
-    setIsSignUpOpen(true);
-    setIsSignInOpen(false);
+    dispatch(openSignUpModal());
+    dispatch(closeSignInModal());
   };
 
   const handleOpenSignIn = () => {
-    setIsSignInOpen(true);
-    setIsSignUpOpen(false);
-  };
-
-  const handleSwitch = () => {
-    setIsSignUpOpen(false);
-    setIsSignInOpen(true);
+    dispatch(openSignInModal());
+    dispatch(closeSignUpModal());
   };
 
   const handleClose = () => {
-    setIsSignUpOpen(false);
-    setIsSignInOpen(false);
+    dispatch(closeSignUpModal());
+    dispatch(closeSignInModal());
   };
 
   return (
     <header className="header">
       <div className="container">
-        <div className={`header-wrapper ${!isHomePage ? 'header--transparent' : ''}`}>
+        <div
+          className={`header-wrapper ${!isHomePage ? 'header--transparent' : ''}`}
+        >
           <Link to="/" className="logo">
             foodies
           </Link>
@@ -104,17 +112,13 @@ const Header = () => {
         </div>
       </div>
 
-      {isSignUpOpen && (
-        <Modal isOpen={isSignUpOpen} onClose={handleClose}>
-          <SignUpModal onSuccess={handleClose} onSwitch={handleSwitch} />
-        </Modal>
-      )}
+      <Modal isOpen={isSignUpOpen} onClose={handleClose}>
+        <SignUpModal onSuccess={handleClose} onSwitch={handleOpenSignIn} />
+      </Modal>
 
-      {isSignInOpen && (
-        <Modal isOpen={isSignInOpen} onClose={handleClose}>
-          <SignInModal onSuccess={handleClose} onSwitch={handleOpenSignUp} />
-        </Modal>
-      )}
+      <Modal isOpen={isSignInOpen} onClose={handleClose}>
+        <SignInModal onSuccess={handleClose} onSwitch={handleOpenSignUp} />
+      </Modal>
     </header>
   );
 };
