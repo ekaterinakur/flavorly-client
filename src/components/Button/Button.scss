@@ -11,12 +11,6 @@
   font-weight: 500;
   text-transform: uppercase;
 
-  &:hover,
-  &:focus {
-    color: $primary-black;
-    background-color: $white-color;
-  }
-
   // Size
   &-small {
     padding: 14px 30px;

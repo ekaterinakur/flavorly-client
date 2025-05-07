@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import './UserInfo.scss';
 import Button from '../Button/Button';
@@ -18,6 +18,7 @@ const UserInfo = ({ handleClick, user, open, isHomePage }) => {
   const isLogoutOpen = useSelector(selectIsLogoutOpen);
 
   const dispath = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogoutOpen = () => {
     dispath(openLogoutModal());
@@ -27,9 +28,10 @@ const UserInfo = ({ handleClick, user, open, isHomePage }) => {
     dispath(closeLogoutModal());
   };
 
-  const handleLogout = () => {
-    dispath(logoutUser());
+  const handleLogout = async () => {
+    await dispath(logoutUser());
     dispath(closeLogoutModal());
+    navigate('/');
   };
 
   return (
@@ -64,7 +66,6 @@ const UserInfo = ({ handleClick, user, open, isHomePage }) => {
           <li className="user-menu-item">
             <Link
               className="user-menu-link"
-              to="/"
               onClick={() => {
                 handleLogoutOpen();
                 handleClick();
