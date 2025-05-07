@@ -34,7 +34,7 @@ const UserInfo = ({ handleClick, user, open, isHomePage }) => {
 
   return (
     <div className="user-info">
-      <Button onClick={handleClick}>
+      <Button onClick={handleClick} className='user-info-btn'>
         <img
           className="user-avatar"
           src={user.avatar || training_img}
@@ -52,13 +52,24 @@ const UserInfo = ({ handleClick, user, open, isHomePage }) => {
       {open && (
         <ul className="user-menu">
           <li className="user-menu-item">
-            <Link className="user-menu-link" to="/profile">
+            <Link
+              className="user-menu-link"
+              to="/profile"
+              onClick={handleClick}
+            >
               Profile
             </Link>
           </li>
 
           <li className="user-menu-item">
-            <Link className="user-menu-link" to="/" onClick={handleLogoutOpen}>
+            <Link
+              className="user-menu-link"
+              to="/"
+              onClick={() => {
+                handleLogoutOpen();
+                handleClick();
+              }}
+            >
               Log out
             </Link>
             <Icon

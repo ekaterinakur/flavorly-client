@@ -1,3 +1,18 @@
+@use '../../styles/variables' as *;
+
+.user-info {
+  position: relative;
+  display: inline-block;
+
+  .user-info-btn {
+    background-color: $secondary-black;
+
+    &:hover,
+    &:focus {
+      background-color: $primary-black;
+    }
+  }
+
 .user-avatar {
   @media screen and (min-width: 768px) {
     width: 50px;
@@ -10,9 +25,10 @@
   font-weight: 700;
   line-height: 18px;
   text-transform: uppercase;
-  color: white;
+  color: $white-color;
   margin-left: 6px;
   margin-right: 4px;
+  min-width: 40px;
 }
 
 .chevron-icon {
@@ -26,15 +42,13 @@
   }
 }
 
-.user-info {
-  position: relative;
-  display: inline-block;
-}
+
 
 .user-menu {
+  background-color: $primary-black;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 15px;
-  color: white;
+  color: $white-color;
   padding: 16px;
   position: absolute;
   top: 100%;
@@ -53,4 +67,5 @@
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
+}
 }
