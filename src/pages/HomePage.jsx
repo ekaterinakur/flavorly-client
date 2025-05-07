@@ -12,7 +12,7 @@ import { selectUserDetails } from '../redux/selectors/userDetailsSelectors.js';
 const HomePage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(userDetails(1));
+    dispatch(userDetails('681bc3f7de82468ba1d43e61'));
   }, [dispatch]);
 
   const userDetailsResp = useSelector(selectUserDetails);
