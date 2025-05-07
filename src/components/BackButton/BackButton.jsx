@@ -1,19 +1,22 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Icon from '../Icon/icon';
 import './BackButton.scss';
 
-const BackButton = () => {
+const BackButton = ({ backUrl }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/');
+    if (backUrl) {
+      navigate(backUrl);
+    } else {
+      navigate(-1);
+    }
   };
 
   return (
     <button type="button" className="back-button" onClick={handleClick}>
-      <svg className="back-button__icon" width="16" height="16">
-        <use xlinkHref="/icons.svg#icon-arrow-left" />
-      </svg>
+      <Icon name="arrow-left" size={16} className="back-button__icon" />
       <span className="back-button__text">Back</span>
     </button>
   );
