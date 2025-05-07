@@ -34,7 +34,7 @@ const UserInfo = ({ handleClick, user, open, isHomePage }) => {
 
   return (
     <div className="user-info">
-      <Button onClick={handleClick} className='user-info-btn'>
+      <Button onClick={handleClick} className="user-info-btn">
         <img
           className="user-avatar"
           src={user.avatar || training_img}
