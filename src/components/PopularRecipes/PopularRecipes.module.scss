@@ -1,0 +1,20 @@
+@use '../../styles/variables' as *;
+
+.title {
+  text-transform: uppercase;
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 900;
+  margin-top: 64px;
+  margin-bottom: 32px;
+
+  @media (min-width: 768px) {
+    margin-top: 100px;
+    margin-bottom: 40px;
+    font-size: 20px;
+  }
+
+  @media (min-width: 1440px) {
+    margin-top: 120px;
+  }
+}
