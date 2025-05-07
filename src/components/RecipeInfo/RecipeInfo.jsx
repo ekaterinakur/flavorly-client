@@ -1,14 +1,10 @@
 import styles from './RecipeInfo.module.scss';
-import { useMediaQuery } from 'react-responsive';
-import { Avatar } from '../Avatar/Avatar';
-
 import { RecipePreparation } from '../RecipePreparation/RecipePreparation';
 import { RecipeIngredients } from '../RecipeIngredients/RecipeIngredients';
 import { RecipeCategories } from '../RecipeCategories/RecipeCategories';
+import { RecipeAuthor } from '../RecipeAuthor/RecipeAuthor';
 
 export function RecipeInfo({ data }) {
-  const isXsScreen = useMediaQuery({ query: '(min-width: 375px)' });
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.cover}>
@@ -21,13 +17,7 @@ export function RecipeInfo({ data }) {
 
         {data.desc ? <p className={styles.desc}>{data.desc}</p> : null}
 
-        <div className={styles.user}>
-          <Avatar src={data.user.avatar} size={isXsScreen ? 50 : 32} />
-          <div className={styles.userInfo}>
-            <span>Created by:</span>
-            <strong>{data.user.name}</strong>
-          </div>
-        </div>
+        <RecipeAuthor user={data.user} />
 
         <h3 className={styles.subtitle}>Ingredients</h3>
         <RecipeIngredients ingredients={data.ingredients} />

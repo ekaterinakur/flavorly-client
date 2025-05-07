@@ -1,11 +1,21 @@
 import classNames from 'classnames';
 import styles from './RecipePreparation.module.scss';
 import Button from '../Button/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoggedIn } from '../../redux/selectors/authSelectors';
+import { openSignInModal } from '../../redux/slices/modalSlice';
 
 export function RecipePreparation({ preparation }) {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const handleAddToFavorites = () => {
-    // Logic to add the recipe to favorites
     console.log('Add to favorites clicked');
+    if (isLoggedIn) {
+      console.log('add to favorites');
+    } else {
+      dispatch(openSignInModal());
+    }
   };
 
   return (
@@ -31,7 +41,7 @@ export function RecipePreparation({ preparation }) {
         variant="outline"
         onClick={handleAddToFavorites}
       >
-        aDD TO fAVORITES
+        ADD TO FAVORITES
       </Button>
     </>
   );

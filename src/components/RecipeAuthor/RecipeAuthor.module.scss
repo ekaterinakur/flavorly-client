@@ -1,0 +1,37 @@
+@use '../../styles/variables' as *;
+
+.user {
+  display: flex;
+  align-items: center;
+  margin: 20px 0 0 0;
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
+  text-align: left;
+}
+
+.userInfo {
+  margin-left: 16px;
+
+  span {
+    display: block;
+    color: $silver;
+    font-size: 12px;
+
+    @media (min-width: 768px) {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+  }
+
+  strong {
+    font-weight: 700;
+    font-size: 14px;
+    color: $silver;
+
+    @media (min-width: 768px) {
+      font-size: 16px;
+      color: inherit;
+    }
+  }
+}
