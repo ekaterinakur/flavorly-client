@@ -57,12 +57,16 @@ const Header = () => {
     };
   }, [open]);
 
+  const [activeTab, setActiveTab] = useState('signup');
+
   const handleOpenSignUp = () => {
+    setActiveTab('signup');
     dispatch(openSignUpModal());
     dispatch(closeSignInModal());
   };
 
   const handleOpenSignIn = () => {
+    setActiveTab('signin');
     dispatch(openSignInModal());
     dispatch(closeSignUpModal());
   };
@@ -106,7 +110,7 @@ const Header = () => {
             <AuthButtons
               onSignUpClick={handleOpenSignUp}
               onSignInClick={handleOpenSignIn}
-              active={isSignUpOpen ? 'signup' : isSignInOpen ? 'signin' : ''}
+              active={activeTab}
             />
           )}
         </div>

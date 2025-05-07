@@ -72,6 +72,7 @@ const SignUpModal = ({ onSwitch, onSuccess }) => {
           register={register('password')}
           error={errors.password?.message}
           className="last-input"
+          showPasswordToggle
         />
 
         <Button
