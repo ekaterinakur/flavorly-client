@@ -17,6 +17,7 @@ import { ingredientsReducer } from './slices/ingredientsSlice.js';
 import { areasReducer } from './slices/areasSlice.js';
 import { authReducer } from './slices/authSlice.js';
 import { modalReducer } from './slices/modalSlice.js';
+import { categoriesReducer } from './slices/categoriesSlice.js';
 
 const authPersistConfig = {
   key: 'auth',
@@ -32,6 +33,7 @@ export const store = configureStore({
     areas: areasReducer,
     auth: persistReducer(authPersistConfig, authReducer),
     modal: modalReducer,
+    categories: categoriesReducer,
     // TODO: add needed reducers here
   },
   middleware: (getDefaultMiddleware) =>
