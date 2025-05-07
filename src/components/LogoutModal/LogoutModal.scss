@@ -1,0 +1,68 @@
+@use '../../styles/variables.scss' as *;
+
+.modal-wrapper {
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    @media screen and (min-width: 768px) {
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  .modal-question {
+    font-size: 28px;
+    line-height: 32px;
+    font-weight: 800;
+    text-transform: uppercase;
+
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  .modal-question-tablet {
+    display: none;
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 800;
+    text-transform: uppercase;
+
+    @media screen and (min-width: 768px) {
+      display: inline;
+    }
+  }
+
+  .modal-text {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    color: $silver;
+  }
+
+  .modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @media screen and (min-width: 768px) {
+      gap: 1.25rem;
+    }
+  }
+
+  .btn {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+
+    @media screen and (min-width: 768px) {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+}

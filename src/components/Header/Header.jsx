@@ -1,11 +1,11 @@
 import { Link, useLocation } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
 
 import './Header.scss';
 import Modal from '../Modal/Modal';
 import SignUpModal from '../SignUpModal/SignUpModal';
+import SignInModal from '../SignInModal/SignInModal';
 import AuthButtons from '../AuthButtons/AuthButtons.jsx';
 import UserInfo from '../UserInfo/UserInfo.jsx';
 import Button from '../Button/Button.jsx';
@@ -15,22 +15,32 @@ import {
   selectIsLoggedIn,
   selectUser,
 } from '../../redux/selectors/authSelectors.js';
-
+import {
+  selectIsSignInOpen,
+  selectIsSignUpOpen,
+} from '../../redux/selectors/modalSelectors.js';
+import {
+  openSignInModal,
+  closeSignInModal,
+  openSignUpModal,
+  closeSignUpModal,
+} from '../../redux/slices/modalSlice.js';
 
 const Header = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
   const user = useSelector(selectUser);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isSignUpOpen = useSelector(selectIsSignUpOpen);
+  const isSignInOpen = useSelector(selectIsSignInOpen);
+
+  const dispatch = useDispatch();
 
   const { pathname } = useLocation();
   const isHomePage = pathname === '/';
 
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const userMenuRef = useRef(null);
 
-  const handleClick = () => {
-    setOpen(!open);
-  };
+  const handleClick = () => setOpen(!open);
 
   const handleClickOutside = (event) => {
     if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
@@ -42,11 +52,25 @@ const Header = () => {
     if (open) {
       document.addEventListener('mousedown', handleClickOutside);
     }
-
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [open]);
+
+  const handleOpenSignUp = () => {
+    dispatch(openSignUpModal());
+    dispatch(closeSignInModal());
+  };
+
+  const handleOpenSignIn = () => {
+    dispatch(openSignInModal());
+    dispatch(closeSignUpModal());
+  };
+
+  const handleClose = () => {
+    dispatch(closeSignUpModal());
+    dispatch(closeSignInModal());
+  };
 
   return (
     <header className="header">
@@ -79,19 +103,21 @@ const Header = () => {
               </div>
             </>
           ) : (
-            <AuthButtons onSignUpClick={() => setIsSignUpOpen(true)} />
+            <AuthButtons
+              onSignUpClick={handleOpenSignUp}
+              onSignInClick={handleOpenSignIn}
+              active={isSignUpOpen ? 'signup' : isSignInOpen ? 'signin' : ''}
+            />
           )}
         </div>
       </div>
 
-      <Modal isOpen={isSignUpOpen}>
-        <SignUpModal
-          onSuccess={() => setIsSignUpOpen(false)}
-          onSwitch={() => {
-            setIsSignUpOpen(false);
-            // for SignInModalOpen()
-          }}
-        />
+      <Modal isOpen={isSignUpOpen} onClose={handleClose}>
+        <SignUpModal onSuccess={handleClose} onSwitch={handleOpenSignIn} />
+      </Modal>
+
+      <Modal isOpen={isSignInOpen} onClose={handleClose}>
+        <SignInModal onSuccess={handleClose} onSwitch={handleOpenSignUp} />
       </Modal>
     </header>
   );

@@ -1,64 +1,74 @@
-.profile {
-  padding-top: 2rem;
-}
+@use '../styles/reset';
+@use '../styles/variables' as *;
 
-.layout {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.sidebar {
-  flex: 0 0 220px;
-  text-align: center;
-}
+$desktop: 1024px;
+$tablet: 768px;
+$mobile: 480px;
 
 .avatar {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
+  border: 2px solid $silver;
   object-fit: cover;
-  border: 2px solid #ddd;
+
+  @media (max-width: $tablet) {
+    width: 120px;
+    height: 120px;
+  }
+
+  @media (max-width: $mobile) {
+    width: 90px;
+    height: 90px;
+  }
 }
 
 .name {
-  margin-top: 1rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #333;
-}
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-family: $font-stack;
+  color: $secondary-black;
 
-.content {
-  flex: 1;
-  min-width: 300px;
+  @media (max-width: $mobile) {
+    font-size: 1.2rem;
+  }
 }
-
 .tabs {
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
+  border-bottom: 1px solid $silver;
   margin-bottom: 1.5rem;
-  flex-wrap: wrap;
 }
 
 .tab {
+  position: relative;
   padding: 0.5rem 1rem;
-  border-radius: 8px;
-  background-color: #f3f3f3;
-  color: #333;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.2s;
+  font-weight: 700;
+  font-size: 1rem;
+  color: $silver;
+  text-transform: uppercase;
 
   &.active {
-    background-color: #000;
-    color: #fff;
+    color: $primary-black;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 100%;
+      height: 3px;
+      background-color: $primary-black;
+      border-radius: 2px;
+    }
   }
 
   &:hover {
-    background-color: #ddd;
+    color: darken($silver, 15%);
   }
-}
 
-.outlet {
-  padding: 1rem 0;
+  @media (max-width: $mobile) {
+    width: 100%;
+    text-align: center;
+  }
 }
