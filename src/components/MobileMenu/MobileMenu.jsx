@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './ModalMenu.scss';
+import './MobileMenu.scss';
 
-const ModalMenu = ({ onClose }) => {
+const MobileMenu = ({ onClose }) => {
   return (
     <div className="container modal-menu">
       <div className="container modal-menu__content">
@@ -45,4 +45,4 @@ const ModalMenu = ({ onClose }) => {
   );
 };
 
-export default ModalMenu;
+export default MobileMenu;

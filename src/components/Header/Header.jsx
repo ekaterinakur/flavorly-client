@@ -9,7 +9,7 @@ import UserInfo from '../UserInfo/UserInfo.jsx';
 import Button from '../Button/Button.jsx';
 import NavBar from '../NavBar/NavBar.jsx';
 import Icon from '../Icon/Icon.jsx';
-import ModalMenu from '../ModalMenu/ModalMenu.jsx';
+import MobileMenu from '../MobileMenu/MobileMenu.jsx';
 
 const Header = () => {
   // const { isLogged, user } = useSelector();
@@ -29,9 +29,9 @@ const Header = () => {
     avatar: training_img,
   };
 
-  const [openModalMenu, setOpenModalmenu] = useState(false);
-  const handleModalMenuClick = () => {
-    setOpenModalmenu(!openModalMenu);
+  const [openMobileMenu, setOpenMobileMenu] = useState(false);
+  const handleMobileMenuClick = () => {
+    setOpenMobileMenu(!openMobileMenu);
   };
 
   return (
@@ -56,7 +56,7 @@ const Header = () => {
                 />
                 <Button
                   className="burger-menu-btn"
-                  onClick={handleModalMenuClick}
+                  onClick={handleMobileMenuClick}
                 >
                   <Icon
                     className="burger-menu-icon"
@@ -66,7 +66,7 @@ const Header = () => {
                   />
                 </Button>
               </div>
-              {openModalMenu && <ModalMenu onClose={handleModalMenuClick} />}
+              {openMobileMenu && <MobileMenu onClose={handleMobileMenuClick} />}
             </>
           ) : (
             <AuthButtons />
