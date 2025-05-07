@@ -1,0 +1,1 @@
+export const selectUserDetails = (state) => state.details.user;

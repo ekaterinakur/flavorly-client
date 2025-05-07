@@ -4,8 +4,20 @@ import HeroSection from '../components/HeroSection/HeroSection';
 import { CategoryList } from '../components/CategoryList/CategoryList.jsx';
 import { CATEGORIES_LIST } from '../mocks/categories';
 import Testimonials from '../components/Testimonials/Testimonials.jsx';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { userDetails } from '../api/userDetails.js';
+import { selectUserDetails } from '../redux/selectors/userDetailsSelectors.js';
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(userDetails(1));
+  }, [dispatch]);
+
+  const userDetailsResp = useSelector(selectUserDetails);
+  console.log(userDetailsResp);
+
   return (
     <>
       <div className="main-container">
