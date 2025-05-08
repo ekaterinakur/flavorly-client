@@ -3,6 +3,7 @@ import { registerUser } from '../../api/register';
 import { loginUser } from '../../api/login';
 import { logoutUser } from '../../api/logout';
 import { currentUser } from '../../api/current';
+import { updateAvatar } from '../../api/user';
 
 const initialState = {
   user: null,
@@ -82,6 +83,21 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(currentUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+
+      // Update Avatar
+      .addCase(updateAvatar.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(updateAvatar.fulfilled, (state, action) => {
+        if (state.user && action.payload?.avatar) {
+          state.user.avatar = action.payload.avatar;
+        }
+      })
+      .addCase(updateAvatar.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
