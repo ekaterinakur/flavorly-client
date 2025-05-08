@@ -5,7 +5,7 @@ export const unsubscribeFromUser = createAsyncThunk(
   'users/unsubscribe',
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await axios.delete(`/${userId}/follow`);
+      const response = await axios.delete(`/users/${userId}/follow`);
 
       return response.data;
     } catch (error) {

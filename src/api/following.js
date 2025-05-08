@@ -5,7 +5,7 @@ export const userFollowing = createAsyncThunk(
   'users/following',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`/following`);
+      const response = await axios.get('/users/following');
 
       return response.data;
     } catch (error) {

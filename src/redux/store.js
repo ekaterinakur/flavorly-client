@@ -20,7 +20,6 @@ import { modalReducer } from './slices/modalSlice.js';
 import { userDetailsReducer } from './slices/userDetails.js';
 import { subscriptionsReducer } from './slices/subscriptionsSlice.js';
 
-
 const authPersistConfig = {
   key: 'auth',
   storage,

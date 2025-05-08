@@ -5,7 +5,7 @@ export const subscribeToUser = createAsyncThunk(
   'users/subscribe',
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`/${userId}/follow`);
+      const response = await axios.post(`/users/${userId}/follow`);
 
       return response.data;
     } catch (error) {
