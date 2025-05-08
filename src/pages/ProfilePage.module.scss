@@ -1,9 +1,10 @@
 @use '../styles/reset';
 @use '../styles/variables' as *;
+@use 'sass:color';
 
-$desktop: 1024px;
+$desktop: 1440px;
 $tablet: 768px;
-$mobile: 480px;
+$mobile: 375px;
 
 .profile {
   padding-top: 2rem;
@@ -16,40 +17,73 @@ $mobile: 480px;
     padding-top: 1rem;
   }
 }
-
-.avatar {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 2px solid $silver;
-  object-fit: cover;
+.layout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
 
   @media (max-width: $tablet) {
-    width: 120px;
-    height: 120px;
-  }
-
-  @media (max-width: $mobile) {
-    width: 90px;
-    height: 90px;
+    flex-direction: column;
   }
 }
 
+.sidebar {
+  flex: 0 0 300px;
+
+  @media (max-width: $tablet) {
+    width: 100%;
+  }
+}
+
+.content {
+  flex: 1;
+}
+
 .name {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 44px;
+  letter-spacing: -0.02em;
   font-family: $font-stack;
   color: $secondary-black;
 
   @media (max-width: $mobile) {
-    font-size: 1.2rem;
+    font-size: 32px;
+    line-height: 36px;
   }
 }
+
+.subtitle {
+  font-family: $font-stack;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  color: #bfbebe;
+  max-width: 440px;
+
+  @media (max-width: $mobile) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.content {
+  margin-top: 2rem;
+}
+
 .tabs {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 2rem;
   border-bottom: 1px solid $silver;
   margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+
+  @media (max-width: $mobile) {
+    padding-left: 1rem;
+  }
 }
 
 .tab {
@@ -59,6 +93,11 @@ $mobile: 480px;
   font-size: 1rem;
   color: $silver;
   text-transform: uppercase;
+  white-space: normal;
+
+  &:hover {
+    color: color.adjust($silver, $lightness: -15%);
+  }
 
   &.active {
     color: $primary-black;
@@ -75,12 +114,12 @@ $mobile: 480px;
     }
   }
 
-  &:hover {
-    color: darken($silver, 15%);
-  }
-
   @media (max-width: $mobile) {
     width: 100%;
     text-align: center;
   }
+}
+
+.outlet {
+  margin-top: 2rem;
 }
