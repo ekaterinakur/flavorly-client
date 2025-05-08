@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from '../config/client.js';
+import client from '../config/client.js';
 
 export const updateUserAvatar = createAsyncThunk(
   'users/updateAvatar',
@@ -8,7 +8,7 @@ export const updateUserAvatar = createAsyncThunk(
     formData.append('avatar', avatarFile);
 
     try {
-      const response = await axios.patch('/users/avatar', formData, {
+      const response = await client.patch('/users/avatar', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from '../config/client.js';
+import client from '../config/client.js';
 
 export const currentUser = createAsyncThunk(
   'users/current',
@@ -11,7 +11,7 @@ export const currentUser = createAsyncThunk(
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
     try {
-      const response = await axios.get('/users/current');
+      const response = await client.get('/users/current');
 
       return response.data;
     } catch (error) {

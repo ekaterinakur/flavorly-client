@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from '../config/client.js';
+import client from '../config/client.js';
 
 export const userFollowing = createAsyncThunk(
   'users/following',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('/users/following');
+      const response = await client.get('/users/following');
 
       return response.data;
     } catch (error) {
