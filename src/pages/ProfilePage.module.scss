@@ -1,4 +1,4 @@
-@use '../styles/reset';
+@use '../styles/reset' as *;
 @use '../styles/variables' as *;
 
 $desktop: 1024px;
@@ -76,11 +76,18 @@ $mobile: 480px;
   }
 
   &:hover {
-    color: darken($silver, 15%);
+    color: $silver;
   }
 
   @media (max-width: $mobile) {
     width: 100%;
     text-align: center;
   }
+}
+
+.sidebar {
+  width: 394px;
+  padding-left: 0.5rem;
+  margin-left: 0.5rem;
+  float: left;
 }
