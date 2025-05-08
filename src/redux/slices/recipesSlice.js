@@ -46,11 +46,6 @@ const recipesSlice = createSlice({
         state.page = action.payload.page;
         state.loading = false;
       })
-      .addCase(fetchRecipes.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
-      })
-
       .addCase(fetchRecipeById.fulfilled, (state, action) => {
         state.current = action.payload;
       })
@@ -87,7 +82,28 @@ const recipesSlice = createSlice({
 
       .addCase(fetchFavoriteRecipes.fulfilled, (state, action) => {
         state.favorites = action.payload.favorites || [];
-      });
+      })
+      .addMatcher(
+        (action) => action.type.endsWith('/pending'),
+        (state) => {
+          state.loading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        (action) => action.type.endsWith('/rejected'),
+        (state, action) => {
+          state.loading = false;
+          state.error = action.payload;
+        }
+      )
+      .addMatcher(
+        (action) => action.type.endsWith('/fulfilled'),
+        (state, action) => {
+          state.loading = false;
+          state.error = false;
+        }
+      );
   },
 });
 
