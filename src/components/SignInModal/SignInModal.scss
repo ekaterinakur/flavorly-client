@@ -1,0 +1,72 @@
+@use '../../styles/variables.scss' as *;
+
+.auth-modal {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+  background: white;
+  padding: 1.25rem 0;
+
+  h2 {
+    font-family: $font-stack;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 125%;
+    color: $primary-black;
+    text-align: left;
+    margin-bottom: 2.5rem;
+  }
+
+  .sign-in-form {
+    max-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+
+    .error {
+      color: red;
+      font-size: 0.8rem;
+      margin-top: 0.25rem;
+      margin-left: 0.5rem;
+    }
+  }
+
+  .sign-in-form > button {
+    box-sizing: border-box;
+    padding: 1rem;
+    background-color: $primary-black;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+
+    &:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+  }
+
+  p {
+    text-align: center;
+    color: $silver;
+    margin-top: 1rem;
+    font-size: 14px;
+
+    .switch {
+      color: $primary-black;
+      cursor: pointer;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    padding: 2.5rem;
+  }
+}

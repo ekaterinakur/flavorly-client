@@ -1,0 +1,21 @@
+@use '../../styles/variables.scss' as *;
+
+.not-found {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+
+  .not-found-subtitle {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  .not-found-text {
+    color: $silver;
+    margin-bottom: 20px;
+  }
+}

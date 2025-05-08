@@ -1,0 +1,45 @@
+@use '../../styles/variables.scss' as *;
+
+.input-wrapper {
+  position: relative;
+  line-height: normal;
+
+  input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 30px;
+    font-size: 16px;
+    border: 1px solid $silver;
+    color: $secondary-black;
+    background-color: $white-color;
+
+    &::placeholder {
+      opacity: 1;
+    }
+
+    &:focus {
+      border: 1px solid $primary-black;
+      outline: none;
+    }
+
+    &:not(:placeholder-shown) {
+      border: 1px solid $primary-black;
+    }
+  }
+
+  .error {
+    display: block;
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+  }
+
+  &.last-input {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.input-error input {
+  border: 1px solid red;
+}

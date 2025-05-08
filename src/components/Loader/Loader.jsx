@@ -3,10 +3,8 @@ import './Loader.scss';
 
 function Loader() {
   return (
-    <div className="loader-wrapper">
-      <div className="loader-box">
-        <ClipLoader />
-      </div>
+    <div className="loader">
+      <ClipLoader size={24} />
     </div>
   );
 }

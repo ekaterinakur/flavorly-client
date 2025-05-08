@@ -1,19 +1,31 @@
 import './AuthButtons.scss';
-import Button from '../Button/Button.jsx';
+import PropTypes from 'prop-types';
 
-const AuthButtons = () => {
+const AuthButtons = ({ onSignUpClick, onSignInClick, active }) => {
   return (
     <div className="header-login">
-      <ul className="header-login-list">
-        <li className="header-login-item">
-          <Button className="sign-in">SIGN IN</Button>
-        </li>
-        <li className="header-login-item">
-          <Button className="sign-out">SIGN OUT</Button>
-        </li>
-      </ul>
+      <div className="toggle-wrapper">
+        <button
+          className={`toggle-btn ${active === 'signin' ? 'active' : ''}`}
+          onClick={onSignInClick}
+        >
+          SIGN IN
+        </button>
+        <button
+          className={`toggle-btn ${active === 'signup' ? 'active' : ''}`}
+          onClick={onSignUpClick}
+        >
+          SIGN UP
+        </button>
+      </div>
     </div>
   );
+};
+
+AuthButtons.propTypes = {
+  onSignUpClick: PropTypes.func.isRequired,
+  onSignInClick: PropTypes.func.isRequired,
+  active: PropTypes.string,
 };
 
 export default AuthButtons;

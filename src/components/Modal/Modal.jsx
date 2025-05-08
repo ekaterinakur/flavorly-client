@@ -1,29 +1,21 @@
 import './Modal.scss';
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
+import MuiModal from '@mui/material/Modal';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 
-export default function BasicModal({
-  isOpen,
-  children,
-  buttonLabel = 'Example',
-}) {
-  const [open, setOpen] = React.useState(isOpen);
-  const handleClose = () => setOpen(false);
-
+export default function Modal({ isOpen, children, onClose }) {
   return (
-    <Modal
-      open={open}
-      onClose={handleClose}
+    <MuiModal
+      open={isOpen}
+      onClose={onClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
       <Box className="modal-box">
         <IconButton
-          onClick={handleClose}
+          onClick={onClose}
           sx={{
             position: 'absolute',
             top: 8,
@@ -35,15 +27,7 @@ export default function BasicModal({
         </IconButton>
 
         <Box sx={{ flexGrow: 1 }}>{children}</Box>
-
-        <Button
-          variant="contained"
-          onClick={handleClose}
-          className="modal-button"
-        >
-          {buttonLabel}
-        </Button>
       </Box>
-    </Modal>
+    </MuiModal>
   );
 }

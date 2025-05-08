@@ -34,6 +34,16 @@
     &.header--transparent {
       background-color: transparent;
 
+      padding: 1rem 0.5rem 0;
+
+      @media screen and (min-width: 768px) {
+        padding: 1.25rem 1rem 0;
+      }
+
+      @media screen and (min-width: 1440px) {
+        padding: 1.25rem 3.75rem 0;
+      }
+
       .logo {
         color: $primary-black;
       }
@@ -49,6 +59,7 @@
       }
 
       .user-menu {
+        background-color: $white-color;
         border-color: $primary-black;
       }
 
@@ -97,20 +108,26 @@
       font-size: 12px;
       font-weight: 700;
       line-height: 18px;
-      text-transform: uppercase;
       background-color: white;
       color: $primary-black;
       padding: 10px 16px;
+
+      @media screen and (min-width: 768px) {
+        padding: 14px 30px;
+      }
     }
 
-    &.sign-out {
+    &.sign-up {
       font-size: 12px;
       font-weight: 700;
       line-height: 18px;
-      text-transform: uppercase;
       padding: 9px 16px;
       border: 1px solid $silver;
       min-height: 38px;
+
+      @media screen and (min-width: 768px) {
+        padding: 13.2px 28px;
+      }
     }
 
     &.burger-menu-btn {
