@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from '../config/client.js';
+import client from '../config/client.js';
 
 export const registerUser = createAsyncThunk(
   'users/register',
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await axios.post('/users/register', userData);
+      const response = await client.post('/users/register', userData);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.message);

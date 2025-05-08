@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import client from '../config/client.js';
 
-export const logoutUser = createAsyncThunk(
-  'users/logout',
-  async (_, { rejectWithValue }) => {
+export const userDetails = createAsyncThunk(
+  'users/details',
+  async (userId, { rejectWithValue }) => {
     try {
-      const response = await client.post('/users/logout');
+      const response = await client.get(`/users/${userId}/details`);
 
       return response.data;
     } catch (error) {

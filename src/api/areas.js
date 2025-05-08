@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from '../config/client.js';
+import client from '../config/client.js';
 
 export const fetchAreas = createAsyncThunk(
   'areas/fetchAll',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get(
+      const response = await client.get(
         'https://flavorly-api-gpdc.onrender.com/api/areas'
       );
       return response.data;
