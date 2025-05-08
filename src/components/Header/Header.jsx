@@ -11,6 +11,7 @@ import UserInfo from '../UserInfo/UserInfo.jsx';
 import Button from '../Button/Button.jsx';
 import NavBar from '../NavBar/NavBar.jsx';
 import Icon from '../Icon/Icon.jsx';
+import MobileMenu from '../MobileMenu/MobileMenu.jsx';
 import {
   selectIsLoggedIn,
   selectUser,
@@ -57,6 +58,11 @@ const Header = () => {
     dispatch(closeSignInModal());
   };
 
+  const [openMobileMenu, setOpenMobileMenu] = useState(false);
+  const handleMobileMenuClick = () => {
+    setOpenMobileMenu(!openMobileMenu);
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -72,7 +78,10 @@ const Header = () => {
               <NavBar />
               <div className="user-wrapper">
                 <UserInfo user={user} isHomePage={isHomePage} />
-                <Button className="burger-menu-btn" onClick={() => {}}>
+                <Button
+                  className="burger-menu-btn"
+                  onClick={handleMobileMenuClick}
+                >
                   <Icon
                     className="burger-menu-icon"
                     name="burger"
@@ -81,6 +90,7 @@ const Header = () => {
                   />
                 </Button>
               </div>
+              {openMobileMenu && <MobileMenu onClose={handleMobileMenuClick} />}
             </>
           ) : (
             <AuthButtons
