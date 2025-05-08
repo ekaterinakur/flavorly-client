@@ -1,0 +1,72 @@
+@use '../../styles/variables.scss' as *;
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  background-color: $silver;
+  @media (min-width: 768px) {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.button {
+  margin: 0 auto;
+  margin-top: -24px;
+  position: relative;
+  z-index: 2;
+}
+
+.wrapper {
+  padding: 1.875rem 3.375rem;
+  border-radius: 1.875rem;
+  border: 1px solid $silver;
+  margin-bottom: 1.25rem;
+
+  @media (min-width: 768px) {
+    padding: 2.5rem 5rem;
+  }
+}
+
+.name {
+  color: $primary-black;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1.5rem; /* 120% */
+  letter-spacing: -0.025rem;
+  text-transform: uppercase;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: $silver;
+  font-weight: 500;
+  font-size: 0.875rem;
+
+  &-bold {
+    color: #1a1a1a;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.5rem; /* 150% */
+    letter-spacing: -0.02rem;
+  }
+}
+
+.sidebar {
+  width: 394px;
+  padding-left: 0.5rem;
+  margin-left: 0.5rem;
+  float: left;
+  margin-right: 2.5rem;
+}
+
+.logout {
+  color: white;
+}

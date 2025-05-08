@@ -26,6 +26,7 @@ const usersSlice = createSlice({
   },
 });
 
-export const selectUserById = (state) => state.users;
+export const selectUserById = (state) => state.users.userDetails;
 
-export default usersSlice.reducer;
+// Reducer
+export const usersReducer = usersSlice.reducer;
