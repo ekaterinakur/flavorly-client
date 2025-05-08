@@ -1,0 +1,15 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    gap: 5rem;
+  }
+  @media (min-width: 1440px) {
+    flex-direction: row;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+}

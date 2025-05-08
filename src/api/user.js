@@ -16,9 +16,13 @@ export const fetchUserDetails = createAsyncThunk(
 
 export const updateAvatar = createAsyncThunk(
   'users/avatar',
-  async (userData, { rejectWithValue }) => {
+  async (formData, { rejectWithValue }) => {
     try {
-      const response = await axios.patch(`/users/avatar`, userData);
+      const response = await axios.patch(`/users/avatar`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
       return response.data.result;
     } catch (error) {
       toast.error('Помилка при завантаженні аватара.');

@@ -93,7 +93,9 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(updateAvatar.fulfilled, (state, action) => {
-        state.user.avatar = action.payload.avatar;
+        if (state.user && action.payload?.avatar) {
+          state.user.avatar = action.payload.avatar;
+        }
       })
       .addCase(updateAvatar.rejected, (state, action) => {
         state.isLoading = false;

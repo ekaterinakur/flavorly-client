@@ -60,11 +60,15 @@
 }
 
 .sidebar {
-  width: 394px;
+  width: 100%;
   padding-left: 0.5rem;
   margin-left: 0.5rem;
   float: left;
   margin-right: 2.5rem;
+
+  @media (min-width: 768px) {
+    width: 394px;
+  }
 }
 
 .logout {
