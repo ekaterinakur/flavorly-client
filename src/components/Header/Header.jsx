@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './Header.scss';
@@ -37,27 +37,8 @@ const Header = () => {
   const { pathname } = useLocation();
   const isHomePage = pathname === '/';
 
-  const [open, setOpen] = useState(false);
-  const userMenuRef = useRef(null);
-
-  const handleClick = () => setOpen(!open);
-
-  const handleClickOutside = (event) => {
-    if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
-      setOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    if (open) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [open]);
-
   const [activeTab, setActiveTab] = useState('signup');
+  
 
   const handleOpenSignUp = () => {
     setActiveTab('signup');
@@ -89,13 +70,8 @@ const Header = () => {
           {isLoggedIn ? (
             <>
               <NavBar />
-              <div className="user-wrapper" ref={userMenuRef}>
-                <UserInfo
-                  user={user}
-                  handleClick={handleClick}
-                  open={open}
-                  isHomePage={isHomePage}
-                />
+              <div className="user-wrapper">
+                <UserInfo user={user} isHomePage={isHomePage} />
                 <Button className="burger-menu-btn" onClick={() => {}}>
                   <Icon
                     className="burger-menu-icon"
