@@ -45,7 +45,9 @@ export default function Footer() {
       </div>
       <hr className="footer-divider" />
       <div className="footer-low container">
-        <p className="footer-copy">© 2024, Foodies. All rights reserved</p>
+        <p className="footer-copy">
+          © {new Date().getFullYear()}, Foodies. All rights reserved
+        </p>
       </div>
     </footer>
   );

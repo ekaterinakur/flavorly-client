@@ -3,18 +3,15 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import PropTypes from 'prop-types';
 import { toast } from 'react-hot-toast';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import './SignUpModal.scss';
+import './SignInModal.scss';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
-import { registerUser } from '../../api/register.js';
+import { loginUser } from '../../api/login.js';
 
 const schema = yup.object({
-  name: yup
-    .string()
-    .min(2, 'Minimum 2 characters')
-    .required('Name is required'),
   email: yup.string().email('Invalid email').required('Email is required'),
   password: yup
     .string()
@@ -22,7 +19,8 @@ const schema = yup.object({
     .required('Password is required'),
 });
 
-const SignUpModal = ({ onSwitch, onSuccess }) => {
+const SignInModal = ({ onSwitch, onSuccess }) => {
+  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
 
   const {
@@ -35,30 +33,27 @@ const SignUpModal = ({ onSwitch, onSuccess }) => {
   });
 
   const onSubmit = async (data) => {
-    const resultAction = await dispatch(registerUser(data));
+    const resultAction = await dispatch(loginUser(data));
 
-    if (registerUser.fulfilled.match(resultAction)) {
-      toast.success('Account created successfully!');
+    if (loginUser.fulfilled.match(resultAction)) {
+      toast.success('Logged in successfully!');
       onSuccess();
     } else {
       toast.error(
-        resultAction.payload || 'Registration failed. Please try again.'
+        resultAction.payload || 'Login failed. Please check your credentials.'
       );
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
+
   return (
     <div className="auth-modal">
-      <h2>SIGN UP</h2>
+      <h2>SIGN IN</h2>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="sign-up-form">
-        <Input
-          type="text"
-          placeholder="Name*"
-          register={register('name')}
-          error={errors.name?.message}
-        />
-
+      <form onSubmit={handleSubmit(onSubmit)} className="sign-in-form">
         <Input
           type="email"
           placeholder="Email*"
@@ -67,10 +62,13 @@ const SignUpModal = ({ onSwitch, onSuccess }) => {
         />
 
         <Input
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           placeholder="Password"
           register={register('password')}
           error={errors.password?.message}
+          showPasswordToggle
+          icon={showPassword ? 'eye-off' : 'eye'}
+          onTogglePassword={togglePasswordVisibility}
           className="last-input"
         />
 
@@ -81,23 +79,23 @@ const SignUpModal = ({ onSwitch, onSuccess }) => {
           size="large"
           disabled={!isValid || isSubmitting}
         >
-          {isSubmitting ? 'Signing up...' : 'CREATE'}
+          {isSubmitting ? 'Signing in...' : 'SIGN IN'}
         </Button>
       </form>
 
       <p className="text">
-        I already have an account?{' '}
+        Don’t have an account?{' '}
         <span className="switch" onClick={onSwitch}>
-          Sign in
+          Create an account
         </span>
       </p>
     </div>
   );
 };
 
-SignUpModal.propTypes = {
+SignInModal.propTypes = {
   onSwitch: PropTypes.func.isRequired,
   onSuccess: PropTypes.func,
 };
 
-export default SignUpModal;
+export default SignInModal;
