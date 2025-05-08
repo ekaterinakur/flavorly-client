@@ -7,14 +7,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../redux/selectors/authSelectors.js';
 import { useEffect } from 'react';
 import { fetchUserDetails } from '../api/user.js';
-import { selectUserById } from '../redux/slices/usersSlice.js';
 import TabsList from '../components/TabsList/TabsList.jsx';
+import { selectUserDetails } from '../redux/slices/userDetails.js';
 
 export default function ProfilePage() {
   const { userId } = useParams();
   const dispatch = useDispatch();
   const currentUser = useSelector(selectUser);
-  const userDetails = useSelector(selectUserById);
+  const userDetails = useSelector(selectUserDetails);
   let isOwner = !userId || userId === currentUser?.id;
   console.log('isOwner: ', isOwner);
   // isOwner = false;
