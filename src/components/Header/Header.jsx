@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './Header.scss';
