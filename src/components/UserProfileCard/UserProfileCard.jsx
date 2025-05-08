@@ -57,9 +57,10 @@ function UserProfileCard({ user, isOwner }) {
             <IconButton
               className="button"
               isActive="true"
-              children={<Icon name="plus" size={18} />}
               onClick={handleClick}
-            />
+            >
+              <Icon name="plus" size={18} />
+            </IconButton>
             <input
               type="file"
               accept="image/*"
