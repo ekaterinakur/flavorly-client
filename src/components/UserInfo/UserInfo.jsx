@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
 
 import './UserInfo.scss';
 import Button from '../Button/Button';
@@ -14,7 +15,7 @@ import {
   closeLogoutModal,
 } from '../../redux/slices/modalSlice.js';
 
-const UserInfo = ({ handleClick, user, open, isHomePage }) => {
+const UserInfo = ({ user, isHomePage }) => {
   const isLogoutOpen = useSelector(selectIsLogoutOpen);
 
   const dispath = useDispatch();
@@ -34,9 +35,29 @@ const UserInfo = ({ handleClick, user, open, isHomePage }) => {
     navigate('/');
   };
 
+  const [isOpenUserModal, setIsOpenUserModal] = useState(false);
+  const userMenuRef = useRef(null);
+
+  const handleUserModalClick = () => setIsOpenUserModal(!isOpenUserModal);
+
+  const handleClickOutside = (event) => {
+    if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+      setIsOpenUserModal(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isOpenUserModal) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpenUserModal]);
+
   return (
-    <div className="user-info">
-      <Button onClick={handleClick} className="user-info-btn">
+    <div className="user-info" ref={userMenuRef}>
+      <Button onClick={handleUserModalClick} className="user-info-btn">
         <img
           className="user-avatar"
           src={user.avatar || training_img}
@@ -44,20 +65,20 @@ const UserInfo = ({ handleClick, user, open, isHomePage }) => {
         ></img>
         <span className="user-name">{user.name.toUpperCase()}</span>
         <Icon
-          className={`chevron-icon ${open ? 'open' : ''}`}
+          className={`chevron-icon ${isOpenUserModal ? 'open' : ''}`}
           name="chevron-up"
           size={18}
           color="#ffffff"
         />
       </Button>
 
-      {open && (
+      {isOpenUserModal && (
         <ul className="user-menu">
           <li className="user-menu-item">
             <Link
               className="user-menu-link"
               to="/profile"
-              onClick={handleClick}
+              onClick={handleUserModalClick}
             >
               Profile
             </Link>
@@ -68,7 +89,7 @@ const UserInfo = ({ handleClick, user, open, isHomePage }) => {
               className="user-menu-link"
               onClick={() => {
                 handleLogoutOpen();
-                handleClick();
+                handleUserModalClick();
               }}
             >
               Log out
