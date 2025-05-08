@@ -14,7 +14,7 @@ export default function ProfileRecipesPage() {
   const myRecipes = useSelector(selectMyRecipes);
   const currentPage = useSelector(selectRecipesPage);
   const total = useSelector(selectRecipesTotal);
-  const perPageLimit = 12;
+  const perPageLimit = 9;
   const totalPages = Math.ceil(total / perPageLimit);
 
   const dispatch = useDispatch();
