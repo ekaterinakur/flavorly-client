@@ -3,27 +3,52 @@ import { RecipePreparation } from '../RecipePreparation/RecipePreparation';
 import { RecipeIngredients } from '../RecipeIngredients/RecipeIngredients';
 import { RecipeCategories } from '../RecipeCategories/RecipeCategories';
 import { RecipeAuthor } from '../RecipeAuthor/RecipeAuthor';
+import Button from '../Button/Button';
+import { useFavoriteRecipe } from '../../hooks/use-favorite-recipe';
 
-export function RecipeInfo({ data }) {
+export function RecipeInfo({ recipe }) {
+  const { isLoading, handleClick, isAddedToFavorite } = useFavoriteRecipe({
+    id: recipe.id,
+  });
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.cover}>
-        <img src={data.img} alt={data.title} />
+        <img src={recipe.thumb} alt={recipe.title} />
       </div>
       <div className={styles.info}>
-        <h1 className={styles.title}>{data.title}</h1>
+        <h1 className={styles.title}>{recipe.title}</h1>
 
-        <RecipeCategories categories={data.categories} />
+        <RecipeCategories category={recipe.category} time={recipe.time} />
 
-        {data.desc ? <p className={styles.desc}>{data.desc}</p> : null}
+        {recipe.description ? (
+          <p className={styles.desc}>{recipe.description}</p>
+        ) : null}
 
-        <RecipeAuthor user={data.user} />
+        <RecipeAuthor
+          avatar={recipe.owner.avatar}
+          name={recipe.owner.name}
+          id={recipe.ownerId}
+        />
 
         <h3 className={styles.subtitle}>Ingredients</h3>
-        <RecipeIngredients ingredients={data.ingredients} />
+        <RecipeIngredients ingredients={recipe.Ingredients} />
 
-        <h3 className={styles.subtitle}>Recipe Preparation</h3>
-        <RecipePreparation preparation={data.preparation} />
+        {recipe.instructions.length ? (
+          <>
+            <h3 className={styles.subtitle}>Recipe Preparation</h3>
+            <RecipePreparation preparation={recipe.instructions} />
+          </>
+        ) : null}
+
+        <Button
+          className={styles.button}
+          variant="outline"
+          onClick={handleClick}
+          disabled={isLoading}
+        >
+          {isAddedToFavorite ? 'Remove from favorites' : 'ADD TO FAVORITES'}
+        </Button>
       </div>
     </div>
   );

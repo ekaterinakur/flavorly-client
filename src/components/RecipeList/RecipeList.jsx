@@ -13,11 +13,12 @@ export function RecipeList({ items, columns = 3 }) {
         {items.map((recipe, idx) => (
           <li key={idx}>
             <RecipeCard
-              img={recipe.img}
+              id={recipe.id}
+              thumb={recipe.thumb}
               title={recipe.title}
-              desc={recipe.desc}
-              authorName={recipe.authorName}
-              authorAvatar={recipe.authorAvatar}
+              description={recipe.description}
+              ownerName={recipe.owner.name}
+              ownerAvatar={recipe.owner.avatar}
             />
           </li>
         ))}

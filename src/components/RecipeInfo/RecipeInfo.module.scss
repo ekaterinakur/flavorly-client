@@ -83,3 +83,19 @@
     font-size: 20px;
   }
 }
+
+.button {
+  margin-top: 32px;
+  padding: 11px 20px;
+  font-size: 14px;
+  color: $silver;
+  border-color: $silver;
+
+  @media (min-width: 768px) {
+    margin-top: 40px;
+    padding: 15px 32px;
+    font-size: 16px;
+    color: inherit;
+    border-color: inherit;
+  }
+}

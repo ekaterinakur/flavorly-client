@@ -16,7 +16,7 @@ export function RecipeIngredient({ ingredient }) {
       </div>
       <div className={styles.info}>
         <strong>{ingredient.name}</strong>
-        <span>{ingredient.amount}</span>
+        <span>{ingredient.RecipeIngredient.measure}</span>
       </div>
     </li>
   );

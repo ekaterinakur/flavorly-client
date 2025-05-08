@@ -17,6 +17,7 @@ import { ingredientsReducer } from './slices/ingredientsSlice.js';
 import { areasReducer } from './slices/areasSlice.js';
 import { authReducer } from './slices/authSlice.js';
 import { modalReducer } from './slices/modalSlice.js';
+import { apiSlice } from './slices/apiSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -32,6 +33,7 @@ export const store = configureStore({
     areas: areasReducer,
     auth: persistReducer(authPersistConfig, authReducer),
     modal: modalReducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
     // TODO: add needed reducers here
   },
   middleware: (getDefaultMiddleware) =>
@@ -39,7 +41,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(apiSlice.middleware),
 });
 
 export const persistor = persistStore(store);

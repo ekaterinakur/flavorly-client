@@ -16,7 +16,18 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    addRecipeToFavorites(state, action) {
+      if (!state.user.favoriteRecipes.includes(action.payload)) {
+        state.user.favoriteRecipes.push(action.payload);
+      }
+    },
+    removeRecipeFromFavorites(state, action) {
+      state.user.favoriteRecipes = state.user.favoriteRecipes.filter(
+        (recipeId) => recipeId !== action.payload
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder
       // Register
@@ -89,3 +100,5 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
+export const { addRecipeToFavorites, removeRecipeFromFavorites } =
+  authSlice.actions;
