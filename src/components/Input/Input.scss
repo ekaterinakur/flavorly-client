@@ -2,6 +2,7 @@
 
 .input-wrapper {
   position: relative;
+  line-height: normal;
 
   input {
     box-sizing: border-box;
@@ -33,12 +34,12 @@
     font-size: 0.8rem;
     margin-top: 0.25rem;
   }
+
+  &.last-input {
+    margin-bottom: 2.5rem;
+  }
 }
 
 .input-error input {
   border: 1px solid red;
-}
-
-.input-wrapper.last-input {
-  margin-bottom: 2.5rem;
 }

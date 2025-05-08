@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import './BreadCrumbs.scss';
 
-const BreadCrumbs = ({ children }) => {
+const BreadCrumbs = ({ breadcrumbs }) => {
   const { pathname } = useLocation();
 
   const profile = pathname.includes('profile');
@@ -12,8 +12,8 @@ const BreadCrumbs = ({ children }) => {
         Home
       </NavLink>
       <span className="bread-crumb-separator">/</span>
-      {children ? (
-        <p className="bread-crumb-item">{children}</p>
+      {breadcrumbs ? (
+        <p className="bread-crumb-item">{breadcrumbs}</p>
       ) : (
         <p className="bread-crumb-item">{profile ? 'Profile' : 'Add recipe'}</p>
       )}

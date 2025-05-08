@@ -3,12 +3,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import PropTypes from 'prop-types';
 import { toast } from 'react-hot-toast';
-import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import './SignInModal.scss';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
+import InputPassword from '../InputPassword/InputPassword';
 import { loginUser } from '../../api/login.js';
 
 const schema = yup.object({
@@ -20,7 +20,6 @@ const schema = yup.object({
 });
 
 const SignInModal = ({ onSwitch, onSuccess }) => {
-  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
 
   const {
@@ -45,10 +44,6 @@ const SignInModal = ({ onSwitch, onSuccess }) => {
     }
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword((prev) => !prev);
-  };
-
   return (
     <div className="auth-modal">
       <h2>SIGN IN</h2>
@@ -61,14 +56,10 @@ const SignInModal = ({ onSwitch, onSuccess }) => {
           error={errors.email?.message}
         />
 
-        <Input
-          type={showPassword ? 'text' : 'password'}
+        <InputPassword
           placeholder="Password"
           register={register('password')}
           error={errors.password?.message}
-          showPasswordToggle
-          icon={showPassword ? 'eye-off' : 'eye'}
-          onTogglePassword={togglePasswordVisibility}
           className="last-input"
         />
 
