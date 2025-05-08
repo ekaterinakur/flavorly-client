@@ -34,6 +34,16 @@
     &.header--transparent {
       background-color: transparent;
 
+      padding: 1rem 0.5rem 0;
+
+      @media screen and (min-width: 768px) {
+        padding: 1.25rem 1rem 0;
+      }
+
+      @media screen and (min-width: 1440px) {
+        padding: 1.25rem 3.75rem 0;
+      }
+
       .logo {
         color: $primary-black;
       }
