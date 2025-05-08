@@ -8,7 +8,7 @@ import { selectUser } from '../redux/selectors/authSelectors.js';
 import { useEffect } from 'react';
 import { fetchUserDetails } from '../api/user.js';
 import { selectUserById } from '../redux/slices/usersSlice.js';
-import TabBarProfile from '../components/TabBarProfile/TabBarProfile.jsx';
+import TabsList from '../components/TabsList/TabsList.jsx';
 
 export default function ProfilePage() {
   const { userId } = useParams();
@@ -54,7 +54,7 @@ export default function ProfilePage() {
           user={isOwner ? currentUser : userDetails}
           isOwner={isOwner}
         />
-        <TabBarProfile isOwner={isOwner} />
+        <TabsList isOwner={isOwner} />
       </div>
     </div>
   );
