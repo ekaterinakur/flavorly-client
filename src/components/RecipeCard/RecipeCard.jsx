@@ -22,7 +22,7 @@ export function RecipeCard({ img, title, desc, authorAvatar, authorName }) {
   };
 
   return (
-    <article>
+    <article className="">
       <img
         src={img}
         alt={title}

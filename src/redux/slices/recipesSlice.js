@@ -30,6 +30,9 @@ const recipesSlice = createSlice({
     clearCurrentRecipe(state) {
       state.current = null;
     },
+    setRecipesPage(state, action) {
+      state.page = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -61,11 +64,15 @@ const recipesSlice = createSlice({
       })
 
       .addCase(deleteRecipe.fulfilled, (state, action) => {
-        state.myRecipes = state.myRecipes.filter(r => r.id !== action.payload);
+        state.myRecipes = state.myRecipes.filter(
+          (r) => r.id !== action.payload
+        );
       })
 
       .addCase(fetchMyRecipes.fulfilled, (state, action) => {
         state.myRecipes = action.payload.recipes || [];
+        state.page = action.payload.page || 1;
+        state.total = action.payload.total;
       })
 
       .addCase(addToFavorites.fulfilled, (state, action) => {
@@ -73,7 +80,9 @@ const recipesSlice = createSlice({
       })
 
       .addCase(removeFromFavorites.fulfilled, (state, action) => {
-        state.favorites = state.favorites.filter(r => r.id !== action.payload);
+        state.favorites = state.favorites.filter(
+          (r) => r.id !== action.payload
+        );
       })
 
       .addCase(fetchFavoriteRecipes.fulfilled, (state, action) => {
@@ -82,5 +91,5 @@ const recipesSlice = createSlice({
   },
 });
 
-export const { clearCurrentRecipe } = recipesSlice.actions;
+export const { clearCurrentRecipe, setRecipesPage } = recipesSlice.actions;
 export const recipesReducer = recipesSlice.reducer;
