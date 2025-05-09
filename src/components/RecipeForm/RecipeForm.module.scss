@@ -1,0 +1,99 @@
+@use '../../styles/variables.scss' as *;
+
+.recipeForm {
+	display: flex;
+	flex-direction: column;
+	gap: 5rem;
+
+	@media screen and (min-width: 1440px) {
+		flex-direction: row;
+	}
+
+	.leftSection {
+		@media screen and (min-width: 1440px) {
+			max-width: 550px;
+			width: 100%;
+		}
+	}
+}
+
+.rightSection {
+	flex: 1 1 0;
+	display: flex;
+	flex-direction: column;
+
+	.mb1 {
+		margin-bottom: 1rem;
+	}
+	.mb2 {
+		margin-bottom: 1.25rem;
+	}
+	.mb3 {
+		margin-bottom: 2.5rem;
+	}
+	.mb4 {
+		margin-bottom: 3.75rem;
+	}
+	.mb5 {
+		margin-bottom: 5rem;
+	}
+}
+
+.sectionTitle {
+	font-size: 1.125rem;
+	font-weight: 700;
+	line-height: 1;
+	margin-bottom: 1.5rem;
+	text-transform: uppercase;
+}
+
+.categoryRow {
+	display: flex;
+	gap: 1.25rem;
+}
+
+.categoryCol {
+	flex: 0 0 315px;
+}
+
+.timeCol {
+	flex: 0 0 194px;
+}
+
+.ingredientRow {
+	display: flex;
+	align-items: baseline;
+	gap: 1.25rem;
+	margin-bottom: 2.5rem;
+}
+
+.addIngredientBtn {
+	gap: 0.5rem;
+}
+
+.formActions {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.resetBtn {
+	flex: 0 0 auto;
+	border-width: 1px;
+	border-style: solid;
+	border-color: $silver;
+	color: $silver;
+	background-color: transparent;
+	padding: 14px;
+	border-radius: 50%;
+
+	&:hover {
+		border-color: $primary-black;
+	}
+
+	@media screen and (min-width: 768px) {
+		font-size: 16px;
+		line-height: 24px;
+		padding: 18px;
+	}
+}
