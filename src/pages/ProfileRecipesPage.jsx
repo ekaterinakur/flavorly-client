@@ -12,7 +12,8 @@ import Loader from '../components/Loader/Loader.jsx';
 import EmptyState from '../components/EmptyState/EmptyState.jsx';
 import toast from 'react-hot-toast';
 
-import { selectRecipesPagination } from '../redux/selectors/pafinationSelectors.js';
+import { selectRecipesPagination } from '../redux/selectors/paginationSelectors.js';
+import { useRecipeDeletion } from '../hooks/useRecipeDeletion.js';
 
 export default function ProfileRecipesPage() {
   const myRecipes = useSelector(selectMyRecipes);
@@ -36,6 +37,12 @@ export default function ProfileRecipesPage() {
     });
   };
 
+  const handleDelete = useRecipeDeletion({
+    type: 'my',
+    page: currentPage,
+    perPageLimit,
+  });
+
   // Check for error, show toast with message
   useEffect(() => {
     if (error) {
@@ -53,7 +60,12 @@ export default function ProfileRecipesPage() {
       {!loading && myRecipes.length === 0 ? (
         <EmptyState message="Nothing has been added to your recipes list yet. Please browse our recipes and add your favorites for easy access in the future." />
       ) : (
-        <RecipeList items={myRecipes} columns={1} cardType="vertical" />
+        <RecipeList
+          items={myRecipes}
+          columns={1}
+          cardType="vertical"
+          onDelete={handleDelete}
+        />
       )}
       {totalPages >= 1 && (
         <ListPagination

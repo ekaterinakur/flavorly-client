@@ -3,7 +3,12 @@ import { RecipeCard } from '../RecipeCard/RecipeCard';
 import styles from './RecipeList.module.scss';
 import RecipeCardHorizontal from '../RecipeCardHorizontal/RecipeCardHorizontal';
 
-export function RecipeList({ items, columns = 3, cardType = 'portrait' }) {
+export function RecipeList({
+  items,
+  columns = 3,
+  cardType = 'portrait',
+  onDelete,
+}) {
   return (
     <section aria-label="Recipes">
       <div>
@@ -23,7 +28,10 @@ export function RecipeList({ items, columns = 3, cardType = 'portrait' }) {
                   authorAvatar={recipe.authorAvatar}
                 />
               ) : (
-                <RecipeCardHorizontal recipe={recipe} onDelete="" />
+                <RecipeCardHorizontal
+                  recipe={recipe}
+                  onDelete={() => onDelete(recipe.id)}
+                />
               )}
             </li>
           ))}

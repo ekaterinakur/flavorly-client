@@ -12,7 +12,7 @@ export default function RecipeCardHorizontal({ recipe, onDelete }) {
     setIsVisible(false);
     console.log('Delete recipe button clicked');
     if (onDelete) {
-      await onDelete(recipe.id);
+      await onDelete();
     }
   };
 
