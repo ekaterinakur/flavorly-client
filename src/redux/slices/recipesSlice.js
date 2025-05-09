@@ -61,7 +61,9 @@ const recipesSlice = createSlice({
       })
 
       .addCase(deleteRecipe.fulfilled, (state, action) => {
-        state.myRecipes = state.myRecipes.filter(r => r.id !== action.payload);
+        state.myRecipes = state.myRecipes.filter(
+          (r) => r.id !== action.payload
+        );
       })
 
       .addCase(fetchMyRecipes.fulfilled, (state, action) => {
@@ -73,7 +75,9 @@ const recipesSlice = createSlice({
       })
 
       .addCase(removeFromFavorites.fulfilled, (state, action) => {
-        state.favorites = state.favorites.filter(r => r.id !== action.payload);
+        state.favorites = state.favorites.filter(
+          (r) => r.id !== action.payload
+        );
       })
 
       .addCase(fetchFavoriteRecipes.fulfilled, (state, action) => {
