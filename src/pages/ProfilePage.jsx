@@ -1,6 +1,6 @@
 import { Outlet, useParams, NavLink } from 'react-router-dom';
 import styles from './ProfilePage.module.scss';
-import { MainTitle } from '../components/MainTitle/MainTitle';
+import MainTitle from '../components/MainTitle/MainTitle';
 
 export default function ProfilePage() {
   const { id } = useParams();

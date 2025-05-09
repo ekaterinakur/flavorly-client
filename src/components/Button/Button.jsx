@@ -26,9 +26,9 @@ const Button = ({
 // Example usage: <Button variant="outline" size="large"> / <Button size="small" disabled>
 
 Button.propTypes = {
-  variant: PropTypes.oneOf(['grey', 'white-border', 'outline']),
+  variant: PropTypes.oneOf(['grey', 'white-border', 'outline', 'filled', 'text']),
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
-  size: PropTypes.oneOf(['small', 'publish', 'add-recipe', 'large']),
+  size: PropTypes.oneOf(['small', 'medium', 'add-recipe', 'large']),
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
   children: PropTypes.node.isRequired,

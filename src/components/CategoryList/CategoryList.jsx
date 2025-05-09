@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import styles from './CategoryList.module.scss';
 import { useMediaQuery } from 'react-responsive';
 import { CategoryCard } from '../CategoryCard/CategoryCard';
-import { MainTitle } from '../MainTitle/MainTitle';
+import MainTitle from '../MainTitle/MainTitle';
 
 export function CategoryList({ items, onSelect }) {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });

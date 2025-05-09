@@ -2,9 +2,16 @@ $primary-black: #050505;
 $white-color: #ffffff;
 $secondary-black: #1a1a1a;
 $silver: #bfbebe;
+$error-color: #D00808;
+$placeholder-color: #BFBEBE;
 
 $font-stack: 'Mulish', 'Segoe UI', sans-serif;
 
 $main-desktop-padding: 5rem;
 $main-tablet-padding: 2rem;
 $main-mobile-padding: 1rem;
+
+// form
+$form-field-paddings: 1rem;
+$form-field-border: 1px solid $silver;
+$form-field-radius: 30px;

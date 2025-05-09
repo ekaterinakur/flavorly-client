@@ -4,10 +4,14 @@
   border: none;
   border-radius: 30px;
   transition: all 0.3s ease-in-out;
-  line-height: 24px;
+  line-height: 1.5rem;
   letter-spacing: -0.02em;
   font-weight: 500;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 
   &:hover,
   &:focus {
@@ -17,21 +21,23 @@
 
   // Size
   &-small {
-    padding: 14px 30px;
+    padding: 12px;
     font-size: 12px;
     line-height: 18px;
   }
 
-  &-publish {
-    padding: 14px 32px;
+  &-medium {
+    min-width: 124px;
+    padding: 14px;
     font-size: 14px;
     line-height: 20;
     font-weight: 700;
 
     @media screen and (min-width: 768px) {
+      min-width: 145px;
       font-size: 16px;
       line-height: 24px;
-      padding: 16px 39px;
+      padding: 1rem 2rem;
     }
   }
 
@@ -54,6 +60,20 @@
   }
 
   // Variant
+  &-text {
+    border-width: 1;
+    border-style: solid;
+    border-color: transparent;
+    background-color: transparent;
+    color: $primary-black;
+    padding: 0;
+
+    &:hover,
+    &:focus {
+      background-color: $primary-black;
+    }
+  }
+
   &-white-border {
     border: 1px solid $white-color;
     color: $white-color;
@@ -89,10 +109,29 @@
     }
   }
 
+  &-filled {
+    background-color: $primary-black;
+    border: 1px solid $primary-black;
+    color: $white-color;
+
+    &:hover,
+    &:focus {
+      color: $primary-black;
+      background-color: transparent;
+    }
+  }
+
   // Disabled State
   &-disabled {
     color: $white-color;
     background-color: $silver;
+    border-color: $silver;
     cursor: not-allowed;
+
+    &:hover,
+    &:focus {
+      color: $white-color;
+      background-color: $silver;
+    }
   }
 }

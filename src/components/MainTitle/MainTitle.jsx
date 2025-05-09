@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
 
-export function MainTitle({ title, subtitle, breadcrumbs, backUrl }) {
+function MainTitle({ title, subtitle, breadcrumbs, backUrl }) {
   return (
     <>
       {/* TODO add back button here */}
@@ -25,3 +25,5 @@ MainTitle.propTypes = {
     PropTypes.arrayOf(PropTypes.string),
   ]),
 };
+
+export default MainTitle;
