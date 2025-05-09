@@ -24,12 +24,10 @@ export default function ProfileRecipesPage() {
 
   const dispatch = useDispatch();
 
-  //
   useEffect(() => {
     dispatch(fetchMyRecipes({ page: currentPage, perPageLimit }));
   }, [dispatch, currentPage, perPageLimit]);
 
-  // Set current page in LS and Redux
   const handlePageChange = (page) => {
     dispatch(fetchMyRecipes({ page, perPageLimit }));
     window.scrollTo({
