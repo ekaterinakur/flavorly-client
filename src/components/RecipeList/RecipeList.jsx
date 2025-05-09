@@ -21,11 +21,12 @@ export function RecipeList({
             <li key={idx}>
               {cardType === 'portrait' ? (
                 <RecipeCard
-                  img={recipe.thumb}
+                  id={recipe.id}
+                  thumb={recipe.thumb}
                   title={recipe.title}
-                  desc={recipe.description}
-                  authorName={recipe.authorName}
-                  authorAvatar={recipe.authorAvatar}
+                  description={recipe.description}
+                  ownerName={recipe.owner.name}
+                  ownerAvatar={recipe.owner.avatar}
                 />
               ) : (
                 <RecipeCardHorizontal
