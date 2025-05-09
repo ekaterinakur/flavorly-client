@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import client from '../config/client.js';
 
-export const fetchIngredients = createAsyncThunk(
-  'ingredients/fetchAll',
+export const fetchCategories = createAsyncThunk(
+  'categories/fetchAll',
   async (_, thunkAPI) => {
     try {
-      const response = await client.get('/ingredients');
+      const response = await client.get('/categories');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

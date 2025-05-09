@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchIngredients } from '../../api/ingredients.js';
+import { fetchCategories } from '../../api/categories.js';
 
 const initialState = {
   items: [],
@@ -8,25 +8,25 @@ const initialState = {
   selected: '',
 };
 
-const ingredientsSlice = createSlice({
-  name: 'ingredients',
+const categoriesSlice = createSlice({
+  name: 'categories',
   initialState: initialState,
   reducers: {
-    changeIngredient(state, { payload }) {
+    changeCategory(state, { payload }) {
       state.selected = payload;
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchIngredients.pending, (state) => {
+      .addCase(fetchCategories.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchIngredients.fulfilled, (state, action) => {
+      .addCase(fetchCategories.fulfilled, (state, action) => {
         state.loading = false;
         state.items = action.payload;
       })
-      .addCase(fetchIngredients.rejected, (state, action) => {
+      .addCase(fetchCategories.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
@@ -34,7 +34,7 @@ const ingredientsSlice = createSlice({
 });
 
 // Actions generator
-export const { changeIngredient } = ingredientsSlice.actions;
+export const { changeCategory } = categoriesSlice.actions;
 
 // Reducer
-export const ingredientsReducer = ingredientsSlice.reducer;
+export const categoriesReducer = categoriesSlice.reducer;

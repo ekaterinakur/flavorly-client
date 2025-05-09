@@ -15,6 +15,7 @@ import { recipesReducer } from './slices/recipesSlice.js';
 import { testimonialsReducer } from './slices/testimonialsSlice.js';
 import { ingredientsReducer } from './slices/ingredientsSlice.js';
 import { areasReducer } from './slices/areasSlice.js';
+import { categoriesReducer } from './slices/categoriesSlice.js';
 import { authReducer } from './slices/authSlice.js';
 import { modalReducer } from './slices/modalSlice.js';
 
@@ -30,6 +31,7 @@ export const store = configureStore({
     testimonials: testimonialsReducer,
     ingredients: ingredientsReducer,
     areas: areasReducer,
+    categories: categoriesReducer,
     auth: persistReducer(authPersistConfig, authReducer),
     modal: modalReducer,
     // TODO: add needed reducers here
