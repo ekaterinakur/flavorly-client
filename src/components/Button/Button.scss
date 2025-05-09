@@ -1,6 +1,8 @@
 @use '../../styles/variables.scss' as *;
 
 .btn {
+  color: $white-color;
+  background-color: $primary-black;
   border: none;
   border-radius: 30px;
   transition: all 0.3s ease-in-out;
@@ -8,12 +10,6 @@
   letter-spacing: -0.02em;
   font-weight: 500;
   text-transform: uppercase;
-
-  &:hover,
-  &:focus {
-    color: $white-color;
-    background-color: $primary-black;
-  }
 
   // Size
   &-small {

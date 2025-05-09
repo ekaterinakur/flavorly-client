@@ -1,65 +1,55 @@
 import { Outlet, useParams, NavLink } from 'react-router-dom';
-import styles from './ProfilePage.module.scss';
-import { MainTitle } from '../components/MainTitle/MainTitle';
+import BreadCrumbs from '../components/BreadCrumbs/BreadCrumbs';
+import './ProfilePage.scss';
+import UserProfileCard from '../components/UserProfileCard/UserProfileCard';
+import { MainTitle } from '../components/MainTitle/MainTitle.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from '../redux/selectors/authSelectors.js';
+import { useEffect } from 'react';
+import { userDetails } from '../api/userDetails.js';
+import TabsList from '../components/TabsList/TabsList.jsx';
+import { selectUserDetails } from '../redux/selectors/userDetailsSelectors.js';
 
 export default function ProfilePage() {
-  const { id } = useParams();
-  const isOwnProfile = !id;
+  const { userId } = useParams(); // Отримуємо ID з URL
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectUser);
+  const profileUser = useSelector(selectUserDetails);
+  let isOwner = !userId || userId === currentUser?.id; // якщо id params != юзеру в Redux - це не оунер
+
+  // isOwner = false;
+
+  useEffect(() => {
+    const getUserDetails = async () => {
+      try {
+        const result = await dispatch(
+          userDetails(isOwner ? currentUser?.id : userId)
+        );
+        // console.log('✅ User:', result);
+      } catch (error) {
+        // console.error('❌ Error :', error);
+      }
+    };
+
+    if ((isOwner && currentUser?.id) || userId) {
+      getUserDetails();
+    }
+  }, [dispatch, userId, currentUser?.id, isOwner]);
 
   return (
-    <section className="section">
-      <div className="container">
-        <MainTitle
-          title="PROFILE"
-          subtitle="Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us."
-          breadcrumbs="Profile"
+    <div className="container">
+      <BreadCrumbs />
+      <MainTitle
+        title="Profile"
+        subtitle="Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us."
+      />
+      <div className="layout">
+        <UserProfileCard
+          user={isOwner ? currentUser : profileUser}
+          isOwner={isOwner}
         />
-
-        <div className="profile-grid">
-          <aside className={styles.sidebar}></aside>
-
-          <div className={styles.content}>
-            <nav className={styles.tabs}>
-              <NavLink
-                to="my-recipes"
-                className={({ isActive }) =>
-                  isActive ? `${styles.tab} active` : styles.tab
-                }
-              >
-                My Recipes
-              </NavLink>
-              <NavLink
-                to="my-favorites"
-                className={({ isActive }) =>
-                  isActive ? `${styles.tab} active` : styles.tab
-                }
-              >
-                My Favorites
-              </NavLink>
-              <NavLink
-                to="my-followers"
-                className={({ isActive }) =>
-                  isActive ? `${styles.tab} active` : styles.tab
-                }
-              >
-                Followers
-              </NavLink>
-              <NavLink
-                to="my-following"
-                className={({ isActive }) =>
-                  isActive ? `${styles.tab} active` : styles.tab
-                }
-              >
-                Following
-              </NavLink>
-            </nav>
-
-            <div className={styles.outlet}>
-              <Outlet />
-            </div>
-          </div>
-        </div>
+        <TabsList isOwner={isOwner} />
       </div>
-    </section>
+    </div>
   );
 }

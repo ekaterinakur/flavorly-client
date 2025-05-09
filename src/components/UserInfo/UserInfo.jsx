@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
 
 import './UserInfo.scss';
 import Button from '../Button/Button';
@@ -13,28 +14,50 @@ import {
   openLogoutModal,
   closeLogoutModal,
 } from '../../redux/slices/modalSlice.js';
+import { clientLogout } from '../../redux/slices/authSlice.js';
 
-const UserInfo = ({ handleClick, user, open, isHomePage }) => {
+const UserInfo = ({ user, isHomePage }) => {
   const isLogoutOpen = useSelector(selectIsLogoutOpen);
 
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
 
   const handleLogoutOpen = () => {
-    dispath(openLogoutModal());
+    dispatch(openLogoutModal());
   };
 
   const handleLogoutClose = () => {
-    dispath(closeLogoutModal());
+    dispatch(closeLogoutModal());
   };
 
-  const handleLogout = () => {
-    dispath(logoutUser());
-    dispath(closeLogoutModal());
+  const handleLogout = async () => {
+    await dispatch(logoutUser());
+    dispatch(clientLogout());
+    dispatch(closeLogoutModal());
   };
+
+  const [isOpenUserModal, setIsOpenUserModal] = useState(false);
+  const userMenuRef = useRef(null);
+
+  const handleUserModalClick = () => setIsOpenUserModal(!isOpenUserModal);
+
+  const handleClickOutside = (event) => {
+    if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+      setIsOpenUserModal(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isOpenUserModal) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpenUserModal]);
 
   return (
-    <div className="user-info">
-      <Button onClick={handleClick}>
+    <div className="user-info" ref={userMenuRef}>
+      <Button onClick={handleUserModalClick} className="user-info-btn">
         <img
           className="user-avatar"
           src={user.avatar || training_img}
@@ -42,23 +65,33 @@ const UserInfo = ({ handleClick, user, open, isHomePage }) => {
         ></img>
         <span className="user-name">{user.name.toUpperCase()}</span>
         <Icon
-          className={`chevron-icon ${open ? 'open' : ''}`}
+          className={`chevron-icon ${isOpenUserModal ? 'open' : ''}`}
           name="chevron-up"
           size={18}
           color="#ffffff"
         />
       </Button>
 
-      {open && (
+      {isOpenUserModal && (
         <ul className="user-menu">
           <li className="user-menu-item">
-            <Link className="user-menu-link" to="/profile">
+            <Link
+              className="user-menu-link"
+              to="/profile"
+              onClick={handleUserModalClick}
+            >
               Profile
             </Link>
           </li>
 
           <li className="user-menu-item">
-            <Link className="user-menu-link" to="/" onClick={handleLogoutOpen}>
+            <Link
+              className="user-menu-link"
+              onClick={() => {
+                handleLogoutOpen();
+                handleUserModalClick();
+              }}
+            >
               Log out
             </Link>
             <Icon

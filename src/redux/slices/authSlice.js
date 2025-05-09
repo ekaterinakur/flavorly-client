@@ -3,6 +3,7 @@ import { registerUser } from '../../api/register';
 import { loginUser } from '../../api/login';
 import { logoutUser } from '../../api/logout';
 import { currentUser } from '../../api/current';
+import { updateUserAvatar } from '../../api/avatar';
 
 const initialState = {
   user: null,
@@ -11,6 +12,7 @@ const initialState = {
   isLoading: false,
   error: null,
   message: null,
+  isRefreshing: true,
 };
 
 const authSlice = createSlice({
@@ -26,6 +28,14 @@ const authSlice = createSlice({
       state.user.favoriteRecipes = state.user.favoriteRecipes.filter(
         (recipeId) => recipeId !== action.payload
       );
+    },
+    clientLogout(state) {
+      state.user = null;
+      state.token = null;
+      state.isLoggedIn = false;
+      state.isLoading = false;
+      state.error = null;
+      localStorage.removeItem('persist:auth');
     },
   },
   extraReducers: (builder) => {
@@ -70,12 +80,9 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(logoutUser.fulfilled, (state, action) => {
-        state.user = null;
-        state.token = null;
         state.message = action.payload.message;
-        state.isLoggedIn = false;
         state.isLoading = false;
-        localStorage.removeItem('persist:auth');
+        state.error = null;
       })
       .addCase(logoutUser.rejected, (state, action) => {
         state.isLoading = false;
@@ -84,6 +91,7 @@ const authSlice = createSlice({
 
       // Current
       .addCase(currentUser.pending, (state) => {
+        state.isRefreshing = true;
         state.isLoading = true;
         state.error = null;
       })
@@ -91,14 +99,36 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = action.payload.user;
         state.isLoggedIn = true;
+        state.isRefreshing = false;
       })
       .addCase(currentUser.rejected, (state, action) => {
+        state.isRefreshing = false;
+        state.isLoading = false;
+        state.isLoggedIn = false;
+        state.user = null;
+        state.token = null;
+        state.error = action.payload;
+      })
+
+      // Update Avatar
+      .addCase(updateUserAvatar.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(updateUserAvatar.fulfilled, (state, action) => {
+        if (state.user && action.payload?.avatar) {
+          state.user.avatar = action.payload.avatar;
+          state.isLoading = false;
+        }
+      })
+      .addCase(updateUserAvatar.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
   },
 });
 
+export const { clientLogout } = authSlice.actions;
 export const authReducer = authSlice.reducer;
 export const { addRecipeToFavorites, removeRecipeFromFavorites } =
   authSlice.actions;

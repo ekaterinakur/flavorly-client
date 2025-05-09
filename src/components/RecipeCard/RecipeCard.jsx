@@ -28,7 +28,7 @@ export function RecipeCard({
   };
 
   return (
-    <article>
+    <article className="">
       <img
         src={thumb}
         alt={title}
