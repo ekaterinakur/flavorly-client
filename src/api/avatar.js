@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import client from '../config/client.js';
+import { handleThunkError } from '../utils/ApiErrorHandler.js';
 
 export const updateUserAvatar = createAsyncThunk(
   'users/updateAvatar',
@@ -15,7 +16,7 @@ export const updateUserAvatar = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return handleThunkError(error, { rejectWithValue });
     }
   }
 );
