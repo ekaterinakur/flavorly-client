@@ -26,7 +26,7 @@ export default function ProfileRecipesPage() {
 
   useEffect(() => {
     dispatch(fetchMyRecipes({ page: currentPage, perPageLimit }));
-  }, [dispatch, currentPage, perPageLimit]);
+  }, [dispatch]);
 
   const handlePageChange = (page) => {
     dispatch(fetchMyRecipes({ page, perPageLimit }));
