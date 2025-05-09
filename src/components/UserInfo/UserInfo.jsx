@@ -19,20 +19,20 @@ import { clientLogout } from '../../redux/slices/authSlice.js';
 const UserInfo = ({ user, isHomePage }) => {
   const isLogoutOpen = useSelector(selectIsLogoutOpen);
 
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
 
   const handleLogoutOpen = () => {
-    dispath(openLogoutModal());
+    dispatch(openLogoutModal());
   };
 
   const handleLogoutClose = () => {
-    dispath(closeLogoutModal());
+    dispatch(closeLogoutModal());
   };
 
   const handleLogout = async () => {
-    dispath(clientLogout());
-    await dispath(logoutUser());
-    dispath(closeLogoutModal());
+    await dispatch(logoutUser());
+    dispatch(clientLogout());
+    dispatch(closeLogoutModal());
   };
 
   const [isOpenUserModal, setIsOpenUserModal] = useState(false);

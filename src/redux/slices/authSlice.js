@@ -26,7 +26,7 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       localStorage.removeItem('persist:auth');
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -70,7 +70,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(logoutUser.fulfilled, (state, action) => {
-        state.message = action.payload.message;        
+        state.message = action.payload.message;
         state.isLoading = false;
         state.error = null;
       })

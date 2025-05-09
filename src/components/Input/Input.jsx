@@ -1,7 +1,13 @@
 import PropTypes from 'prop-types';
 import './Input.scss';
 
-const Input = ({ type = 'text', placeholder, error, register, className = '' }) => {
+const Input = ({
+  type = 'text',
+  placeholder,
+  error,
+  register,
+  className = '',
+}) => {
   return (
     <div className={`input-wrapper ${error ? 'input-error' : ''} ${className}`}>
       <input type={type} placeholder={placeholder} {...register} />

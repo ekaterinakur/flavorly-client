@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import './Layout.scss';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import Loader from '../Loader/Loader'
+import Loader from '../Loader/Loader';
 
 const Layout = ({ children }) => {
   const isRefreshing = useSelector(selectIsRefreshing);
