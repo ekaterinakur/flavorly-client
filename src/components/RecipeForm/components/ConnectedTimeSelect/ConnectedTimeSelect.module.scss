@@ -1,0 +1,29 @@
+@use '../../../../styles/variables.scss' as *;
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btnCircle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid $silver;
+	background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    border-color: $primary-black;
+  }
+}
+
+.value {
+  font-size: 1rem;
+  color: $silver;
+}

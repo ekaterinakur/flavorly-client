@@ -1,0 +1,46 @@
+@use '../../styles/variables.scss' as *;
+
+.card {
+  position: relative;
+  min-width: 178px;
+	display: flex;
+	align-items: center;
+	gap: 14px;
+}
+
+.imageWrapper {
+  width: 90px;
+  height: 90px;
+	padding: 1rem;
+	border: 1px solid $silver;
+	border-radius: 15px;
+	box-sizing: border-box;
+}
+
+.image {
+	width: 100%;
+  object-fit: contain;
+	object-position: center;
+}
+
+.info {
+  font-size: 1rem;
+	line-height: 1.5;
+}
+
+.name {
+  font-weight: 600;
+	margin-bottom: 0.25rem;
+}
+
+.measure {
+  color: $silver;
+  font-size: 13px;
+}
+
+.remove {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  cursor: pointer;
+}
