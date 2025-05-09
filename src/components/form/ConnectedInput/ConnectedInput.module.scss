@@ -1,0 +1,30 @@
+@use '../../../styles/variables.scss' as *;
+
+.formGroup {
+	width: 100%;
+}
+
+.input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: $form-field-paddings 0;
+  border-bottom: $form-field-border;
+  font-size: 16px;
+  font-family: inherit;
+  line-height: 1.5;
+	letter-spacing: -0.02em;
+  box-sizing: border-box;
+  transition: border-color 0.5s;
+
+  &::placeholder {
+    color: $placeholder-color;
+  }
+  &:focus-within {
+    border-color: $primary-black;
+  }
+}
+
+.error {
+	border-color: $error-color;
+}

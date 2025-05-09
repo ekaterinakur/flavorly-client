@@ -1,0 +1,60 @@
+@use '../../../styles/variables.scss' as *;
+
+.selectWrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+/* Customize react-select */
+.select {
+  width: 100%;
+  padding: $form-field-paddings !important;
+  border-color: $silver !important;
+  border-radius: $form-field-radius !important;
+  appearance: none;
+  font-size: 16px;
+  font-family: inherit;
+  line-height: 1.5 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  min-height: unset !important;
+  transition: 0.5s border-color;
+  cursor: text !important;
+
+  &:invalid {
+    color: $silver;
+  }
+  &:focus-within {
+    border-color: $primary-black !important;
+  }
+
+  & div {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+.selectPlaceholder {
+  color: $silver !important;
+  margin: 0 !important;
+}
+
+.selectMenu {
+  font-size: 14px;
+  z-index: 10;
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  transition: transform 0.5s ease;
+}
+
+.open {
+  transform: rotate(180deg);
+}
+
+.error {
+	border-color: $error-color;
+}
