@@ -12,7 +12,6 @@ const ConnectedSelect = ({
   options,
   defaultValue,
   placeholder = 'Select',
-  maxWidth = '100%',
   rules,
 }) => {
   const { control } = useFormContext();
@@ -24,7 +23,7 @@ const ConnectedSelect = ({
       control={control}
       rules={rules}
       render={({ field, fieldState }) => (
-        <div className={styles.selectWrapper} style={{ maxWidth }}>
+        <div className={styles.selectWrapper}>
           <Select
             defaultValue={defaultValue}
             options={options}

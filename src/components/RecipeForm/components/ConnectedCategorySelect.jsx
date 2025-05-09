@@ -29,7 +29,6 @@ const ConnectedCategorySelect = ({ name }) => {
       options={options}
       placeholder="Select a category"
       rules={{ required: 'Category is required' }}
-      maxWidth="315px"
     />
   );
 };

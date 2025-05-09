@@ -1,10 +1,11 @@
 import React from 'react';
 import { useFormContext, Controller } from 'react-hook-form';
 import Icon from '../../../Icon/Icon';
+import { IconButton } from '../../../IconButton/IconButton';
 
 import styles from './ConnectedTimeSelect.module.scss';
 
-const MIN = 5;
+const MIN = 1;
 const MAX = 360;
 const STEP = 5;
 
@@ -12,12 +13,14 @@ const ConnectedTimeSelect = ({ name }) => {
   const { control } = useFormContext();
 
   const increase = (field) => {
-    const next = Math.min(Number(field.value) + STEP, MAX);
+    const step = field.value >= 10 ? STEP : 1;
+    const next = Math.min(Number(field.value) + step, MAX);
     field.onChange(next);
   };
 
   const decrease = (field) => {
-    const next = Math.max(Number(field.value) - STEP, MIN);
+    const step = field.value > 10 ? STEP : 1;
+    const next = Math.max(Number(field.value) - step, MIN);
     field.onChange(next);
   };
 
@@ -28,21 +31,21 @@ const ConnectedTimeSelect = ({ name }) => {
       defaultValue={10}
       render={({ field }) => (
         <div className={styles.wrapper}>
-          <button
-            type="button"
-            onClick={() => decrease(field)}
+          <IconButton
             className={styles.btnCircle}
+            disabled={field.value === MIN}
+            onClick={() => decrease(field)}
           >
             <Icon name="minus" />
-          </button>
+          </IconButton>
           <span className={styles.value}>{field.value} min</span>
-          <button
-            type="button"
-            onClick={() => increase(field)}
+          <IconButton
             className={styles.btnCircle}
+            disabled={field.value === MAX}
+            onClick={() => increase(field)}
           >
             <Icon name="plus" />
-          </button>
+          </IconButton>
         </div>
       )}
     />

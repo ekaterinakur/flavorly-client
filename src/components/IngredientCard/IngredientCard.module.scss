@@ -2,19 +2,30 @@
 
 .card {
   position: relative;
-  min-width: 178px;
+  min-width: 155px;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
+
+  @media screen and (min-width: 768px) {
+    gap: 14px;
+    min-width: 178px;
+  }
 }
 
 .imageWrapper {
-  width: 90px;
-  height: 90px;
-  padding: 1rem;
+  width: 75px;
+  height: 75px;
+  padding: 10px;
   border: 1px solid $silver;
   border-radius: 15px;
   box-sizing: border-box;
+
+  @media screen and (min-width: 768px) {
+    width: 90px;
+    height: 90px;
+    padding: 1rem;
+  }
 }
 
 .image {
@@ -24,8 +35,12 @@
 }
 
 .info {
-  font-size: 1rem;
+  font-size: 0.875rem;
   line-height: 1.5;
+
+  @media screen and (min-width: 768px) {
+    font-size: 1rem;
+  }
 }
 
 .name {
@@ -35,7 +50,6 @@
 
 .measure {
   color: $silver;
-  font-size: 13px;
 }
 
 .remove {

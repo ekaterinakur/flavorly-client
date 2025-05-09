@@ -30,7 +30,6 @@ const ConnectedAreaSelect = ({ name }) => {
       defaultValue="Unknown"
       placeholder="Select an area"
       rules={{ required: 'Area is required' }}
-      maxWidth="315px"
     />
   );
 };

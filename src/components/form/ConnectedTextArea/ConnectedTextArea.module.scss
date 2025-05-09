@@ -23,12 +23,18 @@
   letter-spacing: -0.02em;
   box-sizing: border-box;
   transition: border-color 0.5s;
+  color: $silver;
+  overflow-y: auto;
 
   &::placeholder {
     color: $placeholder-color;
   }
   &:focus-within {
     border-color: $primary-black;
+  }
+
+  @media screen and (min-width: 768px) {
+    color: $primary-black;
   }
 }
 
@@ -38,6 +44,10 @@
   right: 0;
   font-size: 14px;
   color: $placeholder-color;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
 }
 
 .current {

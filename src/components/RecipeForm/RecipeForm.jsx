@@ -16,6 +16,7 @@ import Icon from '../Icon/Icon';
 import Button from '../Button/Button';
 
 import styles from './RecipeForm.module.scss';
+import { IconButton } from '../IconButton/IconButton';
 
 const initialValues = {
   thumb: '',
@@ -24,7 +25,7 @@ const initialValues = {
   instructions: '',
   time: '10',
   category: '',
-  area: 'Unknown',
+  area: '',
   ingredients: [],
   currentIngredient: {
     id: '',
@@ -65,11 +66,21 @@ const RecipeForm = ({}) => {
     }
   };
 
+  const onError = (errors) => {
+    const firstErrorField = Object.keys(errors)[0];
+    const el = document.querySelector(`[name="${firstErrorField}"]`);
+
+    if (el && typeof el.scrollIntoView === 'function') {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el.focus?.();
+    }
+  };
+
   return (
     <FormProvider {...form}>
       <form
         className={styles.recipeForm}
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit(onSubmit, onError)}
       >
         <div className={styles.leftSection}>
           <ConnectedFileUploader
@@ -79,13 +90,13 @@ const RecipeForm = ({}) => {
         </div>
 
         <div className={styles.rightSection}>
-          <div className={styles.mb3}>
+          <div className={styles.mb1}>
             <ConnectedTitleInput
               name="title"
               placeholder="THE NAME OF THE RECIPE"
             />
           </div>
-          <div className={styles.mb4}>
+          <div className={styles.mb2}>
             <ConnectedTextArea
               name="description"
               placeholder="Enter a description of the dish"
@@ -93,12 +104,12 @@ const RecipeForm = ({}) => {
             />
           </div>
 
-          <div className={styles.mb3}>
+          <div className={styles.mb1}>
             <h6 className={styles.sectionTitle}>Area</h6>
             <ConnectedAreaSelect name="area" />
           </div>
 
-          <div className={classNames(styles.categoryRow, styles.mb4)}>
+          <div className={classNames(styles.categoryRow, styles.mb2)}>
             <div className={styles.categoryCol}>
               <h6 className={styles.sectionTitle}>Category</h6>
               <ConnectedCategorySelect name="category" />
@@ -110,13 +121,13 @@ const RecipeForm = ({}) => {
             </div>
           </div>
 
-          <div className={styles.mb5}>
+          <div className={styles.mb4}>
             <h6 className={styles.sectionTitle}>Ingredients</h6>
             <IngredientsFieldsArray name="ingredients" />
           </div>
 
-          <div className={styles.mb5}>
-            <h6 className={classNames(styles.sectionTitle, styles.mb3)}>
+          <div className={styles.mb3}>
+            <h6 className={classNames(styles.sectionTitle, styles.mb1)}>
               Recipe Preparation
             </h6>
             <ConnectedTextArea
@@ -127,13 +138,12 @@ const RecipeForm = ({}) => {
           </div>
 
           <div className={styles.formActions}>
-            <Button
-              type="button"
+            <IconButton
               className={styles.resetBtn}
               onClick={() => form.reset()}
             >
               <Icon name="trash" size="20px" />
-            </Button>
+            </IconButton>
 
             <Button type="submit" variant="filled" size="medium">
               Publish

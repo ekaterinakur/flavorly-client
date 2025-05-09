@@ -21,7 +21,6 @@ const ConnectedIngredientSelect = ({ name }) => {
       options={options}
       placeholder="Select the ingredient"
       rules={{ required: 'Ingredient is required' }}
-      maxWidth="315px"
     />
   );
 };

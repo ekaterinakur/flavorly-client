@@ -21,6 +21,12 @@
   &:hover:not(.active) {
     border-color: color.adjust($silver, $lightness: 10%);
   }
+
+  &:disabled {
+    border-color: $silver;
+    color: $silver;
+    cursor: default;
+  }
 }
 
 .active {

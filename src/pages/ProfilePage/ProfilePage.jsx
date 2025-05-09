@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../redux/selectors/authSelectors.js';
 import { selectUserDetails } from '../../redux/slices/userDetails.js';
 import { fetchUserDetails } from '../../api/user.js';
+import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs.jsx';
 import MainTitle from '../../components/MainTitle/MainTitle.jsx';
 import UserProfileCard from '../../components/UserProfileCard/UserProfileCard.jsx';
 import TabsList from '../../components/TabsList/TabsList.jsx';
@@ -43,21 +44,23 @@ export default function ProfilePage() {
   }, [dispatch, userId, currentUser?.id]);
 
   return (
-    <section className="section">
-      <div className="container">
-        <MainTitle
-          title="Profile"
-          subtitle="Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us."
-          breadcrumbs="Profile"
-        />
-        <div className={styles.layout}>
-          <UserProfileCard
-            user={isOwner ? currentUser : userDetails}
-            isOwner={isOwner}
+    <>
+      <BreadCrumbs breadcrumbs="Profile" />
+      <section className="section">
+        <div className="container">
+          <MainTitle
+            title="Profile"
+            subtitle="Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us."
           />
-          <TabsList isOwner={isOwner} />
+          <div className={styles.layout}>
+            <UserProfileCard
+              user={isOwner ? currentUser : userDetails}
+              isOwner={isOwner}
+            />
+            <TabsList isOwner={isOwner} />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

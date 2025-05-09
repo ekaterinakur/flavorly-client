@@ -7,10 +7,10 @@
   font-weight: 700;
   line-height: 18px;
   text-transform: uppercase;
-  margin-bottom: 2rem;
+  padding-top: 4rem;
 
-  @media (max-width: 768px) {
-    margin-bottom: 2.5rem;
+  @media (min-width: 1440px) {
+    padding-top: 5rem;
   }
 
   .bread-crumb-link {

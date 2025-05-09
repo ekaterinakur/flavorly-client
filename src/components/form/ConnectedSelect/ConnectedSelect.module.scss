@@ -9,13 +9,13 @@
 /* Customize react-select */
 .select {
   width: 100%;
-  padding: $form-field-paddings !important;
+  padding: 0.875rem !important;
   border-color: $silver !important;
   border-radius: $form-field-radius !important;
   appearance: none;
-  font-size: 16px;
+  font-size: 14px;
   font-family: inherit;
-  line-height: 1.5 !important;
+  line-height: 1 !important;
   outline: none !important;
   box-shadow: none !important;
   min-height: unset !important;
@@ -32,6 +32,12 @@
   & div {
     margin: 0 !important;
     padding: 0 !important;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: $form-field-paddings !important;
+    font-size: 16px;
+    line-height: 1.5 !important;
   }
 }
 
@@ -56,5 +62,5 @@
 }
 
 .error {
-  border-color: $error-color;
+  border-color: $error-color !important;
 }

@@ -22,7 +22,6 @@ const IngredientsFieldsArray = ({ name }) => {
     name,
   });
 
-  const selectedIngredients = watch(name) || [];
   const currentIngredient = watch('currentIngredient');
 
   const [previewList, setPreviewList] = useState([]);
@@ -71,10 +70,12 @@ const IngredientsFieldsArray = ({ name }) => {
         disabled={!(currentIngredient?.id && currentIngredient?.measure)}
       >
         ADD INGREDIENT
-        <Icon name="plus" size="1.5rem" />
+        <Icon name="plus" className={styles.addIngredientIcon} />
       </Button>
 
-      <IngredientList items={previewList} onDelete={handleRemove} />
+      {previewList.length > 0 && (
+        <IngredientList items={previewList} onDelete={handleRemove} />
+      )}
     </div>
   );
 };

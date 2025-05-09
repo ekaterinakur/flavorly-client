@@ -1,7 +1,6 @@
 @use '../../../styles/variables.scss' as *;
 
 $uploader-width: 100%;
-$uploader-ratio: 1.38 / 1;
 
 .formGroup {
   width: 100%;
@@ -9,7 +8,7 @@ $uploader-ratio: 1.38 / 1;
 
 .uploader {
   width: $uploader-width;
-  aspect-ratio: $uploader-ratio;
+  aspect-ratio: 1.08 / 1;
   border: 1px dashed $silver;
   border-radius: $form-field-radius;
   padding: 1rem;
@@ -23,19 +22,39 @@ $uploader-ratio: 1.38 / 1;
   &:hover {
     border-color: lighten($color: $silver, $amount: 2);
   }
+
+  @media screen and (min-width: 768px) {
+    aspect-ratio: 1.76 / 1;
+  }
+  
+  @media screen and (min-width: 1440px) {
+    aspect-ratio: 1.38 / 1;
+  }
 }
 
 .error {
   border-color: $error-color;
+
+  &:hover {
+    border-color: $error-color;
+  }
 }
 
 .preview {
   width: $uploader-width;
-  aspect-ratio: $uploader-ratio;
+  aspect-ratio: 1.08 / 1;
   border-radius: $form-field-radius;
   object-fit: cover;
   object-position: center;
   mask-repeat: no-repeat;
+
+  @media screen and (min-width: 768px) {
+    aspect-ratio: 1.76 / 1;
+  }
+  
+  @media screen and (min-width: 1440px) {
+    aspect-ratio: 1.38 / 1;
+  }
 }
 
 .input {
@@ -43,14 +62,28 @@ $uploader-ratio: 1.38 / 1;
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  margin: 1rem 0;
+  text-align: center;
+  margin-top: 1rem;
 }
 
 .label {
-  font-size: 1rem;
+  font-size: 14px;
+  line-height: 1;
   text-decoration: underline;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  color: $silver;
+  margin-bottom: 1rem;
+
+  @media screen and (min-width: 768px) {
+    width: 64px;
+    height: 64px;
+  }
 }

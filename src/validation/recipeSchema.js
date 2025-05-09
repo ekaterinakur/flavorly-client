@@ -1,7 +1,21 @@
 import * as Yup from 'yup';
 
+const MAX_FILE_SIZE = 2 * 1024 * 1024;
+const SUPPORTED_FORMATS = ['image/png', 'image/jpeg', 'image/jpg'];
+
 export const recipeSchema = Yup.object().shape({
-  thumb: Yup.mixed().required('Image is required'),
+  thumb: Yup.mixed()
+    .test('File', 'File is required', (value) => value)
+    .test(
+      'fileFormat',
+      'Only PNG, JPEG, JPG files are allowed',
+      (file) => file && SUPPORTED_FORMATS.includes(file.type)
+    )
+    .test(
+      'fileSize',
+      'Image must be less than 2MB',
+      (file) => file && file.size <= MAX_FILE_SIZE
+    ),
   title: Yup.string().required('Title is required'),
   description: Yup.string()
     .max(200, 'Description must be at most 200 characters')
