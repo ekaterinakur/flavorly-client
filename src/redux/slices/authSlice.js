@@ -12,12 +12,22 @@ const initialState = {
   isLoading: false,
   error: null,
   message: null,
+  isRefreshing: true,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    clientLogout(state) {
+      state.user = null;
+      state.token = null;
+      state.isLoggedIn = false;
+      state.isLoading = false;
+      state.error = null;
+      localStorage.removeItem('persist:auth');
+    }
+  },
   extraReducers: (builder) => {
     builder
       // Register
@@ -60,12 +70,9 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(logoutUser.fulfilled, (state, action) => {
-        state.user = null;
-        state.token = null;
-        state.message = action.payload.message;
-        state.isLoggedIn = false;
+        state.message = action.payload.message;        
         state.isLoading = false;
-        localStorage.removeItem('persist:auth');
+        state.error = null;
       })
       .addCase(logoutUser.rejected, (state, action) => {
         state.isLoading = false;
@@ -74,6 +81,7 @@ const authSlice = createSlice({
 
       // Current
       .addCase(currentUser.pending, (state) => {
+        state.isRefreshing = true;
         state.isLoading = true;
         state.error = null;
       })
@@ -81,9 +89,14 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = action.payload.user;
         state.isLoggedIn = true;
+        state.isRefreshing = false;
       })
       .addCase(currentUser.rejected, (state, action) => {
+        state.isRefreshing = false;
         state.isLoading = false;
+        state.isLoggedIn = false;
+        state.user = null;
+        state.token = null;
         state.error = action.payload;
       })
 
@@ -95,6 +108,7 @@ const authSlice = createSlice({
       .addCase(updateAvatar.fulfilled, (state, action) => {
         if (state.user && action.payload?.avatar) {
           state.user.avatar = action.payload.avatar;
+          state.isLoading = false;
         }
       })
       .addCase(updateAvatar.rejected, (state, action) => {
@@ -104,4 +118,5 @@ const authSlice = createSlice({
   },
 });
 
+export const { clientLogout } = authSlice.actions;
 export const authReducer = authSlice.reducer;

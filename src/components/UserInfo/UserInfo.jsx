@@ -14,12 +14,12 @@ import {
   openLogoutModal,
   closeLogoutModal,
 } from '../../redux/slices/modalSlice.js';
+import { clientLogout } from '../../redux/slices/authSlice.js';
 
 const UserInfo = ({ user, isHomePage }) => {
   const isLogoutOpen = useSelector(selectIsLogoutOpen);
 
   const dispath = useDispatch();
-  const navigate = useNavigate();
 
   const handleLogoutOpen = () => {
     dispath(openLogoutModal());
@@ -30,9 +30,9 @@ const UserInfo = ({ user, isHomePage }) => {
   };
 
   const handleLogout = async () => {
+    dispath(clientLogout());
     await dispath(logoutUser());
     dispath(closeLogoutModal());
-    navigate('/');
   };
 
   const [isOpenUserModal, setIsOpenUserModal] = useState(false);
