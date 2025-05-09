@@ -1,37 +1,28 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoggedIn, selectUser } from '../redux/selectors/authSelectors';
-import {
-  useAddRecipeToFavoriteMutation,
-  useRemoveRecipeFromFavoriteMutation,
-} from '../redux/slices/apiSlice';
 import { openSignInModal } from '../redux/slices/modalSlice';
 import toast from 'react-hot-toast';
 import {
   addRecipeToFavorites,
   removeRecipeFromFavorites,
 } from '../redux/slices/authSlice';
+import { addToFavorites, removeFromFavorites } from '../api/recipes';
 
 export function useFavoriteRecipe({ id }) {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const [addRecipeToFavorite, { isLoading: addRecipeToFavoriteLoading }] =
-    useAddRecipeToFavoriteMutation();
-  const [
-    removeRecipeFromFavorite,
-    { isLoading: removeRecipeFromFavoriteLoading },
-  ] = useRemoveRecipeFromFavoriteMutation();
 
   const isAddedToFavorite = user?.favoriteRecipes?.includes(id);
 
-  const handleClick = async () => {
+  const handleClick = () => {
     if (isLoggedIn) {
       try {
         if (isAddedToFavorite) {
-          await removeRecipeFromFavorite(id).unwrap();
+          dispatch(removeFromFavorites(id));
           dispatch(removeRecipeFromFavorites(id));
         } else {
-          await addRecipeToFavorite(id).unwrap();
+          dispatch(addToFavorites(id));
           dispatch(addRecipeToFavorites(id));
         }
       } catch {
@@ -44,7 +35,6 @@ export function useFavoriteRecipe({ id }) {
 
   return {
     handleClick,
-    isLoading: addRecipeToFavoriteLoading || removeRecipeFromFavoriteLoading,
     isAddedToFavorite,
   };
 }

@@ -7,7 +7,7 @@ import Button from '../Button/Button';
 import { useFavoriteRecipe } from '../../hooks/useFavoriteRecipe';
 
 export function RecipeInfo({ recipe }) {
-  const { isLoading, handleClick, isAddedToFavorite } = useFavoriteRecipe({
+  const { handleClick, isAddedToFavorite } = useFavoriteRecipe({
     id: recipe.id,
   });
 
@@ -45,7 +45,6 @@ export function RecipeInfo({ recipe }) {
           className={styles.button}
           variant="outline"
           onClick={handleClick}
-          disabled={isLoading}
         >
           {isAddedToFavorite ? 'Remove from favorites' : 'ADD TO FAVORITES'}
         </Button>

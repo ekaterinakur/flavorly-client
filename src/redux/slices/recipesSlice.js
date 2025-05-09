@@ -51,7 +51,7 @@ const recipesSlice = createSlice({
       })
 
       .addCase(fetchPopularRecipes.fulfilled, (state, action) => {
-        state.popular = action.payload.recipes || [];
+        state.popular = action.payload || [];
       })
 
       .addCase(createRecipe.fulfilled, (state, action) => {

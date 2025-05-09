@@ -17,7 +17,7 @@ export function RecipeCard({
 }) {
   const navigate = useNavigate();
   const isMdScreen = useMediaQuery({ query: '(min-width: 768px)' });
-  const { isLoading, handleClick, isAddedToFavorite } = useFavoriteRecipe({
+  const { handleClick, isAddedToFavorite } = useFavoriteRecipe({
     id,
   });
   const { handleClick: handleAuthorClick } = useAuthor({ id });
@@ -52,11 +52,7 @@ export function RecipeCard({
           <strong className={styles.authorName}>{ownerName}</strong>
         </button>
         <div className={styles.actions}>
-          <IconButton
-            isActive={isAddedToFavorite}
-            onClick={handleClick}
-            disabled={isLoading}
-          >
+          <IconButton isActive={isAddedToFavorite} onClick={handleClick}>
             <Icon name="like" size={18} />
           </IconButton>
           <IconButton onClick={handleRecipeButtonClick}>
