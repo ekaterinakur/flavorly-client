@@ -20,7 +20,7 @@ const ConnectedAreaSelect = ({ name }) => {
   }, [dispatch]);
 
   if (isLoading) {
-    return <Loader padding='0' />;
+    return <Loader padding="0" />;
   }
 
   return (

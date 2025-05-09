@@ -1,14 +1,16 @@
-import { Outlet, useParams, NavLink } from 'react-router-dom';
-import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs.jsx';
-import './ProfilePage.scss';
-import UserProfileCard from '../../components/UserProfileCard/UserProfileCard.jsx';
-import { MainTitle } from '../../components/MainTitle/MainTitle.jsx';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from '../../redux/selectors/authSelectors.js';
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { userDetails } from '../../api/userDetails.js';
-import TabsList from '../../components/TabsList/TabsList.jsx';
+import { selectUser } from '../../redux/selectors/authSelectors.js';
 import { selectUserDetails } from '../../redux/selectors/userDetailsSelectors.js';
+
+import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs.jsx';
+import MainTitle from '../../components/MainTitle/MainTitle.jsx';
+import TabsList from '../../components/TabsList/TabsList.jsx';
+import UserProfileCard from '../../components/UserProfileCard/UserProfileCard.jsx';
+
+import styles from './ProfilePage.module.scss';
 
 export default function ProfilePage() {
   const { userId } = useParams(); // Отримуємо ID з URL
@@ -39,13 +41,13 @@ export default function ProfilePage() {
   return (
     <>
       <BreadCrumbs breadcrumbs="Profile" />
-      <section className="section">
+      <section className="section first-section">
         <div className="container">
           <MainTitle
             title="Profile"
             subtitle="Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us."
           />
-          <div className="layout">
+          <div className={styles.layout}>
             <UserProfileCard
               user={isOwner ? currentUser : profileUser}
               isOwner={isOwner}

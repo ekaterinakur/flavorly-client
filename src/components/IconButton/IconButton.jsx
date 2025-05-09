@@ -2,7 +2,13 @@ import classNames from 'classnames';
 import styles from './IconButton.module.scss';
 import PropTypes from 'prop-types';
 
-export function IconButton({ onClick, isActive, className, disabled, children }) {
+export function IconButton({
+  onClick,
+  isActive,
+  className,
+  disabled,
+  children,
+}) {
   return (
     <button
       type="button"

@@ -57,7 +57,7 @@ export const ConnectedFileUploader = ({ name, rules }) => {
               })}
             >
               <div className={styles.content}>
-                <Icon name="camera-frame" className={styles.icon}/>
+                <Icon name="camera-frame" className={styles.icon} />
                 <p className={styles.label}>Upload a photo</p>
               </div>
             </label>

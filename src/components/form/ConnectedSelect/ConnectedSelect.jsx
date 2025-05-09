@@ -42,7 +42,7 @@ const ConnectedSelect = ({
                 }),
               placeholder: () => styles.selectPlaceholder,
               menu: () => styles.selectMenu,
-              option: () => styles.selectMenuListItem
+              option: () => styles.selectMenuListItem,
             }}
             components={{
               DropdownIndicator: () => (

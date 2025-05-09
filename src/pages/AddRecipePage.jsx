@@ -13,7 +13,7 @@ export default function AddRecipePage() {
   return (
     <>
       <BreadCrumbs breadcrumbs="Add recipe" />
-      <section className="section">
+      <section className="section first-section">
         <div className="container">
           <MainTitle
             title="Add recipe"
