@@ -47,8 +47,18 @@
 }
 
 .selectMenu {
-  font-size: 14px;
+  font-size: 0.875rem;
   z-index: 10;
+  padding: 0.5rem 0 !important;
+  border-radius: 15px !important;
+
+  @media screen and (min-width: 768px) {
+    font-size: 1rem;
+  }
+}
+
+.selectMenuListItem {
+  padding: 0.5rem 1.125rem !important;
 }
 
 .arrow {

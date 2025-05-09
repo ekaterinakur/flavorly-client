@@ -41,6 +41,8 @@ const ConnectedSelect = ({
                   [styles.error]: !!fieldState.error,
                 }),
               placeholder: () => styles.selectPlaceholder,
+              menu: () => styles.selectMenu,
+              option: () => styles.selectMenuListItem
             }}
             components={{
               DropdownIndicator: () => (
