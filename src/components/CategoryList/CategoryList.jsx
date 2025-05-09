@@ -2,10 +2,12 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import PropTypes from 'prop-types';
+import { toast } from 'react-hot-toast';
 
 import { CategoryCard } from '../CategoryCard/CategoryCard';
 import { MainTitle } from '../MainTitle/MainTitle';
 import { fetchCategories } from '../../api/categories.js';
+import Loader from '../Loader/Loader';
 
 import styles from './CategoryList.module.scss';
 
@@ -23,12 +25,18 @@ export function CategoryList({ onSelect }) {
     dispatch(fetchCategories());
   }, [dispatch]);
 
-  if (loading) {
-    return <div className="container">Loading categories...</div>;
-  }
+  useEffect(() => {
+    if (error) {
+      toast.error('Failed to load categories. Please try again later.');
+    }
+  }, [error]);
 
-  if (error) {
-    return <div className="container">Failed to load categories: {error}</div>;
+  if (loading) {
+    return (
+      <div className="container">
+        <Loader />
+      </div>
+    );
   }
 
   if (!categories.length) return null;
@@ -53,7 +61,7 @@ export function CategoryList({ onSelect }) {
               key={cat.id}
               id={cat.id}
               name={cat.name}
-              imageUrl={cat.imageUrl}
+              imageUrl={cat.thumbnailUrl}
               onSelect={onSelect}
             />
           ))}

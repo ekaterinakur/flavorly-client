@@ -6,15 +6,7 @@ export const fetchCategories = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/categories');
-      const categories = response.data;
-
-      // Temp images
-      const categoriesWithImages = categories.map((cat, index) => ({
-        ...cat,
-        imageUrl: `https://picsum.photos/400/305?random=${index + 1}`,
-      }));
-
-      return categoriesWithImages;
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
