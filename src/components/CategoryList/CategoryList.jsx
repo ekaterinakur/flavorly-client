@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import PropTypes from 'prop-types';
 import { toast } from 'react-hot-toast';
-
-import { CategoryCard } from '../CategoryCard/CategoryCard';
-import { MainTitle } from '../MainTitle/MainTitle';
 import { fetchCategories } from '../../api/categories.js';
+
+import MainTitle from '../MainTitle/MainTitle';
 import Loader from '../Loader/Loader';
+import { CategoryCard } from '../CategoryCard/CategoryCard';
 
 import styles from './CategoryList.module.scss';
 

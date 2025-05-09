@@ -36,8 +36,5 @@ const ingredientsSlice = createSlice({
 // Actions generator
 export const { changeIngredient } = ingredientsSlice.actions;
 
-// Selector
-export const selectIngredients = (state) => state.ingredients;
-
 // Reducer
 export const ingredientsReducer = ingredientsSlice.reducer;

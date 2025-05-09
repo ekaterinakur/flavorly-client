@@ -1,0 +1,59 @@
+@use '../../../styles/variables.scss' as *;
+
+.formGroup {
+  width: 100%;
+}
+
+.textareaWrapper {
+  position: relative;
+}
+
+.textarea {
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  padding-bottom: $form-field-paddings;
+  padding-right: 4rem;
+  border-bottom: $form-field-border;
+  font-size: 16px;
+  font-family: inherit;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  box-sizing: border-box;
+  transition: border-color 0.5s;
+  color: $silver;
+  overflow-y: auto;
+
+  &::placeholder {
+    color: $placeholder-color;
+  }
+  &:focus-within {
+    border-color: $primary-black;
+  }
+
+  @media screen and (min-width: 768px) {
+    color: $primary-black;
+  }
+}
+
+.counter {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 14px;
+  color: $placeholder-color;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.current {
+  color: $primary-black;
+}
+
+.error {
+  border-color: $error-color;
+}

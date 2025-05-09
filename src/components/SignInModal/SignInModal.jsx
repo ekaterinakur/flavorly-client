@@ -7,8 +7,8 @@ import { useDispatch } from 'react-redux';
 
 import './SignInModal.scss';
 import Button from '../Button/Button';
-import Input from '../Input/Input';
-import InputPassword from '../InputPassword/InputPassword';
+import Input from '../form/Input/Input';
+import InputPassword from '../form/InputPassword/InputPassword';
 import { loginUser } from '../../api/login.js';
 
 const schema = yup.object({
