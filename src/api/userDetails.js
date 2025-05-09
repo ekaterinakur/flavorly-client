@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import client from '../config/client.js';
+import { handleThunkError } from '../utils/apiHandlerError.js';
 
 export const userDetails = createAsyncThunk(
   'users/details',
@@ -9,7 +10,7 @@ export const userDetails = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return handleThunkError(error, { rejectWithValue });
     }
   }
 );
