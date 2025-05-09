@@ -16,9 +16,9 @@ export function RecipeList({ items, columns = 3, cardType = 'portrait' }) {
             <li key={idx}>
               {cardType === 'portrait' ? (
                 <RecipeCard
-                  img={recipe.img}
+                  img={recipe.thumb}
                   title={recipe.title}
-                  desc={recipe.desc}
+                  desc={recipe.description}
                   authorName={recipe.authorName}
                   authorAvatar={recipe.authorAvatar}
                 />

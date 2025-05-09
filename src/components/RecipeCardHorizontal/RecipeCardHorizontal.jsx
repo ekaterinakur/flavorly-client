@@ -25,7 +25,7 @@ export default function RecipeCardHorizontal({ recipe, onDelete }) {
 
   return (
     <div className={styles.card}>
-      <img src={recipe.img} alt={recipe.title} className={styles.image} />
+      <img src={recipe.thumb} alt={recipe.title} className={styles.image} />
 
       <div className={styles.content}>
         <p className={styles.title}>{recipe.title}</p>
