@@ -12,7 +12,7 @@ import Loader from '../components/Loader/Loader.jsx';
 import EmptyState from '../components/EmptyState/EmptyState.jsx';
 import toast from 'react-hot-toast';
 
-import { selectRecipesPagination } from '../redux/selectors/pafinationSelectors.js';
+import { selectRecipesPagination } from '../redux/selectors/paginationSelectors.js';
 
 export default function ProfileRecipesPage() {
   const myRecipes = useSelector(selectMyRecipes);
