@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import './SignUpModal.scss';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
+import InputPassword from '../InputPassword/InputPassword';
 import { registerUser } from '../../api/register.js';
 
 const schema = yup.object({
@@ -66,8 +67,7 @@ const SignUpModal = ({ onSwitch, onSuccess }) => {
           error={errors.email?.message}
         />
 
-        <Input
-          type="password"
+        <InputPassword
           placeholder="Password"
           register={register('password')}
           error={errors.password?.message}

@@ -1,6 +1,8 @@
 @use '../../styles/variables.scss' as *;
 
 .btn {
+  color: $white-color;
+  background-color: $primary-black;
   border: none;
   border-radius: 30px;
   transition: all 0.3s ease-in-out;
@@ -12,12 +14,6 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-
-  &:hover,
-  &:focus {
-    color: $white-color;
-    background-color: $primary-black;
-  }
 
   // Size
   &-small {

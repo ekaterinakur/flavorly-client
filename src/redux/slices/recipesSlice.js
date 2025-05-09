@@ -1,8 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createRecipe } from '../../api/createRecipe';
+import {
+  fetchRecipes,
+  fetchRecipeById,
+  fetchPopularRecipes,
+  createRecipe,
+  deleteRecipe,
+  fetchMyRecipes,
+  addToFavorites,
+  removeFromFavorites,
+  fetchFavoriteRecipes,
+} from '../../api/recipes';
 
 const initialState = {
   items: [],
+  current: null,
+  popular: [],
+  myRecipes: [],
+  favorites: [],
+  total: 0,
+  page: 1,
   loading: false,
   error: null,
 };
@@ -10,22 +26,61 @@ const initialState = {
 const recipesSlice = createSlice({
   name: 'recipes',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    clearCurrentRecipe(state) {
+      state.current = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(createRecipe.pending, (state) => {
+      .addCase(fetchRecipes.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(createRecipe.fulfilled, (state, action) => {
+      .addCase(fetchRecipes.fulfilled, (state, action) => {
+        state.items = action.payload.recipes;
+        state.total = action.payload.total;
+        state.page = action.payload.page;
         state.loading = false;
-        state.created = action.payload;
       })
-      .addCase(createRecipe.rejected, (state, action) => {
+      .addCase(fetchRecipes.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+
+      .addCase(fetchRecipeById.fulfilled, (state, action) => {
+        state.current = action.payload;
+      })
+
+      .addCase(fetchPopularRecipes.fulfilled, (state, action) => {
+        state.popular = action.payload.recipes || [];
+      })
+
+      .addCase(createRecipe.fulfilled, (state, action) => {
+        state.myRecipes.push(action.payload);
+      })
+
+      .addCase(deleteRecipe.fulfilled, (state, action) => {
+        state.myRecipes = state.myRecipes.filter(r => r.id !== action.payload);
+      })
+
+      .addCase(fetchMyRecipes.fulfilled, (state, action) => {
+        state.myRecipes = action.payload.recipes || [];
+      })
+
+      .addCase(addToFavorites.fulfilled, (state, action) => {
+        state.favorites.push(action.payload);
+      })
+
+      .addCase(removeFromFavorites.fulfilled, (state, action) => {
+        state.favorites = state.favorites.filter(r => r.id !== action.payload);
+      })
+
+      .addCase(fetchFavoriteRecipes.fulfilled, (state, action) => {
+        state.favorites = action.payload.favorites || [];
       });
-  }
+  },
 });
 
+export const { clearCurrentRecipe } = recipesSlice.actions;
 export const recipesReducer = recipesSlice.reducer;

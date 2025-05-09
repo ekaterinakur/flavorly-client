@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './Header.scss';
@@ -11,6 +11,7 @@ import UserInfo from '../UserInfo/UserInfo.jsx';
 import Button from '../Button/Button.jsx';
 import NavBar from '../NavBar/NavBar.jsx';
 import Icon from '../Icon/Icon.jsx';
+import MobileMenu from '../MobileMenu/MobileMenu.jsx';
 import {
   selectIsLoggedIn,
   selectUser,
@@ -37,32 +38,17 @@ const Header = () => {
   const { pathname } = useLocation();
   const isHomePage = pathname === '/';
 
-  const [open, setOpen] = useState(false);
-  const userMenuRef = useRef(null);
-
-  const handleClick = () => setOpen(!open);
-
-  const handleClickOutside = (event) => {
-    if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
-      setOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    if (open) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [open]);
+  const [activeTab, setActiveTab] = useState('signup');
+  
 
   const handleOpenSignUp = () => {
+    setActiveTab('signup');
     dispatch(openSignUpModal());
     dispatch(closeSignInModal());
   };
 
   const handleOpenSignIn = () => {
+    setActiveTab('signin');
     dispatch(openSignInModal());
     dispatch(closeSignUpModal());
   };
@@ -70,6 +56,11 @@ const Header = () => {
   const handleClose = () => {
     dispatch(closeSignUpModal());
     dispatch(closeSignInModal());
+  };
+
+  const [openMobileMenu, setOpenMobileMenu] = useState(false);
+  const handleMobileMenuClick = () => {
+    setOpenMobileMenu(!openMobileMenu);
   };
 
   return (
@@ -85,14 +76,12 @@ const Header = () => {
           {isLoggedIn ? (
             <>
               <NavBar />
-              <div className="user-wrapper" ref={userMenuRef}>
-                <UserInfo
-                  user={user}
-                  handleClick={handleClick}
-                  open={open}
-                  isHomePage={isHomePage}
-                />
-                <Button className="burger-menu-btn" onClick={() => {}}>
+              <div className="user-wrapper">
+                <UserInfo user={user} isHomePage={isHomePage} />
+                <Button
+                  className="burger-menu-btn"
+                  onClick={handleMobileMenuClick}
+                >
                   <Icon
                     className="burger-menu-icon"
                     name="burger"
@@ -101,12 +90,13 @@ const Header = () => {
                   />
                 </Button>
               </div>
+              {openMobileMenu && <MobileMenu onClose={handleMobileMenuClick} />}
             </>
           ) : (
             <AuthButtons
               onSignUpClick={handleOpenSignUp}
               onSignInClick={handleOpenSignIn}
-              active={isSignUpOpen ? 'signup' : isSignInOpen ? 'signin' : ''}
+              active={activeTab}
             />
           )}
         </div>

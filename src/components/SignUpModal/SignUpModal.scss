@@ -24,55 +24,28 @@
     flex-direction: column;
     gap: 0.875rem;
 
-    input {
-      box-sizing: border-box;
-      padding: 1rem;
-      border-radius: 30px;
-      font-size: 16px;
-      border: 1px solid $silver;
-      color: $secondary-black;
-      background-color: $white-color;
-      width: 100%;
-
-      &::placeholder {
-        opacity: 1;
-      }
-
-      &:focus {
-        border: 1px solid $primary-black;
-        outline: none;
-      }
-
-      &:not(:placeholder-shown) {
-        border: 1px solid $primary-black;
-      }
-
-      .last-input {
-        margin-bottom: 2.5rem;
-      }
-    }
-
     .error {
       color: red;
       font-size: 0.8rem;
-      margin-top: -0.5rem;
+      margin-top: 0.25rem;
+      margin-left: 0.5rem;
     }
+  }
 
-    button {
-      box-sizing: border-box;
-      padding: 1rem;
-      background-color: $primary-black;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
+  .sign-up-form > button {
+    box-sizing: border-box;
+    padding: 1rem;
+    background-color: $primary-black;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
 
-      &:disabled {
-        background-color: #aaa;
-        cursor: not-allowed;
-      }
+    &:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
     }
   }
 
