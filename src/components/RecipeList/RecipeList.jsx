@@ -4,8 +4,8 @@ import styles from './RecipeList.module.scss';
 
 export function RecipeList({ items, columns = 3 }) {
   return (
-    <section aria-label="Recipes" className="section">
-      <div className="container">
+    <section aria-label="Recipes">
+      <div>
         <ul
           className={classNames(styles.wrapper, {
             [styles[`columns-${columns}`]]: columns,
