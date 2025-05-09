@@ -1,9 +1,10 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import classNames from 'classnames';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
-import { createRecipe } from '../../api/createRecipe';
+import { createRecipe } from '../../api/recipes';
+import { selectRecipesLoading } from '../../redux/selectors/recipesSelectors';
 import { recipeSchema } from '../../validation/recipeSchema';
 import ConnectedFileUploader from '../form/ConnectedFileUploader/ConnectedFileUploader';
 import ConnectedTitleInput from '../form/ConnectedTitleInput/ConnectedTitleInput';
@@ -14,9 +15,10 @@ import ConnectedTimeSelect from './components/ConnectedTimeSelect/ConnectedTimeS
 import IngredientsFieldsArray from './components/IngredientsFieldsArray';
 import Icon from '../Icon/Icon';
 import Button from '../Button/Button';
+import { IconButton } from '../IconButton/IconButton';
+import Loader from '../Loader/Loader';
 
 import styles from './RecipeForm.module.scss';
-import { IconButton } from '../IconButton/IconButton';
 
 const initialValues = {
   thumb: '',
@@ -33,8 +35,9 @@ const initialValues = {
   },
 };
 
-const RecipeForm = ({}) => {
+const RecipeForm = ({ onSuccess }) => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectRecipesLoading);
 
   const form = useForm({
     resolver: yupResolver(recipeSchema),
@@ -83,10 +86,7 @@ const RecipeForm = ({}) => {
         onSubmit={form.handleSubmit(onSubmit, onError)}
       >
         <div className={styles.leftSection}>
-          <ConnectedFileUploader
-            name="thumb"
-            rules={{ required: 'Image is required' }}
-          />
+          <ConnectedFileUploader name="thumb" />
         </div>
 
         <div className={styles.rightSection}>
@@ -145,9 +145,16 @@ const RecipeForm = ({}) => {
               <Icon name="trash" size="20px" />
             </IconButton>
 
-            <Button type="submit" variant="filled" size="medium">
+            <Button
+              type="submit"
+              variant="filled"
+              size="medium"
+              disabled={isLoading}
+            >
               Publish
             </Button>
+
+            {isLoading && <Loader padding="0" />}
           </div>
         </div>
       </form>

@@ -6,7 +6,7 @@ import {
   selectIsLoading,
 } from '../../../redux/selectors/categoriesSelectors';
 
-import Spinner from '../../Spinner/Spinner';
+import Loader from '../../Loader/Loader';
 import ConnectedSelect from '../../form/ConnectedSelect/ConnectedSelect';
 
 const ConnectedCategorySelect = ({ name }) => {
@@ -20,7 +20,7 @@ const ConnectedCategorySelect = ({ name }) => {
   }, [dispatch]);
 
   if (isLoading) {
-    return <Spinner />;
+    return <Loader padding='0' />;
   }
 
   return (

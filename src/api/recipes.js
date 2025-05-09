@@ -39,9 +39,9 @@ export const fetchPopularRecipes = createAsyncThunk(
 
 export const createRecipe = createAsyncThunk(
   'recipes/create',
-  async (recipeData, thunkAPI) => {
+  async (formData, thunkAPI) => {
     try {
-      const { data } = await axios.post('/recipes', recipeData);
+      const { data } = await axios.post('/recipes', formData);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

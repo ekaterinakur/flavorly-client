@@ -6,7 +6,7 @@ import {
   selectIsLoading,
 } from '../../../redux/selectors/areasSelectors';
 
-import Spinner from '../../Spinner/Spinner';
+import Loader from '../../Loader/Loader';
 import ConnectedSelect from '../../form/ConnectedSelect/ConnectedSelect';
 
 const ConnectedAreaSelect = ({ name }) => {
@@ -20,7 +20,7 @@ const ConnectedAreaSelect = ({ name }) => {
   }, [dispatch]);
 
   if (isLoading) {
-    return <Spinner />;
+    return <Loader padding='0' />;
   }
 
   return (

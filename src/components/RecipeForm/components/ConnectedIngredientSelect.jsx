@@ -4,7 +4,7 @@ import {
   selectIsLoading,
 } from '../../../redux/selectors/ingredientsSelectors';
 
-import Spinner from '../../Spinner/Spinner';
+import Loader from '../../Loader/Loader';
 import ConnectedSelect from '../../form/ConnectedSelect/ConnectedSelect';
 
 const ConnectedIngredientSelect = ({ name }) => {
@@ -12,7 +12,7 @@ const ConnectedIngredientSelect = ({ name }) => {
   const options = useSelector(selectIngredientOptions);
 
   if (isLoading) {
-    return <Spinner />;
+    return <Loader padding='0' />;
   }
 
   return (

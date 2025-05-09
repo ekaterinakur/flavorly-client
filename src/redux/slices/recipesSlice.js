@@ -56,8 +56,15 @@ const recipesSlice = createSlice({
         state.popular = action.payload.recipes || [];
       })
 
-      .addCase(createRecipe.fulfilled, (state, action) => {
-        state.myRecipes.push(action.payload);
+      // create
+      .addCase(createRecipe.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(createRecipe.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(createRecipe.rejected, (state) => {
+        state.loading = false;
       })
 
       .addCase(deleteRecipe.fulfilled, (state, action) => {
