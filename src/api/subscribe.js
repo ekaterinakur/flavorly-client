@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import client from '../config/client.js';
+import { handleThunkError } from '../utils/apiHandlerError.js';
 
 export const subscribeToUser = createAsyncThunk(
   'users/subscribe',
@@ -9,7 +10,7 @@ export const subscribeToUser = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return handleThunkError(error, { rejectWithValue });
     }
   }
 );

@@ -1,37 +1,43 @@
 import styles from './RecipeCard.module.scss';
 import { Avatar } from '../Avatar/Avatar';
-import { useState } from 'react';
 import { IconButton } from '../IconButton/IconButton';
 import { useMediaQuery } from 'react-responsive';
 import Icon from '../Icon/Icon';
+import { useNavigate } from 'react-router-dom';
+import { useAuthor } from '../../hooks/useAuthor';
+import { useFavoriteRecipe } from '../../hooks/useFavoriteRecipe';
 
-export function RecipeCard({ img, title, desc, authorAvatar, authorName }) {
+export function RecipeCard({
+  id,
+  thumb,
+  title,
+  description,
+  ownerAvatar,
+  ownerName,
+}) {
+  const navigate = useNavigate();
   const isMdScreen = useMediaQuery({ query: '(min-width: 768px)' });
-  const [isAddedToFavorites, setIsAddedToFavorites] = useState(false);
-
-  const handleAuthorClick = () => {
-    console.log('Author clicked');
-  };
-
-  const handleFavoriteButtonClick = () => {
-    setIsAddedToFavorites((prev) => !prev);
-  };
+  const { handleClick, isAddedToFavorite } = useFavoriteRecipe({
+    id,
+  });
+  const { handleClick: handleAuthorClick } = useAuthor({ id });
 
   const handleRecipeButtonClick = () => {
-    console.log('Recipe button clicked');
+    navigate(`/recipe/${id}`);
+    window.scrollTo(0, 0);
   };
 
   return (
-    <article>
+    <article className="">
       <img
-        src={img}
+        src={thumb}
         alt={title}
         className={styles.image}
         height={isMdScreen ? 275 : 230}
         width="100%"
       />
       <h3 className={styles.title}>{title}</h3>
-      <p className={styles.desc}>{desc}</p>
+      <p className={styles.desc}>{description}</p>
       <div className={styles.footer}>
         <button
           type="button"
@@ -39,17 +45,14 @@ export function RecipeCard({ img, title, desc, authorAvatar, authorName }) {
           onClick={handleAuthorClick}
         >
           <Avatar
-            src={authorAvatar}
+            src={ownerAvatar}
             size={isMdScreen ? 40 : 32}
-            alt={authorName}
+            alt={ownerName}
           />
-          <strong className={styles.authorName}>{authorName}</strong>
+          <strong className={styles.authorName}>{ownerName}</strong>
         </button>
         <div className={styles.actions}>
-          <IconButton
-            isActive={isAddedToFavorites}
-            onClick={handleFavoriteButtonClick}
-          >
+          <IconButton isActive={isAddedToFavorite} onClick={handleClick}>
             <Icon name="like" size={18} />
           </IconButton>
           <IconButton onClick={handleRecipeButtonClick}>

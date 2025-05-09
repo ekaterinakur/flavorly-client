@@ -1,0 +1,60 @@
+@use '../../styles/variables.scss' as *;
+
+.card {
+  position: relative;
+  min-width: 155px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  @media screen and (min-width: 768px) {
+    gap: 14px;
+    min-width: 178px;
+  }
+}
+
+.imageWrapper {
+  width: 75px;
+  height: 75px;
+  padding: 10px;
+  border: 1px solid $silver;
+  border-radius: 15px;
+  box-sizing: border-box;
+
+  @media screen and (min-width: 768px) {
+    width: 90px;
+    height: 90px;
+    padding: 1rem;
+  }
+}
+
+.image {
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.info {
+  font-size: 0.875rem;
+  line-height: 1.5;
+
+  @media screen and (min-width: 768px) {
+    font-size: 1rem;
+  }
+}
+
+.name {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.measure {
+  color: $silver;
+}
+
+.remove {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  cursor: pointer;
+}

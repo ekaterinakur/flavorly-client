@@ -3,7 +3,7 @@ import { registerUser } from '../../api/register';
 import { loginUser } from '../../api/login';
 import { logoutUser } from '../../api/logout';
 import { currentUser } from '../../api/current';
-import { updateAvatar } from '../../api/user';
+import { updateUserAvatar } from '../../api/avatar';
 
 const initialState = {
   user: null,
@@ -19,6 +19,16 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    addRecipeToFavorites(state, action) {
+      if (!state.user.favoriteRecipes.includes(action.payload)) {
+        state.user.favoriteRecipes.push(action.payload);
+      }
+    },
+    removeRecipeFromFavorites(state, action) {
+      state.user.favoriteRecipes = state.user.favoriteRecipes.filter(
+        (recipeId) => recipeId !== action.payload
+      );
+    },
     clientLogout(state) {
       state.user = null;
       state.token = null;
@@ -101,17 +111,17 @@ const authSlice = createSlice({
       })
 
       // Update Avatar
-      .addCase(updateAvatar.pending, (state) => {
+      .addCase(updateUserAvatar.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(updateAvatar.fulfilled, (state, action) => {
+      .addCase(updateUserAvatar.fulfilled, (state, action) => {
         if (state.user && action.payload?.avatar) {
           state.user.avatar = action.payload.avatar;
           state.isLoading = false;
         }
       })
-      .addCase(updateAvatar.rejected, (state, action) => {
+      .addCase(updateUserAvatar.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
@@ -120,3 +130,5 @@ const authSlice = createSlice({
 
 export const { clientLogout } = authSlice.actions;
 export const authReducer = authSlice.reducer;
+export const { addRecipeToFavorites, removeRecipeFromFavorites } =
+  authSlice.actions;

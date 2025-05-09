@@ -1,4 +1,4 @@
-@use '../../styles/variables.scss' as *;
+@use '../../../styles/variables.scss' as *;
 
 .input-wrapper {
   position: relative;
@@ -26,13 +26,6 @@
     &:not(:placeholder-shown) {
       border: 1px solid $primary-black;
     }
-  }
-
-  .error {
-    display: block;
-    color: red;
-    font-size: 0.8rem;
-    margin-top: 0.25rem;
   }
 
   &.last-input {

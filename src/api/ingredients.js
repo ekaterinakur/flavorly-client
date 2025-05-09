@@ -5,9 +5,7 @@ export const fetchIngredients = createAsyncThunk(
   'ingredients/fetchAll',
   async (_, thunkAPI) => {
     try {
-      const response = await client.get(
-        'https://flavorly-api-gpdc.onrender.com/api/ingredients'
-      );
+      const response = await client.get('/ingredients');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import FieldError from '../FieldError/FieldError';
 import './Input.scss';
 
 const Input = ({
@@ -11,7 +12,7 @@ const Input = ({
   return (
     <div className={`input-wrapper ${error ? 'input-error' : ''} ${className}`}>
       <input type={type} placeholder={placeholder} {...register} />
-      {error && <span className="error">{error}</span>}
+      {error && <FieldError message={error} />}
     </div>
   );
 };

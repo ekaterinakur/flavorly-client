@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import client from '../config/client.js';
+import { handleThunkError } from '../utils/apiHandlerError.js';
 
 export const logoutUser = createAsyncThunk(
   'users/logout',
@@ -9,7 +10,7 @@ export const logoutUser = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return handleThunkError(error, { rejectWithValue });
     }
   }
 );

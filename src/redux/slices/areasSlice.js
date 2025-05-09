@@ -36,8 +36,5 @@ const areasSlice = createSlice({
 // Actions generator
 export const { changeArea } = areasSlice.actions;
 
-// Selector
-export const selectAreas = (state) => state.areas;
-
 // Reducer
 export const areasReducer = areasSlice.reducer;

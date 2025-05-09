@@ -1,4 +1,4 @@
-import { MainTitle } from '../../components/MainTitle/MainTitle.jsx';
+import MainTitle from '../../components/MainTitle/MainTitle.jsx';
 import Button from '../../components/Button/Button.jsx';
 import { Link } from 'react-router-dom';
 

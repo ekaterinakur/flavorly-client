@@ -1,0 +1,34 @@
+@use '../../../../styles/variables.scss' as *;
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  @media screen and (min-width: 768px) {
+    gap: 1rem;
+  }
+}
+
+.btnCircle {
+  width: 48px;
+  height: 48px;
+
+  &:hover:not(.active) {
+    border-color: $primary-black;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+.value {
+  font-size: 14px;
+  color: $silver;
+
+  @media screen and (min-width: 768px) {
+    font-size: 1rem;
+  }
+}

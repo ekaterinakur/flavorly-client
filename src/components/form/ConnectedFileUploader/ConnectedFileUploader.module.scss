@@ -1,0 +1,89 @@
+@use '../../../styles/variables.scss' as *;
+
+$uploader-width: 100%;
+
+.formGroup {
+  width: 100%;
+}
+
+.uploader {
+  width: $uploader-width;
+  aspect-ratio: 1.08 / 1;
+  border: 1px dashed $silver;
+  border-radius: $form-field-radius;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: border-color 0.3s;
+
+  &:hover {
+    border-color: lighten($color: $silver, $amount: 2);
+  }
+
+  @media screen and (min-width: 768px) {
+    aspect-ratio: 1.76 / 1;
+  }
+
+  @media screen and (min-width: 1440px) {
+    aspect-ratio: 1.38 / 1;
+  }
+}
+
+.error {
+  border-color: $error-color;
+
+  &:hover {
+    border-color: $error-color;
+  }
+}
+
+.preview {
+  width: $uploader-width;
+  aspect-ratio: 1.08 / 1;
+  border-radius: $form-field-radius;
+  object-fit: cover;
+  object-position: center;
+  mask-repeat: no-repeat;
+
+  @media screen and (min-width: 768px) {
+    aspect-ratio: 1.76 / 1;
+  }
+
+  @media screen and (min-width: 1440px) {
+    aspect-ratio: 1.38 / 1;
+  }
+}
+
+.input {
+  display: none;
+}
+
+.content {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.label {
+  font-size: 14px;
+  line-height: 1;
+  text-decoration: underline;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  color: $silver;
+  margin-bottom: 1rem;
+
+  @media screen and (min-width: 768px) {
+    width: 64px;
+    height: 64px;
+  }
+}

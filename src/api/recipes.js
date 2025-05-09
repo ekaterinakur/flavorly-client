@@ -39,9 +39,9 @@ export const fetchPopularRecipes = createAsyncThunk(
 
 export const createRecipe = createAsyncThunk(
   'recipes/create',
-  async (recipeData, thunkAPI) => {
+  async (formData, thunkAPI) => {
     try {
-      const { data } = await axios.post('/recipes', recipeData);
+      const { data } = await axios.post('/recipes', formData);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -63,9 +63,11 @@ export const deleteRecipe = createAsyncThunk(
 
 export const fetchMyRecipes = createAsyncThunk(
   'recipes/fetchMyRecipes',
-  async (_, thunkAPI) => {
+  async ({ page = 1, limit = 6 }, thunkAPI) => {
     try {
-      const { data } = await axios.get('/recipes/my');
+      const { data } = await axios.get('/recipes/my', {
+        params: { page, limit },
+      });
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -49,6 +49,14 @@ body {
   }
 }
 
+.first-section {
+  padding-top: 32px;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 40px;
+  }
+}
+
 .page-content {
   flex: 1;
   width: 100%;

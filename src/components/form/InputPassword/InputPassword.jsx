@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import Icon from '../../Icon/Icon';
+import FieldError from '../FieldError/FieldError';
+
 import './InputPassword.scss';
 
 const InputPassword = ({ placeholder, error, register, className = '' }) => {
@@ -20,13 +23,13 @@ const InputPassword = ({ placeholder, error, register, className = '' }) => {
         onClick={togglePassword}
         aria-label="Toggle password visibility"
       >
-        <svg width="20" height="20" fill="currentColor">
-          <use
-            href={`/icons.svg#${isVisible ? 'icon-eye' : 'icon-eye-closed'}`}
-          />
-        </svg>
+        {isVisible ? (
+          <Icon name="eye" size="20px" />
+        ) : (
+          <Icon name="eye-closed" size="20px" />
+        )}
       </button>
-      {error && <span className="error">{error}</span>}
+      {error && <FieldError message={error} />}
     </div>
   );
 };
