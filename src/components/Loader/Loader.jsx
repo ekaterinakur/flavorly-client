@@ -4,7 +4,7 @@ import './Loader.scss';
 function Loader() {
   return (
     <div className="loader">
-      <ClipLoader size={24} />
+      <ClipLoader size={30} />
     </div>
   );
 }
