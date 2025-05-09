@@ -37,7 +37,6 @@ export const store = configureStore({
     modal: modalReducer,
     details: userDetailsReducer,
     subscriptions: subscriptionsReducer,
-
     categories: categoriesReducer,
     // TODO: add needed reducers here
   },
