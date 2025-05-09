@@ -1,7 +1,5 @@
 import HeroSection from '../components/HeroSection/HeroSection';
 import { Recipes } from '../components/Recipes/Recipes';
-// import { RecipeList } from '../components/RecipeList/RecipeList';
-// import { RECIPES_LIST } from '../mocks/recipes-list';
 import { CategoryList } from '../components/CategoryList/CategoryList.jsx';
 import Testimonials from '../components/Testimonials/Testimonials.jsx';
 
