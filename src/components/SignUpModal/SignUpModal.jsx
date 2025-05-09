@@ -7,8 +7,8 @@ import { useDispatch } from 'react-redux';
 
 import './SignUpModal.scss';
 import Button from '../Button/Button';
-import Input from '../Input/Input';
-import InputPassword from '../InputPassword/InputPassword';
+import Input from '../form/Input/Input';
+import InputPassword from '../form/InputPassword/InputPassword';
 import { registerUser } from '../../api/register.js';
 
 const schema = yup.object({
