@@ -47,11 +47,7 @@ function UserProfileCard({ user, isOwner }) {
   return (
     <aside className="sidebar">
       <div className="wrapper">
-        <Avatar
-          size=""
-          className="avatar"
-          src={`https://flavorly-api-gpdc.onrender.com/${user?.avatar}`}
-        />
+        <Avatar size="" className="avatar" src={user?.avatar} />
         {isOwner && (
           <>
             <IconButton
