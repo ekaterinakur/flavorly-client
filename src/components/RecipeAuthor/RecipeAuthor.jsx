@@ -1,7 +1,7 @@
 import { useMediaQuery } from 'react-responsive';
 import styles from './RecipeAuthor.module.scss';
 import { Avatar } from '../Avatar/Avatar';
-import { useAuthor } from '../../hooks/use-author';
+import { useAuthor } from '../../hooks/useAuthor';
 
 export function RecipeAuthor({ avatar, name, id }) {
   const { handleClick } = useAuthor({ id });

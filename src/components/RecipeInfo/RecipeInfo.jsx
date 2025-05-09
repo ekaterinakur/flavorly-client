@@ -4,7 +4,7 @@ import { RecipeIngredients } from '../RecipeIngredients/RecipeIngredients';
 import { RecipeCategories } from '../RecipeCategories/RecipeCategories';
 import { RecipeAuthor } from '../RecipeAuthor/RecipeAuthor';
 import Button from '../Button/Button';
-import { useFavoriteRecipe } from '../../hooks/use-favorite-recipe';
+import { useFavoriteRecipe } from '../../hooks/useFavoriteRecipe';
 
 export function RecipeInfo({ recipe }) {
   const { isLoading, handleClick, isAddedToFavorite } = useFavoriteRecipe({

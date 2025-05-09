@@ -4,8 +4,8 @@ import { IconButton } from '../IconButton/IconButton';
 import { useMediaQuery } from 'react-responsive';
 import Icon from '../Icon/Icon';
 import { useNavigate } from 'react-router-dom';
-import { useAuthor } from '../../hooks/use-author';
-import { useFavoriteRecipe } from '../../hooks/use-favorite-recipe';
+import { useAuthor } from '../../hooks/useAuthor';
+import { useFavoriteRecipe } from '../../hooks/useFavoriteRecipe';
 
 export function RecipeCard({
   id,
