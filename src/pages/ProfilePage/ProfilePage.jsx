@@ -1,47 +1,40 @@
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams, NavLink } from 'react-router-dom';
+import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs.jsx';
+import './ProfilePage.scss';
+import UserProfileCard from '../../components/UserProfileCard/UserProfileCard.jsx';
+import { MainTitle } from '../../components/MainTitle/MainTitle.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../redux/selectors/authSelectors.js';
-import { selectUserDetails } from '../../redux/slices/userDetails.js';
-import { fetchUserDetails } from '../../api/user.js';
-import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs.jsx';
-import MainTitle from '../../components/MainTitle/MainTitle.jsx';
-import UserProfileCard from '../../components/UserProfileCard/UserProfileCard.jsx';
+import { useEffect } from 'react';
+import { userDetails } from '../../api/userDetails.js';
 import TabsList from '../../components/TabsList/TabsList.jsx';
-
-import styles from './ProfilePage.module.scss';
+import { selectUserDetails } from '../../redux/selectors/userDetailsSelectors.js';
 
 export default function ProfilePage() {
-  const { userId } = useParams();
+  const { userId } = useParams(); // Отримуємо ID з URL
   const dispatch = useDispatch();
   const currentUser = useSelector(selectUser);
-  const userDetails = useSelector(selectUserDetails);
-  let isOwner = !userId || userId === currentUser?.id;
-  console.log('isOwner: ', isOwner);
+  const profileUser = useSelector(selectUserDetails);
+  let isOwner = !userId || userId === currentUser?.id; // якщо id params != юзеру в Redux - це не оунер
+
   // isOwner = false;
 
-  // Перевірка userDetails
-  // useEffect(() => {
-  //   const testFetch = async () => {
-  //     try {
-  //       const result = await dispatch(
-  //         fetchUserDetails('681bc3f7de82468ba1d43e61')
-  //       ).unwrap();
-  //       console.log('✅ Test fetchUserDetails result:', result);
-  //     } catch (error) {
-  //       console.error('❌ Test fetchUserDetails failed:', error);
-  //     }
-  //   };
-  //   testFetch();
-  // }, [dispatch]);
-
   useEffect(() => {
-    if (!userId || userId === currentUser?.id) {
-      return;
-    }
+    const getUserDetails = async () => {
+      try {
+        const result = await dispatch(
+          userDetails(isOwner ? currentUser?.id : userId)
+        );
+        // console.log('✅ User:', result);
+      } catch (error) {
+        // console.error('❌ Error :', error);
+      }
+    };
 
-    dispatch(fetchUserDetails(userId));
-  }, [dispatch, userId, currentUser?.id]);
+    if ((isOwner && currentUser?.id) || userId) {
+      getUserDetails();
+    }
+  }, [dispatch, userId, currentUser?.id, isOwner]);
 
   return (
     <>
@@ -52,9 +45,9 @@ export default function ProfilePage() {
             title="Profile"
             subtitle="Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us."
           />
-          <div className={styles.layout}>
+          <div className="layout">
             <UserProfileCard
-              user={isOwner ? currentUser : userDetails}
+              user={isOwner ? currentUser : profileUser}
               isOwner={isOwner}
             />
             <TabsList isOwner={isOwner} />

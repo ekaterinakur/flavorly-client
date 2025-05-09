@@ -1,24 +1,52 @@
-import PropTypes from 'prop-types';
-import styles from './CategoryList.module.scss';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
-import { CategoryCard } from '../CategoryCard/CategoryCard';
-import MainTitle from '../MainTitle/MainTitle';
+import PropTypes from 'prop-types';
+import { toast } from 'react-hot-toast';
+import { fetchCategories } from '../../api/categories.js';
 
-export function CategoryList({ items, onSelect }) {
+import MainTitle from '../MainTitle/MainTitle';
+import Loader from '../Loader/Loader';
+import { CategoryCard } from '../CategoryCard/CategoryCard';
+
+import styles from './CategoryList.module.scss';
+
+export function CategoryList({ onSelect }) {
+  const dispatch = useDispatch();
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
-  const allCategory = items.find((cat) => !cat.imageUrl);
-  const otherCategories = items.filter((cat) => cat.imageUrl);
+  const {
+    items: categories,
+    loading,
+    error,
+  } = useSelector((state) => state.categories);
 
-  let visibleItems;
-  if (isMobile) {
-    visibleItems = otherCategories.slice(0, 8);
-    if (allCategory) {
-      visibleItems.push(allCategory);
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error('Failed to load categories. Please try again later.');
     }
-  } else {
-    visibleItems = items;
+  }, [error]);
+
+  if (loading) {
+    return (
+      <div className="container">
+        <Loader />
+      </div>
+    );
   }
+
+  if (!categories.length) return null;
+
+  const visibleCategories = isMobile
+    ? categories.slice(0, 8)
+    : categories.slice(0, 11);
+  const allCategory = { id: 'all', name: 'All categories' };
+
+  const renderedItems = [...visibleCategories, allCategory];
 
   return (
     <section aria-label="Categories" className="section">
@@ -28,12 +56,12 @@ export function CategoryList({ items, onSelect }) {
           subtitle="Discover a limitless world of culinary possibilities and enjoy exquisite recipes that combine taste, style and the warm atmosphere of the kitchen."
         />
         <div className={styles.grid}>
-          {visibleItems.map((cat) => (
+          {renderedItems.map((cat) => (
             <CategoryCard
               key={cat.id}
               id={cat.id}
               name={cat.name}
-              imageUrl={cat.imageUrl}
+              imageUrl={cat.thumbnailUrl}
               onSelect={onSelect}
             />
           ))}
@@ -44,12 +72,5 @@ export function CategoryList({ items, onSelect }) {
 }
 
 CategoryList.propTypes = {
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-      name: PropTypes.string.isRequired,
-      imageUrl: PropTypes.string,
-    })
-  ).isRequired,
   onSelect: PropTypes.func.isRequired,
 };

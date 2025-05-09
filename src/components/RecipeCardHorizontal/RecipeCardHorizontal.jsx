@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './RecipeCardHorizontal.module.scss';
 import { IconButton } from '../IconButton/IconButton';
-import Icon from '../Icon/icon';
+import Icon from '../Icon/Icon';
 
 export default function RecipeCardHorizontal({ recipe, onDelete }) {
   const [isVisible, setIsVisible] = useState(true);
@@ -12,7 +12,7 @@ export default function RecipeCardHorizontal({ recipe, onDelete }) {
     setIsVisible(false);
     console.log('Delete recipe button clicked');
     if (onDelete) {
-      await onDelete(recipe.id);
+      await onDelete();
     }
   };
 
@@ -25,11 +25,11 @@ export default function RecipeCardHorizontal({ recipe, onDelete }) {
 
   return (
     <div className={styles.card}>
-      <img src={recipe.img} alt={recipe.title} className={styles.image} />
+      <img src={recipe.thumb} alt={recipe.title} className={styles.image} />
 
       <div className={styles.content}>
         <p className={styles.title}>{recipe.title}</p>
-        <p className={styles.desc}>{recipe.desc}</p>
+        <p className={styles.desc}>{recipe.description}</p>
       </div>
 
       <div className={styles.actions}>
@@ -37,7 +37,7 @@ export default function RecipeCardHorizontal({ recipe, onDelete }) {
           <Icon name="arrow-up-right" size={18} />
         </IconButton>
         <IconButton onClick={handleDelete}>
-          <Icon name="icon-trash" size={18} />
+          <Icon name="trash" size={18} />
         </IconButton>
       </div>
     </div>

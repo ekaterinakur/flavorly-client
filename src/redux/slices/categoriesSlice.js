@@ -5,17 +5,12 @@ const initialState = {
   items: [],
   loading: false,
   error: null,
-  selected: '',
 };
 
 const categoriesSlice = createSlice({
   name: 'categories',
-  initialState: initialState,
-  reducers: {
-    changeCategory(state, { payload }) {
-      state.selected = payload;
-    },
-  },
+  initialState,
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchCategories.pending, (state) => {
@@ -33,8 +28,4 @@ const categoriesSlice = createSlice({
   },
 });
 
-// Actions generator
-export const { changeCategory } = categoriesSlice.actions;
-
-// Reducer
 export const categoriesReducer = categoriesSlice.reducer;
