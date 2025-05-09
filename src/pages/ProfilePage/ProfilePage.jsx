@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from '../redux/selectors/authSelectors.js';
-import { selectUserDetails } from '../redux/slices/userDetails.js';
-import { fetchUserDetails } from '../api/user.js';
-import MainTitle from '../components/MainTitle/MainTitle';
-import UserProfileCard from '../components/UserProfileCard/UserProfileCard';
-import TabsList from '../components/TabsList/TabsList.jsx';
+import { selectUser } from '../../redux/selectors/authSelectors.js';
+import { selectUserDetails } from '../../redux/slices/userDetails.js';
+import { fetchUserDetails } from '../../api/user.js';
+import MainTitle from '../../components/MainTitle/MainTitle.jsx';
+import UserProfileCard from '../../components/UserProfileCard/UserProfileCard.jsx';
+import TabsList from '../../components/TabsList/TabsList.jsx';
 
-import './ProfilePage.scss';
+import styles from './ProfilePage.module.scss';
 
 export default function ProfilePage() {
   const { userId } = useParams();
@@ -43,19 +43,21 @@ export default function ProfilePage() {
   }, [dispatch, userId, currentUser?.id]);
 
   return (
-    <div className="container">
-      <MainTitle
-        title="Profile"
-        subtitle="Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us."
-        breadcrumbs="Profile"
-      />
-      <div className="layout">
-        <UserProfileCard
-          user={isOwner ? currentUser : userDetails}
-          isOwner={isOwner}
+    <section className="section">
+      <div className="container">
+        <MainTitle
+          title="Profile"
+          subtitle="Reveal your culinary art, share your favorite recipe and create gastronomic masterpieces with us."
+          breadcrumbs="Profile"
         />
-        <TabsList isOwner={isOwner} />
+        <div className={styles.layout}>
+          <UserProfileCard
+            user={isOwner ? currentUser : userDetails}
+            isOwner={isOwner}
+          />
+          <TabsList isOwner={isOwner} />
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

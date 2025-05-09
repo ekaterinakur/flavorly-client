@@ -1,8 +1,6 @@
 @use '../../styles/variables' as *;
 
 .bread-crumb {
-  margin-top: 4rem;
-  margin-bottom: 2rem;
   display: flex;
   gap: 8px;
   font-size: 12px;
@@ -13,10 +11,6 @@
 
   @media (max-width: 768px) {
     margin-bottom: 2.5rem;
-  }
-
-  @media (max-width: 1440px) {
-    margin-top: 5rem;
   }
 
   .bread-crumb-link {
