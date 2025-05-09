@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAreas } from '../../../api/areas';
-import { selectAreaOptions, selectIsLoading } from '../../../redux/selectors/areasSelectors';
+import {
+  selectAreaOptions,
+  selectIsLoading,
+} from '../../../redux/selectors/areasSelectors';
 
 import Spinner from '../../Spinner/Spinner';
 import ConnectedSelect from '../../form/ConnectedSelect/ConnectedSelect';
@@ -22,12 +25,12 @@ const ConnectedAreaSelect = ({ name }) => {
 
   return (
     <ConnectedSelect
-			name={name}
+      name={name}
       options={options}
-			defaultValue="Unknown"
+      defaultValue="Unknown"
       placeholder="Select an area"
       rules={{ required: 'Area is required' }}
-			maxWidth='315px'
+      maxWidth="315px"
     />
   );
 };

@@ -22,7 +22,9 @@ const ConnectedTextArea = ({ name, placeholder, maxLength, rules }) => {
               {...field}
               rows={1}
               placeholder={placeholder}
-              className={classNames(styles.textarea, { [styles.error]: !!fieldState.error })}
+              className={classNames(styles.textarea, {
+                [styles.error]: !!fieldState.error,
+              })}
               onInput={(e) => {
                 e.target.style.height = 'auto';
                 e.target.style.height = `${e.target.scrollHeight}px`;

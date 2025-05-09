@@ -20,7 +20,7 @@ const IngredientCard = ({ ingredient, onDelete }) => {
 
       <Button
         type="button"
-				variant="text"
+        variant="text"
         className={styles.remove}
         onClick={() => onDelete()}
       >

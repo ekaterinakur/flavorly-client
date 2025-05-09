@@ -39,7 +39,10 @@ export const ConnectedFileUploader = ({ name, rules }) => {
           />
 
           {previewUrl ? (
-            <label htmlFor={name} className={classNames({ [styles.error]: !!fieldState.error })}>
+            <label
+              htmlFor={name}
+              className={classNames({ [styles.error]: !!fieldState.error })}
+            >
               <img src={previewUrl} alt="Preview" className={styles.preview} />
 
               <div className={styles.content}>
@@ -47,7 +50,12 @@ export const ConnectedFileUploader = ({ name, rules }) => {
               </div>
             </label>
           ) : (
-            <label htmlFor={name} className={classNames(styles.uploader, { [styles.error]: !!fieldState.error })}>
+            <label
+              htmlFor={name}
+              className={classNames(styles.uploader, {
+                [styles.error]: !!fieldState.error,
+              })}
+            >
               <div className={styles.content}>
                 <Icon name="camera-frame" size={64} color="BFBEBE" />
                 <p className={styles.label}>Upload a photo</p>

@@ -1,7 +1,7 @@
 @use '../../../styles/variables.scss' as *;
 
 .formGroup {
-	width: 100%;
+  width: 100%;
 }
 
 .input {
@@ -13,7 +13,7 @@
   font-size: 16px;
   font-family: inherit;
   line-height: 1.5;
-	letter-spacing: -0.02em;
+  letter-spacing: -0.02em;
   box-sizing: border-box;
   transition: border-color 0.5s;
 
@@ -26,5 +26,5 @@
 }
 
 .error {
-	border-color: $error-color;
+  border-color: $error-color;
 }

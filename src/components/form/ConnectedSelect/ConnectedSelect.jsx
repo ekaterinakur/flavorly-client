@@ -33,11 +33,14 @@ const ConnectedSelect = ({
             onMenuOpen={() => setIsOpen(true)}
             onMenuClose={() => setIsOpen(false)}
             onChange={(selected) => {
-              field.onChange(selected?.value)
+              field.onChange(selected?.value);
             }}
             onBlur={field.onBlur}
             classNames={{
-              control: () => classNames(styles.select, { [styles.error]: !!fieldState.error }),
+              control: () =>
+                classNames(styles.select, {
+                  [styles.error]: !!fieldState.error,
+                }),
               placeholder: () => styles.selectPlaceholder,
             }}
             components={{

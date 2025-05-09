@@ -5,7 +5,7 @@ import FieldError from '../FieldError/FieldError';
 
 import styles from './ConnectedInput.module.scss';
 
-const ConnectedInput = ({ name, type = "text", placeholder, rules }) => {
+const ConnectedInput = ({ name, type = 'text', placeholder, rules }) => {
   const { control } = useFormContext();
 
   return (
@@ -20,7 +20,9 @@ const ConnectedInput = ({ name, type = "text", placeholder, rules }) => {
             {...field}
             type={type}
             placeholder={placeholder}
-            className={classNames(styles.input, { [styles.error]: !!fieldState.error })}
+            className={classNames(styles.input, {
+              [styles.error]: !!fieldState.error,
+            })}
           />
 
           {!!fieldState.error && (

@@ -1,16 +1,16 @@
 @use '../../../styles/variables.scss' as *;
 
 .formGroup {
-	width: 100%;
+  width: 100%;
 }
 
 .input {
-	width: 100%;
-	border: 0;
-	outline: 0;
-	font-size: 2rem;
-	font-family: inherit;
-	font-weight: 700;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  font-size: 2rem;
+  font-family: inherit;
+  font-weight: 700;
 
   &::placeholder {
     color: $placeholder-color;

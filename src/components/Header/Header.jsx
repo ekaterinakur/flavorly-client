@@ -39,7 +39,6 @@ const Header = () => {
   const isHomePage = pathname === '/';
 
   const [activeTab, setActiveTab] = useState('signup');
-  
 
   const handleOpenSignUp = () => {
     setActiveTab('signup');

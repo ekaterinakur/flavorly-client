@@ -39,7 +39,6 @@ export const store = configureStore({
     details: userDetailsReducer,
     subscriptions: subscriptionsReducer,
 
-
     // TODO: add needed reducers here
   },
   middleware: (getDefaultMiddleware) =>
