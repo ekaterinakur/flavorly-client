@@ -1,18 +1,24 @@
 import { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Avatar } from '../Avatar/Avatar.jsx';
 import { IconButton } from '../IconButton/IconButton.jsx';
 import Icon from '../Icon/Icon.jsx';
 import toast from 'react-hot-toast';
-import { updateAvatar } from '../../api/user.js';
 import './UserProfileCard.scss';
 import { currentUser } from '../../api/current.js';
 import Button from '../Button/Button.jsx';
 import { logoutUser } from '../../api/logout.js';
+import {
+  selectFavoriteRecipes,
+  selectMyRecipes,
+} from '../../redux/selectors/recipesSelectors.js';
+import { updateUserAvatar } from '../../api/avatar.js';
 
 function UserProfileCard({ user, isOwner }) {
   const fileInputRef = useRef(null);
   const dispatch = useDispatch();
+  const myRecipes = useSelector(selectMyRecipes);
+  const favorites = useSelector(selectFavoriteRecipes);
   // console.dir(user);
 
   const handleClick = () => {
@@ -36,7 +42,7 @@ function UserProfileCard({ user, isOwner }) {
     formData.append('avatar', file);
 
     try {
-      await dispatch(updateAvatar(formData));
+      await dispatch(updateUserAvatar(formData));
       await dispatch(currentUser());
       toast.success('Аватар оновлено!');
     } catch (error) {
@@ -47,11 +53,7 @@ function UserProfileCard({ user, isOwner }) {
   return (
     <aside className="sidebar">
       <div className="wrapper">
-        <Avatar
-          size=""
-          className="avatar"
-          src={`https://flavorly-api-gpdc.onrender.com/${user?.avatar}`}
-        />
+        <Avatar size="" className="avatar" src={user?.avatar} />
         {isOwner && (
           <>
             <IconButton
@@ -81,9 +83,7 @@ function UserProfileCard({ user, isOwner }) {
           <li>
             <p className="detail">
               Added recipes:{' '}
-              <span className="detail-bold">
-                {user?.addedRecipes?.length || 0}
-              </span>
+              <span className="detail-bold">{myRecipes?.length || 0}</span>
             </p>
           </li>
           {isOwner && (

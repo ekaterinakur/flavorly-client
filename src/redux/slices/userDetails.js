@@ -28,6 +28,4 @@ const userDetailsSlice = createSlice({
   },
 });
 
-export const selectUserDetails = (state) => state.details;
-
 export const userDetailsReducer = userDetailsSlice.reducer;

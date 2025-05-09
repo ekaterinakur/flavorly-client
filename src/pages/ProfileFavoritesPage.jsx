@@ -5,7 +5,7 @@ import {
   selectRecipesLoading,
 } from '../redux/selectors/recipesSelectors.js';
 import { RecipeList } from '../components/RecipeList/RecipeList.jsx';
-import { fetchFavoriteRecipes, fetchMyRecipes } from '../api/recipes.js';
+import { fetchFavoriteRecipes } from '../api/recipes.js';
 import { useEffect } from 'react';
 import { ListPagination } from '../components/ListPagination/ListPagination.jsx';
 import Loader from '../components/Loader/Loader.jsx';
@@ -13,6 +13,7 @@ import EmptyState from '../components/EmptyState/EmptyState.jsx';
 import toast from 'react-hot-toast';
 
 import { selectRecipesPagination } from '../redux/selectors/paginationSelectors.js';
+import { useRecipeDeletion } from '../hooks/useRecipeDeletion.js';
 
 export default function ProfileFavoritesPage() {
   const favoriteRecipes = useSelector(selectFavoriteRecipes);
@@ -29,12 +30,18 @@ export default function ProfileFavoritesPage() {
   }, [dispatch]);
 
   const handlePageChange = (page) => {
-    dispatch(fetchMyRecipes({ page, perPageLimit }));
+    dispatch(fetchFavoriteRecipes({ page, perPageLimit }));
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
   };
+
+  const handleDelete = useRecipeDeletion({
+    type: 'favorites',
+    page: currentPage,
+    perPageLimit,
+  });
 
   // Check for error, show toast with message
   useEffect(() => {
@@ -53,7 +60,12 @@ export default function ProfileFavoritesPage() {
       {!loading && favoriteRecipes.length === 0 ? (
         <EmptyState message="Nothing has been added to your favorite recipes list yet. Please browse our recipes and add your favorites for easy access in the future." />
       ) : (
-        <RecipeList items={favoriteRecipes} columns={1} cardType="vertical" />
+        <RecipeList
+          items={favoriteRecipes}
+          columns={1}
+          cardType="vertical"
+          onDelete={handleDelete}
+        />
       )}
       {totalPages >= 1 && (
         <ListPagination
