@@ -14,18 +14,21 @@ const IngredientCard = ({ ingredient, onDelete }) => {
         />
       </div>
       <div className={styles.info}>
-        <p className={styles.name}>{ingredient.name}</p>
-        <p className={styles.measure}>{ingredient.measure}</p>
+        <h6 className={styles.name}>{ingredient.name}</h6>
+        <p className={styles.measure}>
+          {ingredient.measure || ingredient.RecipeIngredient.measure}
+        </p>
       </div>
-
-      <Button
-        type="button"
-        variant="text"
-        className={styles.remove}
-        onClick={() => onDelete()}
-      >
-        <Icon name="cross" size="1rem" />
-      </Button>
+      {onDelete && (
+        <Button
+          type="button"
+          variant="text"
+          className={styles.remove}
+          onClick={() => onDelete()}
+        >
+          <Icon name="cross" size="1rem" />
+        </Button>
+      )}
     </div>
   );
 };

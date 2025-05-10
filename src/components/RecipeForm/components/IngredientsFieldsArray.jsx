@@ -74,7 +74,11 @@ const IngredientsFieldsArray = ({ name }) => {
       </Button>
 
       {previewList.length > 0 && (
-        <IngredientList items={previewList} onDelete={handleRemove} />
+        <IngredientList
+          items={previewList}
+          className={styles.ingredientList}
+          onDelete={handleRemove}
+        />
       )}
     </div>
   );
