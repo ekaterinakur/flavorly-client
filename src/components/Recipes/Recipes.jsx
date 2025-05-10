@@ -58,9 +58,7 @@ export function Recipes() {
           />
           <MainTitle
             title={
-              selectedCategory === 'all'
-                ? 'All Recipes'
-                : `${selectedCategory} Recipes`
+              selectedCategory === 'all' ? 'All Recipes' : `${selectedCategory}`
             }
             subtitle="Go on a taste journey, where every sip is a sophisticated creative chord, and every dessert is an expression of the most refined gastronomic desires."
           />
