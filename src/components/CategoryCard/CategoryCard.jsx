@@ -5,7 +5,7 @@ import { IconButton } from '../IconButton/IconButton';
 import Icon from '../Icon/Icon';
 
 export function CategoryCard({ id, name, imageUrl, onSelect }) {
-  const handleClick = () => onSelect(id);
+  const handleClick = () => onSelect(id === 'all' ? id : name);
   const isAll = !imageUrl;
 
   return (

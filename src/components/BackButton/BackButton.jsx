@@ -1,12 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Icon from '../Icon/icon';
+import Icon from '../Icon/Icon';
 import './BackButton.scss';
 
-const BackButton = ({ backUrl }) => {
+const BackButton = ({ backUrl, onClick }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+
     if (backUrl) {
       navigate(backUrl);
     } else {

@@ -1,12 +1,10 @@
 import Selector from '../Selector/Selector';
 import './RecipeFilters.scss';
-import {
-  changeIngredient,
-  selectIngredients,
-} from '../../redux/slices/ingredientsSlice.js';
+import { changeIngredient } from '../../redux/slices/ingredientsSlice.js';
+import { selectIngredients } from '../../redux/selectors/ingredientsSelectors.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeArea } from '../../redux/slices/areasSlice.js';
-import { selectAreas } from '../../redux/selectors/areasSelector.js';
+import { selectAreas } from '../../redux/selectors/areasSelectors.js';
 import { fetchIngredients } from '../../api/ingredients.js';
 import { fetchAreas } from '../../api/areas.js';
 import { useEffect } from 'react';
@@ -14,36 +12,40 @@ import { useEffect } from 'react';
 const RecipeFilter = () => {
   const dispatch = useDispatch();
 
-  const ingredients = useSelector(selectIngredients);
-  const areas = useSelector(selectAreas);
+  const ingredientItems = useSelector(selectIngredients);
+  const ingredientsState = useSelector((state) => state.ingredients);
+
+  const areasItems = useSelector(selectAreas);
+  const areasState = useSelector((state) => state.areas);
 
   useEffect(() => {
-    if (ingredients.items.length === 0) {
+    if (ingredientItems.length === 0) {
       dispatch(fetchIngredients());
     }
-  }, [ingredients, dispatch]);
+  }, [ingredientItems, dispatch]);
 
   useEffect(() => {
-    if (areas.items.length === 0) {
+    if (areasItems.length === 0) {
       dispatch(fetchAreas());
     }
-  }, [areas, dispatch]);
+  }, [areasItems, dispatch]);
 
   return (
     <div className="selectors-wrapper">
       <Selector
         label="Ingredients"
-        listSelector={ingredients.items}
-        selectedSelector={ingredients.selected}
+        listSelector={ingredientItems}
+        selectedSelector={ingredientsState.selected}
         reducer={changeIngredient}
-        loading={ingredients.loading}
+        loading={ingredientsState.loading}
       />
+
       <Selector
         label="Areas"
-        listSelector={areas.items}
-        selectedSelector={areas.selected}
+        listSelector={areasItems}
+        selectedSelector={areasState.selected}
         reducer={changeArea}
-        loading={areas.loading}
+        loading={areasState.loading}
       />
     </div>
   );
