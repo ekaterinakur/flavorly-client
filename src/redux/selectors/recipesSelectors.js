@@ -7,7 +7,3 @@ export const selectMyRecipes = (state) => state.recipes.myRecipes;
 export const selectFavoriteRecipes = (state) => state.recipes.favorites;
 export const selectRecipesTotal = (state) => state.recipes.total;
 export const selectRecipesPage = (state) => state.recipes.page;
-export const selectUserRecipes = (state, userId) => {
-  if (!userId) return [];
-  return state.recipes.usersRecipes?.[userId] || [];
-};

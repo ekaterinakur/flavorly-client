@@ -91,10 +91,6 @@ const recipesSlice = createSlice({
       .addCase(fetchFavoriteRecipes.fulfilled, (state, action) => {
         state.favorites = action.payload.favorites || [];
       })
-      .addCase(fetchUserRecipes.fulfilled, (state, action) => {
-        const { userId, recipes } = action.payload;
-        state.usersRecipes[userId] = recipes;
-      })
       .addMatcher(
         (action) => action.type.endsWith('/pending'),
         (state) => {
