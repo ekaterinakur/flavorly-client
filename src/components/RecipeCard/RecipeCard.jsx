@@ -12,6 +12,7 @@ export function RecipeCard({
   thumb,
   title,
   description,
+  ownerId,
   ownerAvatar,
   ownerName,
 }) {
@@ -20,7 +21,7 @@ export function RecipeCard({
   const { handleClick, isAddedToFavorite } = useFavoriteRecipe({
     id,
   });
-  const { handleClick: handleAuthorClick } = useAuthor({ id });
+  const { handleClick: handleAuthorClick } = useAuthor({ id: ownerId });
 
   const handleRecipeButtonClick = () => {
     navigate(`/recipe/${id}`);
@@ -28,7 +29,7 @@ export function RecipeCard({
   };
 
   return (
-    <article className="">
+    <article>
       <img
         src={thumb}
         alt={title}

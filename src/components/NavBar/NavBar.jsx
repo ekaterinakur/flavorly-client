@@ -1,14 +1,18 @@
+import classNames from 'classnames';
 import './NavBar.scss';
 
 import { NavLink } from 'react-router-dom';
 
-const NavBar = () => {
+const NavBar = ({ isDark }) => {
   return (
     <nav className="navbar">
-      <NavLink className="nav-link" to="/">
+      <NavLink to="/" className={classNames('nav-link', { dark: isDark })}>
         Home
       </NavLink>
-      <NavLink className="nav-link" to="/recipe/add">
+      <NavLink
+        to="/recipe/add"
+        className={classNames('nav-link', { dark: isDark })}
+      >
         Add Recipe
       </NavLink>
     </nav>

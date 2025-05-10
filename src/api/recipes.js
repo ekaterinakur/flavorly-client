@@ -47,7 +47,7 @@ export const createRecipe = createAsyncThunk(
     formData.append('title', data.title);
     formData.append('description', data.description);
     formData.append('instructions', data.instructions);
-    formData.append('time', data.time.toString());
+    formData.append('time', data.time);
     formData.append('category', data.category);
     formData.append('area', data.area);
 

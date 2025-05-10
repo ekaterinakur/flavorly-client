@@ -2,11 +2,9 @@
 
 .wrapper {
   display: block;
-  margin-top: 32px;
 
   @media (min-width: 1440px) {
     display: flex;
-    margin-top: 40px;
   }
 }
 

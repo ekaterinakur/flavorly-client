@@ -27,9 +27,11 @@ export function PopularRecipes() {
   if (!recipes || recipes.length === 0) return null;
 
   return (
-    <section className={classNames('section', styles.wrapper)}>
-      <h2 className={styles.title}>Popular recipes</h2>
-      <RecipeList items={recipes} columns={4} />
+    <section className="section">
+      <div className="container">
+        <h2 className={styles.title}>Popular recipes</h2>
+        <RecipeList items={recipes} columns={4} />
+      </div>
     </section>
   );
 }

@@ -74,7 +74,7 @@ const Header = () => {
 
           {isLoggedIn ? (
             <>
-              <NavBar />
+              <NavBar isDark={isHomePage} />
               <div className="user-wrapper">
                 <UserInfo user={user} isHomePage={isHomePage} />
                 <Button

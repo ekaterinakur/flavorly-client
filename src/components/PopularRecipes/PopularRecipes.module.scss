@@ -1,17 +1,5 @@
 @use '../../styles/variables' as *;
 
-.wrapper {
-  padding-top: 64px !important;
-
-  @media (min-width: 768px) {
-    padding-top: 100px !important;
-  }
-
-  @media (min-width: 1440px) {
-    padding-top: 120px !important;
-  }
-}
-
 .title {
   text-transform: uppercase;
   font-size: 18px;
