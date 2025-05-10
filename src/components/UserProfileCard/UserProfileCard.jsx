@@ -38,14 +38,12 @@ function UserProfileCard({ user, isOwner }) {
       return;
     }
 
-    const formData = new FormData();
-    formData.append('avatar', file);
+    const resultAction = await dispatch(updateUserAvatar(file));
 
-    try {
-      await dispatch(updateUserAvatar(formData));
+    if (updateUserAvatar.fulfilled.match(resultAction)) {
       await dispatch(currentUser());
       toast.success('Аватар оновлено!');
-    } catch (error) {
+    } else {
       toast.error('Помилка при оновленні аватара: ', error);
     }
   };

@@ -13,7 +13,7 @@ import UserProfileCard from '../../components/UserProfileCard/UserProfileCard.js
 import styles from './ProfilePage.module.scss';
 
 export default function ProfilePage() {
-  const { userId } = useParams(); // Отримуємо ID з URL
+  const { id: userId } = useParams(); // Отримуємо ID з URL
   const dispatch = useDispatch();
   const currentUser = useSelector(selectUser);
   const profileUser = useSelector(selectUserDetails);
@@ -25,7 +25,7 @@ export default function ProfilePage() {
     const getUserDetails = async () => {
       try {
         const result = await dispatch(
-          userDetails(isOwner ? currentUser?.id : userId)
+          userDetails(userId || currentUser?.id)
         );
         // console.log('✅ User:', result);
       } catch (error) {
@@ -33,10 +33,10 @@ export default function ProfilePage() {
       }
     };
 
-    if ((isOwner && currentUser?.id) || userId) {
+    if (userId || currentUser?.id) {
       getUserDetails();
     }
-  }, [dispatch, userId, currentUser?.id, isOwner]);
+  }, [dispatch, userId, currentUser?.id]);
 
   return (
     <>

@@ -46,20 +46,7 @@ const RecipeForm = ({ onSuccess }) => {
   });
 
   const onSubmit = async (data) => {
-    const formData = new FormData();
-
-    formData.append('thumb', data.thumb);
-
-    formData.append('title', data.title);
-    formData.append('description', data.description);
-    formData.append('instructions', data.instructions);
-    formData.append('time', data.time.toString());
-    formData.append('category', data.category);
-    formData.append('area', data.area);
-
-    formData.append('ingredients', JSON.stringify(data.ingredients));
-
-    const resultAction = await dispatch(createRecipe(formData));
+    const resultAction = await dispatch(createRecipe(data));
 
     if (createRecipe.fulfilled.match(resultAction)) {
       toast.success('The recipe created successfully!');

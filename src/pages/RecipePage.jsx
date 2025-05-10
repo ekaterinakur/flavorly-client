@@ -30,22 +30,21 @@ export default function RecipePage() {
     }
   }, [id, isLoading, recipe]);
 
-  return (
-    <div className="container main-container">
-      {isLoading ? (
+  if (isLoading) {
+    return (
+      <div className="container">
         <Loader />
-      ) : (
-        <>
-          {recipe ? (
-            <>
-              <BreadCrumbs breadcrumbs={recipe.title} />
-              <RecipeInfo recipe={recipe} />
-            </>
-          ) : null}
-        </>
-      )}
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <BreadCrumbs breadcrumbs={recipe.title} />
+
+      {recipe ? <RecipeInfo recipe={recipe} /> : null}
 
       <PopularRecipes />
-    </div>
+    </>
   );
 }

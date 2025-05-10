@@ -25,6 +25,7 @@ export function RecipeList({
                   thumb={recipe.thumb}
                   title={recipe.title}
                   description={recipe.description}
+                  ownerId={recipe.ownerId}
                   ownerName={recipe.owner.name}
                   ownerAvatar={recipe.owner.avatar}
                 />
