@@ -19,16 +19,6 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    addRecipeToFavorites(state, action) {
-      if (!state.user.favoriteRecipes.includes(action.payload)) {
-        state.user.favoriteRecipes.push(action.payload);
-      }
-    },
-    removeRecipeFromFavorites(state, action) {
-      state.user.favoriteRecipes = state.user.favoriteRecipes.filter(
-        (recipeId) => recipeId !== action.payload
-      );
-    },
     clientLogout(state) {
       state.user = null;
       state.token = null;
@@ -130,5 +120,3 @@ const authSlice = createSlice({
 
 export const { clientLogout } = authSlice.actions;
 export const authReducer = authSlice.reducer;
-export const { addRecipeToFavorites, removeRecipeFromFavorites } =
-  authSlice.actions;

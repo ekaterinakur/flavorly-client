@@ -1,30 +1,22 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoggedIn, selectUser } from '../redux/selectors/authSelectors';
+import { selectIsLoggedIn } from '../redux/selectors/authSelectors';
 import { openSignInModal } from '../redux/slices/modalSlice';
 import toast from 'react-hot-toast';
-import {
-  addRecipeToFavorites,
-  removeRecipeFromFavorites,
-} from '../redux/slices/authSlice';
 import { addToFavorites, removeFromFavorites } from '../api/recipes';
 
-export function useFavoriteRecipe({ id }) {
-  const user = useSelector(selectUser);
+export function useFavoriteRecipe({ id, isFavorite, onUpdate }) {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  const isAddedToFavorite = user?.favoriteRecipes?.includes(id);
-
-  const handleClick = () => {
+  const toggleFavorite = async () => {
     if (isLoggedIn) {
       try {
-        if (isAddedToFavorite) {
-          dispatch(removeFromFavorites(id));
-          dispatch(removeRecipeFromFavorites(id));
+        if (isFavorite) {
+          await dispatch(removeFromFavorites(id));
         } else {
-          dispatch(addToFavorites(id));
-          dispatch(addRecipeToFavorites(id));
+          await dispatch(addToFavorites(id));
         }
+        onUpdate && onUpdate();
       } catch {
         toast.error('Failed to add recipe to favorites');
       }
@@ -33,8 +25,5 @@ export function useFavoriteRecipe({ id }) {
     }
   };
 
-  return {
-    handleClick,
-    isAddedToFavorite,
-  };
+  return toggleFavorite;
 }

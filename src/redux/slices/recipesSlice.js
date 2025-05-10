@@ -5,7 +5,7 @@ import {
   fetchPopularRecipes,
   createRecipe,
   deleteRecipe,
-  fetchMyRecipes,
+  fetchUserRecipes,
   addToFavorites,
   removeFromFavorites,
   fetchFavoriteRecipes,
@@ -23,6 +23,7 @@ const initialState = {
   error: null,
 };
 
+// Need to revrite with modern API syntacs; invalidate lists on changes
 const recipesSlice = createSlice({
   name: 'recipes',
   initialState: initialState,
@@ -71,7 +72,7 @@ const recipesSlice = createSlice({
         );
       })
 
-      .addCase(fetchMyRecipes.fulfilled, (state, action) => {
+      .addCase(fetchUserRecipes.fulfilled, (state, action) => {
         state.myRecipes = action.payload.recipes || [];
         state.page = action.payload.page || 1;
         state.total = action.payload.total;
