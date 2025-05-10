@@ -5,7 +5,8 @@ import {
   selectIngredients,
 } from '../../redux/slices/ingredientsSlice.js';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeArea, selectAreas } from '../../redux/slices/areasSlice.js';
+import { changeArea } from '../../redux/slices/areasSlice.js';
+import { selectAreas } from '../../redux/selectors/areasSelector.js';
 import { fetchIngredients } from '../../api/ingredients.js';
 import { fetchAreas } from '../../api/areas.js';
 import { useEffect } from 'react';
