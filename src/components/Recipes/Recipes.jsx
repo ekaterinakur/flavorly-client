@@ -1,5 +1,5 @@
 import BackButton from '../BackButton/BackButton';
-import { MainTitle } from '../MainTitle/MainTitle';
+import MainTitle from '../MainTitle/MainTitle';
 import { RecipeList } from '../RecipeList/RecipeList';
 import RecipeFilter from '../RecipeFilters/RecipeFilters';
 import { ListPagination } from '../ListPagination/ListPagination';
