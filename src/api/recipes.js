@@ -127,3 +127,15 @@ export const fetchFavoriteRecipes = createAsyncThunk(
     }
   }
 );
+
+export const fetchUserRecipes = createAsyncThunk(
+  'recipes/fetchUserRecipes',
+  async (userId, thunkAPI) => {
+    try {
+      const { data } = await axios.get(`/users/${userId}/recipes`);
+      return { userId, recipes: data.recipes };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
