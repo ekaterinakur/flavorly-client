@@ -1,17 +1,18 @@
+import { useSelector } from 'react-redux';
 import HeroSection from '../components/HeroSection/HeroSection';
-// import { RecipeList } from '../components/RecipeList/RecipeList';
-// import { RECIPES_LIST } from '../mocks/recipes-list';
+import { Recipes } from '../components/Recipes/Recipes';
 import { CategoryList } from '../components/CategoryList/CategoryList.jsx';
-import { CATEGORIES_LIST } from '../mocks/categories';
 import Testimonials from '../components/Testimonials/Testimonials.jsx';
+import { selectSelectedCategory } from '../redux/selectors/selectedCategorySelectors';
 
 const HomePage = () => {
+  const selectedCategory = useSelector(selectSelectedCategory);
+
   return (
     <>
       <div className="main-container">
         <HeroSection />
-        <CategoryList items={CATEGORIES_LIST} />
-        {/* <RecipeList items={RECIPES_LIST} /> */}
+        {selectedCategory ? <Recipes /> : <CategoryList />}
         <Testimonials />
       </div>
     </>

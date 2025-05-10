@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
-import PropTypes from 'prop-types';
 import { toast } from 'react-hot-toast';
 import { fetchCategories } from '../../api/categories.js';
+import { setSelectedCategory } from '../../redux/slices/selectedCategorySlice';
 
 import MainTitle from '../MainTitle/MainTitle';
 import Loader from '../Loader/Loader';
@@ -11,7 +11,7 @@ import { CategoryCard } from '../CategoryCard/CategoryCard';
 
 import styles from './CategoryList.module.scss';
 
-export function CategoryList({ onSelect }) {
+export function CategoryList() {
   const dispatch = useDispatch();
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
@@ -30,6 +30,10 @@ export function CategoryList({ onSelect }) {
       toast.error('Failed to load categories. Please try again later.');
     }
   }, [error]);
+
+  const handleCategorySelect = (categoryId) => {
+    dispatch(setSelectedCategory(categoryId));
+  };
 
   if (loading) {
     return (
@@ -62,7 +66,7 @@ export function CategoryList({ onSelect }) {
               id={cat.id}
               name={cat.name}
               imageUrl={cat.thumbnailUrl}
-              onSelect={onSelect}
+              onSelect={handleCategorySelect}
             />
           ))}
         </div>
@@ -70,7 +74,3 @@ export function CategoryList({ onSelect }) {
     </section>
   );
 }
-
-CategoryList.propTypes = {
-  onSelect: PropTypes.func.isRequired,
-};
