@@ -24,9 +24,7 @@ export default function ProfilePage() {
   useEffect(() => {
     const getUserDetails = async () => {
       try {
-        const result = await dispatch(
-          userDetails(userId || currentUser?.id)
-        );
+        const result = await dispatch(userDetails(userId || currentUser?.id));
         // console.log('✅ User:', result);
       } catch (error) {
         // console.error('❌ Error :', error);
