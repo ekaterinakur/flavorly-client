@@ -1,6 +1,6 @@
 import styles from './RecipeInfo.module.scss';
 import { RecipePreparation } from '../RecipePreparation/RecipePreparation';
-import { RecipeIngredients } from '../RecipeIngredients/RecipeIngredients';
+import IngredientList from '../IngredientList/IngredientList';
 import { RecipeCategories } from '../RecipeCategories/RecipeCategories';
 import { RecipeAuthor } from '../RecipeAuthor/RecipeAuthor';
 import Button from '../Button/Button';
@@ -34,7 +34,7 @@ export function RecipeInfo({ recipe }) {
             />
 
             <h3 className={styles.subtitle}>Ingredients</h3>
-            <RecipeIngredients ingredients={recipe.Ingredients} />
+            <IngredientList items={recipe.Ingredients} />
 
             {recipe.instructions.length ? (
               <>
