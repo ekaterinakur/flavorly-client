@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './MobileMenu.scss';
 
 const MobileMenu = ({ onClose }) => {
@@ -18,12 +18,16 @@ const MobileMenu = ({ onClose }) => {
         </div>
 
         <nav className="modal-menu__nav">
-          <Link to="/" onClick={onClose}>
+          <NavLink to="/" className="modal-menu__link" onClick={onClose}>
             HOME
-          </Link>
-          <Link to="/recipe/add" onClick={onClose}>
+          </NavLink>
+          <NavLink
+            to="/recipe/add"
+            className="modal-menu__link"
+            onClick={onClose}
+          >
             ADD RECIPE
-          </Link>
+          </NavLink>
         </nav>
 
         <div className="modal-img">

@@ -45,12 +45,20 @@
     gap: 22px;
     margin-top: 180px;
 
-    a {
+    .modal-menu__link { 
       font-size: 14px;
-      color: #fff;
+      color: $white-color;        
       text-decoration: none;
       font-weight: bold;
-    }
+      padding: 14px;
+
+      &.active {
+        border: 1px solid $white-color;
+        border-radius: 30px;
+  
+      }}
+
+
   }
 
   .modal-img {
@@ -72,3 +80,4 @@
     }
   }
 }
+
