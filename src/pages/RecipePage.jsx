@@ -4,7 +4,7 @@ import { RecipeInfo } from '../components/RecipeInfo/RecipeInfo';
 import { PopularRecipes } from '../components/PopularRecipes/PopularRecipes';
 import Loader from '../components/Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { fetchRecipeById } from '../api/recipes';
 import { selectCurrentRecipe } from '../redux/selectors/recipesSelectors';
 
@@ -30,6 +30,10 @@ export default function RecipePage() {
     }
   }, [id, isLoading, recipe]);
 
+  const handleUpdateRecipe = useCallback(() => {
+    dispatch(fetchRecipeById(id));
+  }, [id]);
+
   if (isLoading) {
     return (
       <div className="container">
@@ -40,9 +44,12 @@ export default function RecipePage() {
 
   return (
     <>
-      <BreadCrumbs breadcrumbs={recipe.title} />
-
-      {recipe ? <RecipeInfo recipe={recipe} /> : null}
+      {recipe ? (
+        <>
+          <BreadCrumbs breadcrumbs={recipe?.title} />
+          <RecipeInfo recipe={recipe} onUpdate={handleUpdateRecipe} />
+        </>
+      ) : null}
 
       <PopularRecipes />
     </>

@@ -7,56 +7,52 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthor } from '../../hooks/useAuthor';
 import { useFavoriteRecipe } from '../../hooks/useFavoriteRecipe';
 
-export function RecipeCard({
-  id,
-  thumb,
-  title,
-  description,
-  ownerId,
-  ownerAvatar,
-  ownerName,
-}) {
+export function RecipeCard({ recipe, onUpdate }) {
   const navigate = useNavigate();
   const isMdScreen = useMediaQuery({ query: '(min-width: 768px)' });
-  const { handleClick, isAddedToFavorite } = useFavoriteRecipe({
-    id,
-  });
-  const { handleClick: handleAuthorClick } = useAuthor({ id: ownerId });
 
-  const handleRecipeButtonClick = () => {
-    navigate(`/recipe/${id}`);
+  const toggleFavorite = useFavoriteRecipe({
+    id: recipe.id,
+    isFavorite: recipe.isFavorite,
+    onUpdate,
+  });
+
+  const { handleClick: handleOpenAuthor } = useAuthor({ id: recipe.ownerId });
+
+  const handleOpenRecipe = () => {
+    navigate(`/recipe/${recipe.id}`);
     window.scrollTo(0, 0);
   };
 
   return (
     <article>
       <img
-        src={thumb}
-        alt={title}
+        src={recipe.thumb}
+        alt={recipe.title}
         className={styles.image}
         height={isMdScreen ? 275 : 230}
         width="100%"
       />
-      <h3 className={styles.title}>{title}</h3>
-      <p className={styles.desc}>{description}</p>
+      <h3 className={styles.title}>{recipe.title}</h3>
+      <p className={styles.desc}>{recipe.description}</p>
       <div className={styles.footer}>
         <button
           type="button"
           className={styles.author}
-          onClick={handleAuthorClick}
+          onClick={handleOpenAuthor}
         >
           <Avatar
-            src={ownerAvatar}
+            src={recipe.owner.avatar}
             size={isMdScreen ? 40 : 32}
-            alt={ownerName}
+            alt={recipe.owner.name}
           />
-          <strong className={styles.authorName}>{ownerName}</strong>
+          <strong className={styles.authorName}>{recipe.owner.name}</strong>
         </button>
         <div className={styles.actions}>
-          <IconButton isActive={isAddedToFavorite} onClick={handleClick}>
+          <IconButton isActive={recipe.isFavorite} onClick={toggleFavorite}>
             <Icon name="like" size={18} />
           </IconButton>
-          <IconButton onClick={handleRecipeButtonClick}>
+          <IconButton onClick={handleOpenRecipe}>
             <Icon name="arrow-up-right" size={18} />
           </IconButton>
         </div>

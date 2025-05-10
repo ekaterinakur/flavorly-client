@@ -1,8 +1,7 @@
-import classNames from 'classnames';
 import { RecipeList } from '../RecipeList/RecipeList';
 import styles from './PopularRecipes.module.scss';
 import Loader from '../Loader/Loader';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { fetchPopularRecipes } from '../../api/recipes';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectPopularRecipes } from '../../redux/selectors/recipesSelectors';
@@ -22,6 +21,10 @@ export function PopularRecipes() {
     }
   }, [isLoading, recipes.length]);
 
+  const handleUpdateList = useCallback(() => {
+    dispatch(fetchPopularRecipes({ limit: 4 }));
+  }, []);
+
   if (isLoading) return <Loader />;
 
   if (!recipes || recipes.length === 0) return null;
@@ -30,7 +33,7 @@ export function PopularRecipes() {
     <section className="section">
       <div className="container">
         <h2 className={styles.title}>Popular recipes</h2>
-        <RecipeList items={recipes} columns={4} />
+        <RecipeList items={recipes} columns={4} onUpdate={handleUpdateList} />
       </div>
     </section>
   );

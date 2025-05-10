@@ -7,6 +7,7 @@ export function RecipeList({
   items,
   columns = 3,
   cardType = 'portrait',
+  onUpdate,
   onDelete,
 }) {
   return (
@@ -21,13 +22,8 @@ export function RecipeList({
             <li key={idx}>
               {cardType === 'portrait' ? (
                 <RecipeCard
-                  id={recipe.id}
-                  thumb={recipe.thumb}
-                  title={recipe.title}
-                  description={recipe.description}
-                  ownerId={recipe.ownerId}
-                  ownerName={recipe.owner.name}
-                  ownerAvatar={recipe.owner.avatar}
+                  recipe={recipe}
+                  onUpdate={onUpdate}
                 />
               ) : (
                 <RecipeCardHorizontal

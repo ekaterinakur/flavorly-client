@@ -1,4 +1,6 @@
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
 import {
   selectFavoriteRecipes,
   selectRecipesError,
@@ -6,14 +8,11 @@ import {
 } from '../redux/selectors/recipesSelectors.js';
 import { RecipeList } from '../components/RecipeList/RecipeList.jsx';
 import { fetchFavoriteRecipes } from '../api/recipes.js';
-import { useEffect } from 'react';
 import { ListPagination } from '../components/ListPagination/ListPagination.jsx';
 import Loader from '../components/Loader/Loader.jsx';
 import EmptyState from '../components/EmptyState/EmptyState.jsx';
-import toast from 'react-hot-toast';
 
 import { selectRecipesPagination } from '../redux/selectors/paginationSelectors.js';
-import { useRecipeDeletion } from '../hooks/useRecipeDeletion.js';
 
 export default function ProfileFavoritesPage() {
   const favoriteRecipes = useSelector(selectFavoriteRecipes);
@@ -37,11 +36,20 @@ export default function ProfileFavoritesPage() {
     });
   };
 
-  const handleDelete = useRecipeDeletion({
-    type: 'favorites',
-    page: currentPage,
-    perPageLimit,
-  });
+  const handleUpdateList = useCallback(() => {
+    dispatch(fetchFavoriteRecipes({ page: currentPage, perPageLimit }));
+  }, [currentPage, perPageLimit]);
+
+  const handleDelete = async (id) => {
+    try {
+      await dispatch(removeFromFavorites(id));
+      dispatch(fetchFavoriteRecipes({ page: currentPage, perPageLimit }));
+
+      toast.success('Recipe removed from favorites');
+    } catch (err) {
+      toast.error(err.message || 'Failed to delete recipe');
+    }
+  };
 
   // Check for error, show toast with message
   useEffect(() => {
@@ -52,18 +60,19 @@ export default function ProfileFavoritesPage() {
 
   // Show loader
   if (loading) {
-    return <>{loading && <Loader />}</>;
+    return <Loader />;
   }
 
   return (
     <div>
-      {!loading && favoriteRecipes.length === 0 ? (
+      {favoriteRecipes.length === 0 ? (
         <EmptyState message="Nothing has been added to your favorite recipes list yet. Please browse our recipes and add your favorites for easy access in the future." />
       ) : (
         <RecipeList
           items={favoriteRecipes}
           columns={1}
           cardType="vertical"
+          onUpdate={handleUpdateList}
           onDelete={handleDelete}
         />
       )}
