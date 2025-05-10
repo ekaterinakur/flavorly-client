@@ -40,7 +40,10 @@ const SignUpModal = ({ onSwitch, onSuccess }) => {
 
     if (registerUser.fulfilled.match(resultAction)) {
       toast.success('Account created successfully!');
-      onSuccess();
+      if (onSuccess) {
+        onSuccess();
+      }
+      onSwitch();
     } else {
       toast.error(
         resultAction.payload || 'Registration failed. Please try again.'

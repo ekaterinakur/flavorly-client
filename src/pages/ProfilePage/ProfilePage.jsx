@@ -22,21 +22,12 @@ export default function ProfilePage() {
   // isOwner = false;
 
   useEffect(() => {
-    const getUserDetails = async () => {
-      try {
-        const result = await dispatch(
-          userDetails(userId || currentUser?.id)
-        );
-        // console.log('✅ User:', result);
-      } catch (error) {
-        // console.error('❌ Error :', error);
-      }
-    };
+    const idToFetch = userId || currentUser?.id;
 
-    if (userId || currentUser?.id) {
-      getUserDetails();
+    if (idToFetch) {
+      dispatch(userDetails(idToFetch));
     }
-  }, [dispatch, userId, currentUser?.id]);
+  }, [dispatch, userId, currentUser?.id]); 
 
   return (
     <>
