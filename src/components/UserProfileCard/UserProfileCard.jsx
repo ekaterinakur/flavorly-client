@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { Avatar } from '../Avatar/Avatar.jsx';
 import { IconButton } from '../IconButton/IconButton.jsx';
@@ -13,8 +13,7 @@ import { handleFollow, handleUnfollow } from '../../utils/followHandler.js';
 function UserProfileCard({ user, isOwner, isFollowing }) {
   const fileInputRef = useRef(null);
   const dispatch = useDispatch();
-  const myRecipes = [];
-  console.dir(user);
+  // console.dir(user);
 
   const handleClick = () => {
     fileInputRef.current.click();
