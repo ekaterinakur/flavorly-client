@@ -1,0 +1,43 @@
+.header {
+  display: flex;
+  flex-direction: column;
+
+  :global(.back-button) {
+    width: fit-content;
+    margin-bottom: 20px;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  :global(.selectors-wrapper) {
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 768px) {
+    gap: 40px;
+
+    :global(.selectors-wrapper) {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    flex-direction: row;
+    gap: 40px;
+
+    :global(.selectors-wrapper) {
+      width: 330px;
+    }
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
