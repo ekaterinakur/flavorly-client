@@ -1,14 +1,66 @@
-# React + Vite
+# 🍽️ Recipe App
 
-[Vercel Page](https://flavorly-client.vercel.app/)
+[Live page on Vercel](https://flavorly-client.vercel.app/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-featured recipe-sharing platform built with React, Redux Toolkit, React Router, and Node.js. Users can browse, add, favorite, and manage recipes — with support for user profiles, pagination, lazy loading, and private routing.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Authentication & private routes
+- User profiles (own recipes, favorites, followers)
+- Paginated recipe lists
+- Favorite/unfavorite recipes
+- Add & delete your own recipes
+- Lazy-loaded routes for performance
+- Beautiful responsive layout with fallback loaders
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Tech Stack
+
+- **Frontend:**
+  - React
+  - Redux Toolkit
+  - React Router 6
+  - React Hot Toast
+  - Sass Modules
+  - Axios
+
+- **Backend:**
+  - Node.js / Express
+  - Sequelize ORM
+  - PostgreSQL
+
+---
+
+## Installation
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/your-username/recipe-app.git
+cd recipe-app
+```
+
+2. **Install dependencies:**
+```bash
+npm ci
+```
+
+3. **Set environment variables:**
+Create a .env file and add:
+```VITE_API_URL=http://localhost:3000/api```
+
+4. **Start the development server:**
+```bash
+npm run dev
+```
+---
+
+## Scripts
+```npm run dev```	Start Vite dev server
+```npm run build```	Build for production
+```npm run lint```	Run ESLint
+```npm run preview```	Preview production build
