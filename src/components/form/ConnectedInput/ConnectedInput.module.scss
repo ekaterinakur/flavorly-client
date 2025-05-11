@@ -16,6 +16,7 @@
   letter-spacing: -0.02em;
   box-sizing: border-box;
   transition: border-color 0.5s;
+  background-color: transparent;
 
   &::placeholder {
     color: $placeholder-color;
