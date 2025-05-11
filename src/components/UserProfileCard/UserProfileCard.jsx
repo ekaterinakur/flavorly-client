@@ -112,7 +112,7 @@ function UserProfileCard({ user, isOwner, isFollowing }) {
         </Button>
       ) : isFollowing ? (
         <Button
-          variant="outline"
+          type="button"
           size="large"
           onClick={() => handleUnfollow(dispatch, user.id)}
         >
@@ -120,7 +120,7 @@ function UserProfileCard({ user, isOwner, isFollowing }) {
         </Button>
       ) : (
         <Button
-          variant="outline"
+          type="button"
           size="large"
           onClick={() => handleFollow(dispatch, user.id)}
         >

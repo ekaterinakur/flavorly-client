@@ -6,8 +6,15 @@
   width: 100%;
   padding: 2.5rem 0;
   border: 0px solid;
-  border-bottom: 1px solid $silver;
   gap: 2.5rem;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $silver;
+  }
 }
 
 .userWrapper {

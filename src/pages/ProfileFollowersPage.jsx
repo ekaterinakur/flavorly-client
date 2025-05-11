@@ -53,17 +53,14 @@ export default function ProfileFollowersPage() {
     }
   }, [error]);
 
-  // Show loader
   if (loading) {
-    return <>{loading && <Loader />}</>;
+    return <Loader />;
   }
 
   const handlePageChange = (page) => {
     dispatch(setSubscriptionsPage(page));
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
-  // console.log('data', data);
 
   return (
     <div className="">
