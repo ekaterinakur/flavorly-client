@@ -18,6 +18,9 @@ export default function ProfilePage() {
   const currentUser = useSelector(selectUser);
   const profileUser = useSelector(selectUserDetails);
   let isOwner = !userId || userId === currentUser?.id; // якщо id params != юзеру в Redux - це не оунер
+  const isFollowing = currentUser?.followings?.some(
+    (u) => u.id === profileUser?.id
+  );
 
   useEffect(() => {
     const idToFetch = userId || currentUser?.id;
@@ -25,7 +28,7 @@ export default function ProfilePage() {
     if (idToFetch) {
       dispatch(userDetails(idToFetch));
     }
-  }, [dispatch, userId, currentUser?.id]); 
+  }, [dispatch, userId, currentUser?.id]);
 
   return (
     <>
@@ -38,8 +41,9 @@ export default function ProfilePage() {
           />
           <div className={styles.layout}>
             <UserProfileCard
-              user={isOwner ? currentUser : profileUser}
+              user={profileUser}
               isOwner={isOwner}
+              isFollowing={isFollowing}
             />
             <TabsList isOwner={isOwner} />
           </div>

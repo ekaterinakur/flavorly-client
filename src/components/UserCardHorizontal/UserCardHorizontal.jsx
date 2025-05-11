@@ -12,11 +12,12 @@ import { Avatar } from '../Avatar/Avatar';
 import { nanoid } from '@reduxjs/toolkit';
 
 function UserCardHorizontal({ user }) {
-  const images = [1, 2, 3, 4]; // Remove later
+  // console.log(user);
+  const images = [1, 2, 3, 4]; // Empty State images
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const recipes = user.recipes; // Add real key
+  const recipes = user.recipesArray; // Add real key
   const isFollowing = useSelector(selectIsFollowing(user.id));
 
   useEffect(() => {
@@ -37,7 +38,7 @@ function UserCardHorizontal({ user }) {
         <div className={style.userDetailsWrapper}>
           <p className={style.name}>{user.name}</p>
           <p className={style.recipeCount}>
-            Own recipes: {user?.addedRecipes || 'ADD LATER'}
+            Own recipes: {user?.addedRecipesCounter}
           </p>
 
           {isFollowing ? (
@@ -63,14 +64,19 @@ function UserCardHorizontal({ user }) {
       </div>
 
       <ul className={style.imageList}>
-        {/* CHANGE IMAGES TO RECIPES FROM BE*/}
-        {images?.map((recipe) => (
-          // <li key={recipe.user.id} className={style.imageItem}>
-          <li key={nanoid()} className={style.imageItem}>
-            {/* <img scr={} className='' /> */}
-            <p>ADD</p>
-          </li>
-        ))}
+        {recipes?.length === 0
+          ? images?.map((item) => (
+              <li key={nanoid()} className={style.emptyItem}></li>
+            ))
+          : recipes?.map((recipe) => (
+              <li key={nanoid()} className={style.imageItem}>
+                <img
+                  src={recipe.thumb}
+                  className={style.image}
+                  alt="Recipe thumbnail"
+                />
+              </li>
+            ))}
       </ul>
 
       <IconButton onClick={handleOpen}>
