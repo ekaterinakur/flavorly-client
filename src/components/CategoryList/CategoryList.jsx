@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { toast } from 'react-hot-toast';
@@ -14,6 +14,8 @@ import styles from './CategoryList.module.scss';
 export function CategoryList() {
   const dispatch = useDispatch();
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+
+  const [showAll, setShowAll] = useState(false);
 
   const {
     items: categories,
@@ -31,8 +33,9 @@ export function CategoryList() {
     }
   }, [error]);
 
-  const handleCategorySelect = (categoryId) => {
-    dispatch(setSelectedCategory(categoryId));
+  const handleCategorySelect = (categoryNameOrId) => {
+
+    dispatch(setSelectedCategory(categoryNameOrId));
   };
 
   if (loading) {
@@ -42,15 +45,18 @@ export function CategoryList() {
       </div>
     );
   }
-
   if (!categories.length) return null;
 
   const visibleCategories = isMobile
     ? categories.slice(0, 8)
     : categories.slice(0, 11);
-  const allCategory = { id: 'all', name: 'All categories' };
+  
+    
+  const handleToggleShowAll = () => {
+    setShowAll(prevShowAll => !prevShowAll);
+  };
 
-  const renderedItems = [...visibleCategories, allCategory];
+  const categoriesToDisplay = showAll ? categories : visibleCategories;
 
   return (
     <section aria-label="Categories" className="section">
@@ -60,7 +66,7 @@ export function CategoryList() {
           subtitle="Discover a limitless world of culinary possibilities and enjoy exquisite recipes that combine taste, style and the warm atmosphere of the kitchen."
         />
         <div className={styles.grid}>
-          {renderedItems.map((cat) => (
+          {categoriesToDisplay.map((cat) => (
             <CategoryCard
               key={cat.id}
               id={cat.id}
@@ -69,6 +75,17 @@ export function CategoryList() {
               onSelect={handleCategorySelect}
             />
           ))}
+          {categories.length > visibleCategories.length && (
+            <div
+              className={styles.allCategoriesCardButton }
+              onClick={handleToggleShowAll}
+              role="button"
+              tabIndex={0}
+              aria-label={showAll ? 'Показати менше категорій' : 'Показати всі категорії'}
+            >
+              {showAll ? 'Less Categories' : 'All Categories'}
+            </div>
+          )}
         </div>
       </div>
     </section>
