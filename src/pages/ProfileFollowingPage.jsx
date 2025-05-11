@@ -11,6 +11,8 @@ import { selectFollowing } from '../redux/selectors/subscriptionsSelectors';
 import { userFollowing } from '../api/following';
 import toast from 'react-hot-toast';
 import { selectUserDetails } from '../redux/selectors/userDetailsSelectors';
+import { setSubscriptionsPage } from '../redux/slices/subscriptionsSlice';
+import { ListPagination } from '../components/ListPagination/ListPagination';
 
 export default function ProfileFollowingPage() {
   const { id: paramId } = useParams();
@@ -18,12 +20,18 @@ export default function ProfileFollowingPage() {
 
   const current = useSelector(selectUserDetails);
   const isRefreshing = useSelector(selectIsRefreshing);
-  const followings = useSelector(selectFollowing);
-  const loading = followings.loading;
-  const error = followings.error;
+  const data = useSelector(selectFollowing);
+  const followings = data.items;
+  const total = data.total;
+  const pageLimit = data.limit || 6;
+  const totalPages = Math.ceil(total / pageLimit);
+  const currentPage = data.page;
+  const loading = data.loading;
+  const error = data.error;
 
   useEffect(() => {
-    console.log(current);
+    // console.log(current);
+    setSubscriptionsPage(1);
     if (!current) {
       dispatch(currentUser());
     }
@@ -50,20 +58,27 @@ export default function ProfileFollowingPage() {
     return <>{loading && <Loader />}</>;
   }
 
+  const handlePageChange = (page) => {
+    dispatch(setSubscriptionsPage(page));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // console.log(data);
+
   return (
     <div className="">
-      {!loading && followings.length === 0 ? (
+      {!loading && data?.total === 0 ? (
         <EmptyState message="Your account currently has no subscriptions to other users. Learn more about our users and select those whose content interests you." />
       ) : (
         <UsersList data={followings} />
       )}
-      {/* {totalPages >= 1 && (
+      {totalPages >= 1 && (
         <ListPagination
-          currentPage={page}
+          currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={handlePageChange}
         />
-      )} */}
+      )}
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import UserCardHorizontal from '../UserCardHorizontal/UserCardHorizontal';
 
 function UsersList({ data }) {
-  // console.log(data);
   return (
     <ul>
       {data?.map((user) => (

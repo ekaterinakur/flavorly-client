@@ -5,9 +5,24 @@ import { userFollowers } from '../../api/followers';
 import { userFollowing } from '../../api/following';
 
 const initialState = {
-  followers: [],
-  following: [],
+  followers: {
+    items: [],
+    total: 0,
+    page: 1,
+    limit: 6,
+    loading: false,
+    error: null,
+  },
+  following: {
+    items: [],
+    total: 0,
+    page: 1,
+    limit: 6,
+    loading: false,
+    error: null,
+  },
   isLoading: false,
+  page: 1,
   error: null,
   message: null,
 };
@@ -15,7 +30,11 @@ const initialState = {
 const subscriptionsSlice = createSlice({
   name: 'subscriptions',
   initialState,
-  reducers: {},
+  reducers: {
+    setSubscriptionsPage: (state, action) => {
+      state.currentPage = action.payload; // Змінюємо поточну сторінку
+    },
+  },
   extraReducers: (builder) => {
     builder
       // Followers
@@ -78,4 +97,5 @@ const subscriptionsSlice = createSlice({
   },
 });
 
+export const { setSubscriptionsPage } = subscriptionsSlice.actions;
 export const subscriptionsReducer = subscriptionsSlice.reducer;

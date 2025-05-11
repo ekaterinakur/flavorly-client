@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { Avatar } from '../Avatar/Avatar.jsx';
 import { IconButton } from '../IconButton/IconButton.jsx';
@@ -7,14 +7,12 @@ import toast from 'react-hot-toast';
 import './UserProfileCard.scss';
 import Button from '../Button/Button.jsx';
 import { updateUserAvatar } from '../../api/avatar.js';
-import {
-  openLogoutModal
-} from '../../redux/slices/modalSlice.js';
+import { openLogoutModal } from '../../redux/slices/modalSlice.js';
+import { handleFollow, handleUnfollow } from '../../utils/followHandler.js';
 
-function UserProfileCard({ user, isOwner }) {
+function UserProfileCard({ user, isOwner, isFollowing }) {
   const fileInputRef = useRef(null);
   const dispatch = useDispatch();
-  const myRecipes = [];
   // console.dir(user);
 
   const handleClick = () => {
@@ -39,7 +37,7 @@ function UserProfileCard({ user, isOwner }) {
     if (updateUserAvatar.fulfilled.match(resultAction)) {
       toast.success('Аватар оновлено!');
     } else {
-      toast.error('Помилка при оновленні аватара: ', error);
+      toast.error('Помилка при оновленні аватара');
     }
   };
 
@@ -75,48 +73,59 @@ function UserProfileCard({ user, isOwner }) {
           </li>
           <li>
             <p className="detail">
-              Added recipes:{' '}
-              <span className="detail-bold">{myRecipes?.length || 0}</span>
+              Added recipes:
+              <span className="detail-bold">{user?.addedRecipes}</span>
             </p>
           </li>
           {isOwner && (
             <li>
               <p className="detail">
                 Favorites:{' '}
-                <span className="detail-bold">
-                  {user?.favoriteRecipes?.length || 0}
-                </span>
+                <span className="detail-bold">{user?.favoriteRecipes}</span>
               </p>
             </li>
           )}
           <li>
             <p className="detail">
               Followers:
-              <span className="detail-bold">
-                {user?.followers?.length || 0}
-              </span>
+              <span className="detail-bold">{user?.followers}</span>
             </p>
           </li>
           {isOwner && (
             <li>
               <p className="detail">
                 Following:{' '}
-                <span className="detail-bold">
-                  {user?.followings?.length || 0}
-                </span>
+                <span className="detail-bold">{user?.following}</span>
               </p>
             </li>
           )}
         </ul>
       </div>
-      {isOwner && (
+      {isOwner ? (
         <Button
           type="button"
           size="large"
-          children="Logout"
           onClick={handleLogout}
           className="logout"
-        />
+        >
+          Logout
+        </Button>
+      ) : isFollowing ? (
+        <Button
+          variant="outline"
+          size="large"
+          onClick={() => handleUnfollow(dispatch, user.id)}
+        >
+          Unfollow
+        </Button>
+      ) : (
+        <Button
+          variant="outline"
+          size="large"
+          onClick={() => handleFollow(dispatch, user.id)}
+        >
+          Follow
+        </Button>
       )}
     </aside>
   );
