@@ -3,21 +3,16 @@ import axios from '../config/client.js';
 
 export const fetchRecipes = createAsyncThunk(
   'recipes/fetchAll',
-  async (params, thunkAPI) => {
+  async (params = {}, thunkAPI) => {
     try {
-      const { data } = await axios.get('/recipes', { params });
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+      if (typeof params === 'string') {
+        params = params === 'all' ? {} : { category: params };
+      }
+      if (params && params.category === 'all') {
+        const { ...rest } = params;
+        params = rest;
+      }
 
-export const fetchRecipesByCategory = createAsyncThunk(
-  'recipes/fetchByCategory',
-  async (categoryId, thunkAPI) => {
-    try {
-      const params = categoryId === 'all' ? {} : { category: categoryId };
       const { data } = await axios.get('/recipes', { params });
       return data;
     } catch (error) {

@@ -5,9 +5,9 @@ import MainTitle from '../MainTitle/MainTitle';
 import { RecipeList } from '../RecipeList/RecipeList';
 import RecipeFilter from '../RecipeFilters/RecipeFilters';
 import { ListPagination } from '../ListPagination/ListPagination';
-import { fetchRecipesByCategory } from '../../api/recipes';
-import { clearSelectedCategory } from '../../redux/slices/selectedCategorySlice';
-import { selectSelectedCategory } from '../../redux/selectors/selectedCategorySelectors';
+import { fetchRecipes } from '../../api/recipes';
+import { clearSelectedCategory } from '../../redux/slices/categoriesSlice';
+import { selectSelectedCategory } from '../../redux/selectors/categoriesSelectors';
 import {
   selectRecipes,
   selectRecipesLoading,
@@ -30,16 +30,16 @@ export function Recipes() {
 
   useEffect(() => {
     if (selectedCategory) {
-      dispatch(fetchRecipesByCategory(selectedCategory));
+      dispatch(fetchRecipes(selectedCategory));
     }
   }, [dispatch, selectedCategory]);
 
   const handlePageChange = (page) => {
     dispatch(setRecipesPage(page));
     if (selectedCategory) {
-      dispatch(fetchRecipesByCategory({ category: selectedCategory, page }));
+      dispatch(fetchRecipes({ category: selectedCategory, page }));
     } else {
-      dispatch(fetchRecipesByCategory({ page }));
+      dispatch(fetchRecipes({ page }));
     }
   };
 

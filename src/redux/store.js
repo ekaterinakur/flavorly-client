@@ -20,7 +20,6 @@ import { authReducer } from './slices/authSlice.js';
 import { modalReducer } from './slices/modalSlice.js';
 import { userDetailsReducer } from './slices/userDetails.js';
 import { subscriptionsReducer } from './slices/subscriptionsSlice.js';
-import { selectedCategoryReducer } from './slices/selectedCategorySlice.js';
 
 const authPersistConfig = {
   key: 'auth',
@@ -39,7 +38,6 @@ export const store = configureStore({
     modal: modalReducer,
     details: userDetailsReducer,
     subscriptions: subscriptionsReducer,
-    selectedCategory: selectedCategoryReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

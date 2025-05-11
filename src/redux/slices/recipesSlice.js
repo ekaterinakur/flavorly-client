@@ -9,7 +9,6 @@ import {
   addToFavorites,
   removeFromFavorites,
   fetchFavoriteRecipes,
-  fetchRecipesByCategory,
 } from '../../api/recipes';
 
 const initialState = {
@@ -42,12 +41,6 @@ const recipesSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchRecipes.fulfilled, (state, action) => {
-        state.items = action.payload.recipes;
-        state.total = action.payload.total;
-        state.page = action.payload.page;
-        state.loading = false;
-      })
-      .addCase(fetchRecipesByCategory.fulfilled, (state, action) => {
         state.items = action.payload.recipes;
         state.total = action.payload.total;
         state.page = action.payload.page;

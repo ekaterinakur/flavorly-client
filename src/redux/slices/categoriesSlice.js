@@ -5,12 +5,20 @@ const initialState = {
   items: [],
   loading: false,
   error: null,
+  selectedCategory: null,
 };
 
 const categoriesSlice = createSlice({
   name: 'categories',
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedCategory(state, action) {
+      state.selectedCategory = action.payload;
+    },
+    clearSelectedCategory(state) {
+      state.selectedCategory = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCategories.pending, (state) => {
@@ -28,4 +36,6 @@ const categoriesSlice = createSlice({
   },
 });
 
+export const { setSelectedCategory, clearSelectedCategory } =
+  categoriesSlice.actions;
 export const categoriesReducer = categoriesSlice.reducer;
