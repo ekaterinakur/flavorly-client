@@ -65,6 +65,7 @@ const authSlice = createSlice({
           id: action.payload.id,
           name: action.payload.name,
           email: action.payload.email,
+          avatar: action.payload.avatar,
         };
         state.token = action.payload.token;
         state.isLoggedIn = true;
@@ -92,7 +93,6 @@ const authSlice = createSlice({
       // Current
       .addCase(currentUser.pending, (state) => {
         state.isRefreshing = true;
-        state.isLoading = true;
         state.error = null;
       })
       .addCase(currentUser.fulfilled, (state, action) => {
@@ -116,10 +116,8 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
-        if (state.user && action.payload?.avatar) {
-          state.user.avatar = action.payload.avatar;
-          state.isLoading = false;
-        }
+        state.user.avatar = action.payload.user.avatar;
+        state.isLoading = false;
       })
       .addCase(updateUserAvatar.rejected, (state, action) => {
         state.isLoading = false;

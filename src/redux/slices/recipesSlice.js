@@ -9,6 +9,7 @@ import {
   addToFavorites,
   removeFromFavorites,
   fetchFavoriteRecipes,
+  fetchUserRecipes,
 } from '../../api/recipes';
 
 const initialState = {
