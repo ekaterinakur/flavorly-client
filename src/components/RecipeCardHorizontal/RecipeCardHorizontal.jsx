@@ -1,27 +1,20 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './RecipeCardHorizontal.module.scss';
 import { IconButton } from '../IconButton/IconButton';
 import Icon from '../Icon/Icon';
 
-export default function RecipeCardHorizontal({ recipe, onDelete }) {
-  const [isVisible, setIsVisible] = useState(true);
+export default function RecipeCardHorizontal({ recipe, isOwner, onDelete }) {
   const navigate = useNavigate();
 
   const handleDelete = async () => {
-    setIsVisible(false);
-    console.log('Delete recipe button clicked');
     if (onDelete) {
       await onDelete();
     }
   };
 
   const handleOpen = () => {
-    console.log('Open recipe button clicked');
     navigate(`/recipe/${recipe.id}`);
   };
-
-  if (!isVisible) return null;
 
   return (
     <div className={styles.card}>
@@ -36,9 +29,11 @@ export default function RecipeCardHorizontal({ recipe, onDelete }) {
         <IconButton onClick={handleOpen}>
           <Icon name="arrow-up-right" size={18} />
         </IconButton>
-        <IconButton onClick={handleDelete}>
-          <Icon name="trash" size={18} />
-        </IconButton>
+        {isOwner && (
+          <IconButton onClick={handleDelete}>
+            <Icon name="trash" size={18} />
+          </IconButton>
+        )}
       </div>
     </div>
   );

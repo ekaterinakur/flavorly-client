@@ -12,6 +12,10 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import { recipesReducer } from './slices/recipesSlice.js';
+import { recipeReducer } from './slices/recipeSlice.js';
+import { favoriteRecipesReducer } from './slices/favoriteRecipesSlice.js';
+import { userRecipesReducer } from './slices/userRecipesSlice.js';
+import { popularRecipesReducer } from './slices/popularRecipesSlice.js';
 import { testimonialsReducer } from './slices/testimonialsSlice.js';
 import { ingredientsReducer } from './slices/ingredientsSlice.js';
 import { areasReducer } from './slices/areasSlice.js';
@@ -30,6 +34,10 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     recipes: recipesReducer,
+    recipe: recipeReducer,
+    favoriteRecipes: favoriteRecipesReducer,
+    userRecipes: userRecipesReducer,
+    popularRecipes: popularRecipesReducer,
     testimonials: testimonialsReducer,
     ingredients: ingredientsReducer,
     areas: areasReducer,

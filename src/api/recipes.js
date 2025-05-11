@@ -78,11 +78,11 @@ export const deleteRecipe = createAsyncThunk(
   }
 );
 
-export const fetchMyRecipes = createAsyncThunk(
-  'recipes/fetchMyRecipes',
-  async ({ page = 1, limit = 6 }, thunkAPI) => {
+export const fetchUserRecipes = createAsyncThunk(
+  'recipes/fetchUserRecipes',
+  async ({ userId, page = 1, limit = 9 }, thunkAPI) => {
     try {
-      const { data } = await axios.get('/recipes/my', {
+      const { data } = await axios.get(`/recipes/user/${userId}`, {
         params: { page, limit },
       });
       return data;
@@ -96,8 +96,8 @@ export const addToFavorites = createAsyncThunk(
   'recipes/addToFavorites',
   async (id, thunkAPI) => {
     try {
-      const { data } = await axios.post(`/recipes/${id}/favorite`);
-      return data;
+      await axios.post(`/recipes/${id}/favorite`);
+      return id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -122,18 +122,6 @@ export const fetchFavoriteRecipes = createAsyncThunk(
     try {
       const { data } = await axios.get('/recipes/favorites', { params });
       return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const fetchUserRecipes = createAsyncThunk(
-  'recipes/fetchUserRecipes',
-  async (userId, thunkAPI) => {
-    try {
-      const { data } = await axios.get(`/users/${userId}/recipes`);
-      return { userId, recipes: data.recipes };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

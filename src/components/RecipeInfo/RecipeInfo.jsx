@@ -7,8 +7,8 @@ import Button from '../Button/Button';
 import { useFavoriteRecipe } from '../../hooks/useFavoriteRecipe';
 
 export function RecipeInfo({ recipe }) {
-  const { handleClick, isAddedToFavorite } = useFavoriteRecipe({
-    id: recipe.id,
+  const toggleFavorite = useFavoriteRecipe({
+    id: recipe.id, isFavorite: recipe.isFavorite
   });
 
   return (
@@ -28,8 +28,8 @@ export function RecipeInfo({ recipe }) {
             ) : null}
 
             <RecipeAuthor
-              avatar={recipe.owner.avatar}
-              name={recipe.owner.name}
+              avatar={recipe.owner?.avatar}
+              name={recipe.owner?.name}
               id={recipe.ownerId}
             />
 
@@ -46,9 +46,9 @@ export function RecipeInfo({ recipe }) {
             <Button
               className={styles.button}
               variant="outline"
-              onClick={handleClick}
+              onClick={toggleFavorite}
             >
-              {isAddedToFavorite ? 'Remove from favorites' : 'ADD TO FAVORITES'}
+              {recipe.isFavorite ? 'Remove from favorites' : 'ADD TO FAVORITES'}
             </Button>
           </div>
         </div>

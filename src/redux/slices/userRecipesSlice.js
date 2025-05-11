@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  fetchRecipes,
+  fetchUserRecipes,
+  deleteRecipe,
   addToFavorites,
   removeFromFavorites,
 } from '../../api/recipes';
@@ -14,28 +15,35 @@ const initialState = {
 };
 
 // Need to revrite with modern API syntacs; invalidate lists on changes
-const recipesSlice = createSlice({
-  name: 'recipes',
+const userRecipesSlice = createSlice({
+  name: 'userRecipes',
   initialState: initialState,
   reducers: {
-    setRecipesPage(state, action) {
+    setUserRecipesPage(state, action) {
       state.page = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchRecipes.pending, (state) => {
+      .addCase(fetchUserRecipes.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchRecipes.fulfilled, (state, action) => {
+      .addCase(fetchUserRecipes.fulfilled, (state, action) => {
         state.items = action.payload.recipes;
         state.total = action.payload.total;
         state.loading = false;
       })
-      .addCase(fetchRecipes.rejected, (state, action) => {
+      .addCase(fetchUserRecipes.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+
+      .addCase(deleteRecipe.fulfilled, (state, action) => {
+        state.items = state.items.filter((r) => r.id === action.payload);
+        if (!state.items.length) {
+          state.page = state.page - 1;
+        }
       })
 
       .addCase(addToFavorites.fulfilled, (state, action) => {
@@ -52,5 +60,5 @@ const recipesSlice = createSlice({
   },
 });
 
-export const { setRecipesPage } = recipesSlice.actions;
-export const recipesReducer = recipesSlice.reducer;
+export const { setUserRecipesPage } = userRecipesSlice.actions;
+export const userRecipesReducer = userRecipesSlice.reducer;
