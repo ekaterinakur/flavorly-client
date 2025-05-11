@@ -52,9 +52,8 @@ export default function App() {
               <Route path="recipes" element={<ProfileRecipesPage />} />
               <Route path="followers" element={<ProfileFollowersPage />} />
             </Route>
-
-            <Route path="*" element={<NotFound />} />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </Layout>
