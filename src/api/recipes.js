@@ -96,8 +96,8 @@ export const addToFavorites = createAsyncThunk(
   'recipes/addToFavorites',
   async (id, thunkAPI) => {
     try {
-      const { data } = await axios.post(`/recipes/${id}/favorite`);
-      return data;
+      await axios.post(`/recipes/${id}/favorite`);
+      return id;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

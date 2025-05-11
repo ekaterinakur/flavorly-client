@@ -6,9 +6,9 @@ import { RecipeAuthor } from '../RecipeAuthor/RecipeAuthor';
 import Button from '../Button/Button';
 import { useFavoriteRecipe } from '../../hooks/useFavoriteRecipe';
 
-export function RecipeInfo({ recipe, onUpdate }) {
+export function RecipeInfo({ recipe }) {
   const toggleFavorite = useFavoriteRecipe({
-    id: recipe.id, isFavorite: recipe.isFavorite, onUpdate
+    id: recipe.id, isFavorite: recipe.isFavorite
   });
 
   return (
@@ -28,8 +28,8 @@ export function RecipeInfo({ recipe, onUpdate }) {
             ) : null}
 
             <RecipeAuthor
-              avatar={recipe.owner.avatar}
-              name={recipe.owner.name}
+              avatar={recipe.owner?.avatar}
+              name={recipe.owner?.name}
               id={recipe.ownerId}
             />
 

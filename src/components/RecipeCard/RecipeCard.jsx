@@ -7,14 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthor } from '../../hooks/useAuthor';
 import { useFavoriteRecipe } from '../../hooks/useFavoriteRecipe';
 
-export function RecipeCard({ recipe, onUpdate }) {
+export function RecipeCard({ recipe, isOwner }) {
   const navigate = useNavigate();
   const isMdScreen = useMediaQuery({ query: '(min-width: 768px)' });
 
   const toggleFavorite = useFavoriteRecipe({
     id: recipe.id,
     isFavorite: recipe.isFavorite,
-    onUpdate,
   });
 
   const { handleClick: handleOpenAuthor } = useAuthor({ id: recipe.ownerId });

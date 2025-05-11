@@ -1,109 +1,86 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
+import { dispatchResultHandler } from '../utils/dispatchResultHandler.js';
+import { selectUser } from '../redux/selectors/authSelectors.js';
 import {
-  selectMyRecipes,
-  selectRecipesError,
-  selectRecipesLoading,
+  selectUserRecipes,
+  selectUserRecipesError,
+  selectUserRecipesLoading,
+  selectUserRecipesPagination,
 } from '../redux/selectors/recipesSelectors.js';
+import { setUserRecipesPage } from '../redux/slices/userRecipesSlice.js';
+import { DEFAULT_PAGE_LIMIT } from '../utils/constants.js';
 import { RecipeList } from '../components/RecipeList/RecipeList.jsx';
 import { fetchUserRecipes } from '../api/recipes.js';
 import { ListPagination } from '../components/ListPagination/ListPagination.jsx';
 import Loader from '../components/Loader/Loader.jsx';
 import EmptyState from '../components/EmptyState/EmptyState.jsx';
 
-import { selectRecipesPagination } from '../redux/selectors/paginationSelectors.js';
-import { selectUser } from '../redux/selectors/authSelectors.js';
-
 export default function ProfileRecipesPage() {
-  const { id: userId } = useParams();
-  const currentUser = useSelector(selectUser);
-
-  const userRecipes = useSelector(selectMyRecipes);
-  const { currentPage, totalPages, perPageLimit } = useSelector(
-    selectRecipesPagination
-  );
-  const loading = useSelector(selectRecipesLoading);
-  const error = useSelector(selectRecipesError);
-
   const dispatch = useDispatch();
+  const { id: routeUserId } = useParams();
+
+  const currentUser = useSelector(selectUser);
+  const userId = routeUserId || currentUser.id;
+
+  const recipes = useSelector(selectUserRecipes);
+  const { page, totalPages } = useSelector(selectUserRecipesPagination);
+  const loading = useSelector(selectUserRecipesLoading);
+  const error = useSelector(selectUserRecipesError);
 
   useEffect(() => {
-    dispatch(
-      fetchUserRecipes({
-        userId: userId ?? currentUser.id,
-        page: currentPage,
-        perPageLimit,
-      })
-    );
-  }, [dispatch]);
-
-  const handlePageChange = (page) => {
-    dispatch(
-      fetchUserRecipes({ userId: userId ?? currentUser.id, page, perPageLimit })
-    );
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
-  const handleUpdateList = useCallback(() => {
-    dispatch(
-      fetchUserRecipes({
-        userId: userId ?? currentUser.id,
-        page: currentPage,
-        perPageLimit,
-      })
-    );
-  }, [userId, currentUser, currentPage, perPageLimit]);
-
-  const handleDelete = async (id) => {
-    try {
-      await dispatch(deleteRecipe(id));
+    if (!loading && userId) {
       dispatch(
         fetchUserRecipes({
-          userId: userId ?? currentUser.id,
-          page: currentPage,
-          perPageLimit,
+          userId,
+          page: page,
+          limit: DEFAULT_PAGE_LIMIT,
         })
       );
-
-      toast.success('Your recipe was deleted');
-    } catch (err) {
-      toast.error(err.message || 'Failed to delete recipe');
     }
-  };
+  }, [dispatch, page, userId]);
 
-  // Check for error, show toast with message
   useEffect(() => {
-    if (error) {
+    if (error?.message) {
       toast.error(error.message);
     }
   }, [error]);
 
-  // Show loader
-  if (loading) {
-    return <Loader />;
-  }
+  useEffect(() => () => dispatch(setUserRecipesPage(1)));
+
+  const handlePageChange = (page) => {
+    dispatch(setUserRecipesPage(page));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleDelete = async (id) => {
+    dispatchResultHandler(
+      dispatch(deleteRecipe(id)),
+      'Your recipe was deleted',
+      'Failed to delete recipe'
+    );
+  };
+
+  if (loading) return <Loader />;
 
   return (
     <div>
-      {userRecipes.length === 0 ? (
+      {!recipes?.length ? (
         <EmptyState message="Nothing has been added to your recipes list yet. Please browse our recipes and add your favorites for easy access in the future." />
       ) : (
         <RecipeList
-          items={userRecipes}
+          items={recipes}
           columns={1}
           cardType="vertical"
-          onUpdate={handleUpdateList}
+          isOwner={userId === currentUser.id}
           onDelete={handleDelete}
         />
       )}
-      {totalPages >= 1 && (
+      {totalPages > 1 && (
         <ListPagination
-          currentPage={currentPage}
+          currentPage={page}
           totalPages={totalPages}
           onPageChange={handlePageChange}
         />

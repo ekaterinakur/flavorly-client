@@ -4,7 +4,7 @@ import { openSignInModal } from '../redux/slices/modalSlice';
 import toast from 'react-hot-toast';
 import { addToFavorites, removeFromFavorites } from '../api/recipes';
 
-export function useFavoriteRecipe({ id, isFavorite, onUpdate }) {
+export function useFavoriteRecipe({ id, isFavorite }) {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
@@ -12,11 +12,10 @@ export function useFavoriteRecipe({ id, isFavorite, onUpdate }) {
     if (isLoggedIn) {
       try {
         if (isFavorite) {
-          await dispatch(removeFromFavorites(id));
+          dispatch(removeFromFavorites(id));
         } else {
-          await dispatch(addToFavorites(id));
+          dispatch(addToFavorites(id));
         }
-        onUpdate && onUpdate();
       } catch {
         toast.error('Failed to add recipe to favorites');
       }

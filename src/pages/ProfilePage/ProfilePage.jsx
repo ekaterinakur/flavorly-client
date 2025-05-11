@@ -13,13 +13,11 @@ import UserProfileCard from '../../components/UserProfileCard/UserProfileCard.js
 import styles from './ProfilePage.module.scss';
 
 export default function ProfilePage() {
-  const { id: userId } = useParams(); // Отримуємо ID з URL
+  const { id: userId } = useParams();
   const dispatch = useDispatch();
   const currentUser = useSelector(selectUser);
   const profileUser = useSelector(selectUserDetails);
   let isOwner = !userId || userId === currentUser?.id; // якщо id params != юзеру в Redux - це не оунер
-
-  // isOwner = false;
 
   useEffect(() => {
     const idToFetch = userId || currentUser?.id;
