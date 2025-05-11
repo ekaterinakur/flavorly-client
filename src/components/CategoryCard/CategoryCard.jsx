@@ -3,8 +3,9 @@ import classNames from 'classnames';
 import styles from './CategoryCard.module.scss';
 import { IconButton } from '../IconButton/IconButton';
 import Icon from '../Icon/Icon';
+import { all } from 'axios';
 
-export function CategoryCard({ id, name, imageUrl, onSelect }) {
+export function CategoryCard({ id, name, imageUrl, onSelect, children }) {
   const handleClick = () => onSelect(id === 'all' ? id : name);
   const isAll = !imageUrl;
 
@@ -17,14 +18,13 @@ export function CategoryCard({ id, name, imageUrl, onSelect }) {
       aria-label={`Перейти до рецептів категорії ${name}`}
     >
       {imageUrl && <img src={imageUrl} alt={name} className={styles.image} />}
+      <span className={styles.name}>{children }</span>
 
       <div className={styles.content}>
         <span className={styles.name}>{name}</span>
-        {!isAll && (
           <IconButton onClick={handleClick} className={styles.iconButton}>
             <Icon name="arrow-up-right" size={18} color="#fff" />
           </IconButton>
-        )}
       </div>
     </div>
   );
