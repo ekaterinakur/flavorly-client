@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
 import './Selector.scss';
 import Icon from '../Icon/Icon.jsx';
 import Loader from '../Loader/Loader.jsx';
@@ -8,22 +7,20 @@ function Selector({
   label = 'Not selected',
   listSelector,
   selectedSelector,
-  reducer,
   loading,
+  onSelect,
 }) {
-  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
 
   const handleSelect = (name) => {
-    dispatch(reducer(name));
+    onSelect(name);
     setIsOpen(false);
   };
 
   // Reset selected option
   const handleReset = () => {
-    dispatch(reducer(''));
-    setIsOpen(false);
+    handleSelect('');
   };
 
   // Close modal when click outside

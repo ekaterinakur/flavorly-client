@@ -5,8 +5,10 @@ import { IconButton } from '../IconButton/IconButton';
 import Icon from '../Icon/Icon';
 import { all } from 'axios';
 
-export function CategoryCard({ id, name, imageUrl, onSelect, children }) {
-  const handleClick = () => onSelect(id === 'all' ? id : name);
+
+export function CategoryCard({ id, name, imageUrl, onSelect }) {
+  const handleSelect= () => onSelect(id === 'all' ? id : name);
+
   const isAll = !imageUrl;
 
   return (
@@ -14,7 +16,7 @@ export function CategoryCard({ id, name, imageUrl, onSelect, children }) {
       className={classNames(styles.card, { [styles.all]: isAll })}
       role="button"
       tabIndex={0}
-      onClick={handleClick}
+      onClick={handleSelect}
       aria-label={`Перейти до рецептів категорії ${name}`}
     >
       {imageUrl && <img src={imageUrl} alt={name} className={styles.image} />}
@@ -22,7 +24,7 @@ export function CategoryCard({ id, name, imageUrl, onSelect, children }) {
 
       <div className={styles.content}>
         <span className={styles.name}>{name}</span>
-          <IconButton onClick={handleClick} className={styles.iconButton}>
+          <IconButton onClick={handleSelect} className={styles.iconButton}>
             <Icon name="arrow-up-right" size={18} color="#fff" />
           </IconButton>
       </div>

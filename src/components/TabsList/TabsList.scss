@@ -16,6 +16,10 @@
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
+
+  @media (min-width: 768px) {
+    margin-bottom: 2.5rem;
+  }
 }
 
 .outlet {

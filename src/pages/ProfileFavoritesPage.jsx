@@ -20,9 +20,7 @@ export default function ProfileFavoritesPage() {
   const dispatch = useDispatch();
 
   const recipes = useSelector(selectFavoriteRecipes);
-  const { page, totalPages } = useSelector(
-    selectFavoriteRecipesPagination
-  );
+  const { page, totalPages } = useSelector(selectFavoriteRecipesPagination);
   const loading = useSelector(selectFavoriteRecipesLoading);
   const error = useSelector(selectFavoriteRecipesError);
 
@@ -42,8 +40,6 @@ export default function ProfileFavoritesPage() {
       toast.error(error.message);
     }
   }, [error]);
-
-  useEffect(() => () => dispatch(setFavoriteRecipesPage(1)));
 
   const handlePageChange = (page) => {
     dispatch(setFavoriteRecipesPage(page));

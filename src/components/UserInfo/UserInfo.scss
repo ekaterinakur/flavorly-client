@@ -13,6 +13,7 @@
     }
   }
 
+  .user-avatar-wrapper, 
   .user-avatar {
     width: 32px;
     height: 32px;
@@ -22,6 +23,18 @@
       width: 50px;
       height: 50px;
     }
+  }
+
+  .user-avatar-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+  }
+
+  .user-avatar {
+    background-position: center;
+    object-fit: cover;
   }
 
   .user-name {

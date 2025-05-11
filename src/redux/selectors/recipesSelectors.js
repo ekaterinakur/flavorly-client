@@ -5,6 +5,12 @@ export const selectRecipes = (state) => state.recipes.items;
 export const selectRecipesCategory = (state) => state.recipes.category;
 export const selectRecipesArea = (state) => state.recipes.area;
 export const selectRecipesIngredients = (state) => state.recipes.ingredients;
+export const selectRecipesFilters = createSelector(
+  [selectRecipesCategory, selectRecipesArea, selectRecipesIngredients],
+  (category, area, ingredients) => {
+    return { category, area, ingredients };
+  }
+);
 export const selectRecipesPage = (state) => state.recipes.page;
 export const selectRecipesTotal = (state) => state.recipes.total;
 export const selectRecipesPagination = createSelector(

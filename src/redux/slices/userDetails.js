@@ -6,6 +6,7 @@ import {
   addToFavorites,
   removeFromFavorites,
 } from '../../api/recipes';
+import { updateUserAvatar } from '../../api/avatar';
 
 const initialState = {
   user: null,
@@ -32,20 +33,32 @@ const userDetailsSlice = createSlice({
         state.error = action.payload;
       })
 
+      .addCase(updateUserAvatar.fulfilled, (state, action) => {
+        state.user.avatar = action.payload.user.avatar;
+      })
+
       .addCase(createRecipe.fulfilled, (state) => {
-        state.user.addedRecipes += 1;
+        if (state.user) {
+          state.user.addedRecipes += 1;
+        }
       })
 
       .addCase(deleteRecipe.fulfilled, (state) => {
-        state.user.addedRecipes -= 1;
+        if (state.user) {
+          state.user.addedRecipes -= 1;
+        }
       })
 
       .addCase(addToFavorites.fulfilled, (state) => {
-        state.user.favoriteRecipes += 1;
+        if (state.user) {
+          state.user.favoriteRecipes += 1;
+        }
       })
 
       .addCase(removeFromFavorites.fulfilled, (state) => {
-        state.user.favoriteRecipes -= 1;
+        if (state.user) {
+          state.user.favoriteRecipes -= 1;
+        }
       });
   },
 });

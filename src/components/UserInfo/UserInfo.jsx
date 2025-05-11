@@ -58,11 +58,13 @@ const UserInfo = ({ user, isHomePage }) => {
   return (
     <div className="user-info" ref={userMenuRef}>
       <Button onClick={handleUserModalClick} className="user-info-btn">
-        <img
-          className="user-avatar"
-          src={user.avatar || training_img}
-          alt="user-image"
-        ></img>
+        <div className="user-avatar-wrapper">
+          {user.avatar ? (
+            <img src={user.avatar || training_img} className="user-avatar" alt="user-image"></img>
+          ) : (
+            user.name?.[0]
+          )}
+        </div>
         <span className="user-name">{user.name.toUpperCase()}</span>
         <Icon
           className={`chevron-icon ${isOpenUserModal ? 'open' : ''}`}

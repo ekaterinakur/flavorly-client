@@ -3,10 +3,10 @@ import HeroSection from '../components/HeroSection/HeroSection';
 import { Recipes } from '../components/Recipes/Recipes';
 import { CategoryList } from '../components/CategoryList/CategoryList.jsx';
 import Testimonials from '../components/Testimonials/Testimonials.jsx';
-import { selectSelectedCategory } from '../redux/selectors/categoriesSelectors';
+import { selectRecipesCategory } from '../redux/selectors/recipesSelectors.js';
 
 const HomePage = () => {
-  const selectedCategory = useSelector(selectSelectedCategory);
+  const selectedCategory = useSelector(selectRecipesCategory);
 
   return (
     <>
