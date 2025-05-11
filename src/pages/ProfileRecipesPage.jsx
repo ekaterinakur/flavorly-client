@@ -48,8 +48,6 @@ export default function ProfileRecipesPage() {
     }
   }, [error]);
 
-  useEffect(() => () => dispatch(setUserRecipesPage(1)));
-
   const handlePageChange = (page) => {
     dispatch(setUserRecipesPage(page));
     window.scrollTo({ top: 0, behavior: 'smooth' });

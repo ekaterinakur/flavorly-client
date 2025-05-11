@@ -3,6 +3,7 @@ import styles from './ListPagination.module.scss';
 import { getPaginateStructure } from './ListPaginationUtils';
 
 export function ListPagination({ currentPage, totalPages, onPageChange }) {
+  // console.log('ListPagination render', { currentPage, totalPages });
   if (totalPages === 1) return null;
 
   const handlePageChange = (newPage) => {
