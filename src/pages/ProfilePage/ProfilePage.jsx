@@ -13,30 +13,19 @@ import UserProfileCard from '../../components/UserProfileCard/UserProfileCard.js
 import styles from './ProfilePage.module.scss';
 
 export default function ProfilePage() {
-  const { id: userId } = useParams(); // Отримуємо ID з URL
+  const { id: userId } = useParams();
   const dispatch = useDispatch();
   const currentUser = useSelector(selectUser);
   const profileUser = useSelector(selectUserDetails);
   let isOwner = !userId || userId === currentUser?.id; // якщо id params != юзеру в Redux - це не оунер
 
-  // isOwner = false;
-
   useEffect(() => {
-    const getUserDetails = async () => {
-      try {
-        const result = await dispatch(
-          userDetails(userId || currentUser?.id)
-        );
-        // console.log('✅ User:', result);
-      } catch (error) {
-        // console.error('❌ Error :', error);
-      }
-    };
+    const idToFetch = userId || currentUser?.id;
 
-    if (userId || currentUser?.id) {
-      getUserDetails();
+    if (idToFetch) {
+      dispatch(userDetails(idToFetch));
     }
-  }, [dispatch, userId, currentUser?.id]);
+  }, [dispatch, userId, currentUser?.id]); 
 
   return (
     <>

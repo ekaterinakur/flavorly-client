@@ -1,24 +1,20 @@
 import { useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Avatar } from '../Avatar/Avatar.jsx';
 import { IconButton } from '../IconButton/IconButton.jsx';
 import Icon from '../Icon/Icon.jsx';
 import toast from 'react-hot-toast';
 import './UserProfileCard.scss';
-import { currentUser } from '../../api/current.js';
 import Button from '../Button/Button.jsx';
-import { logoutUser } from '../../api/logout.js';
-import {
-  selectFavoriteRecipes,
-  selectMyRecipes,
-} from '../../redux/selectors/recipesSelectors.js';
 import { updateUserAvatar } from '../../api/avatar.js';
+import {
+  openLogoutModal
+} from '../../redux/slices/modalSlice.js';
 
 function UserProfileCard({ user, isOwner }) {
   const fileInputRef = useRef(null);
   const dispatch = useDispatch();
-  const myRecipes = useSelector(selectMyRecipes);
-  const favorites = useSelector(selectFavoriteRecipes);
+  const myRecipes = [];
   // console.dir(user);
 
   const handleClick = () => {
@@ -26,7 +22,7 @@ function UserProfileCard({ user, isOwner }) {
   };
 
   const handleLogout = () => {
-    dispatch(logoutUser());
+    dispatch(openLogoutModal());
   };
 
   const handleFileChange = async (event) => {
@@ -41,7 +37,6 @@ function UserProfileCard({ user, isOwner }) {
     const resultAction = await dispatch(updateUserAvatar(file));
 
     if (updateUserAvatar.fulfilled.match(resultAction)) {
-      await dispatch(currentUser());
       toast.success('Аватар оновлено!');
     } else {
       toast.error('Помилка при оновленні аватара: ', error);

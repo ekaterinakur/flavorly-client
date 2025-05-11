@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { currentUser } from './api/current';
 import Layout from './components/Layout/Layout';
@@ -33,6 +33,8 @@ export default function App() {
           <Route path="/recipe/add" element={<AddRecipePage />} />
 
           <Route path="/profile" element={<ProfilePage />}>
+            {/* For the first time - redirect */}
+            <Route index element={<Navigate to="my-recipes" replace />} /> 
             <Route path="my-recipes" element={<ProfileRecipesPage />} />
             <Route path="my-favorites" element={<ProfileFavoritesPage />} />
             <Route path="my-followers" element={<ProfileFollowersPage />} />
@@ -40,6 +42,8 @@ export default function App() {
           </Route>
 
           <Route path="/profile/:id" element={<ProfilePage />}>
+            {/* For the first time - redirect */}
+            <Route index element={<Navigate to="recipes" replace />} />
             <Route path="recipes" element={<ProfileRecipesPage />} />
             <Route path="followers" element={<ProfileFollowersPage />} />
           </Route>

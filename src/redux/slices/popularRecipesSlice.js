@@ -1,39 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  fetchRecipes,
+  fetchPopularRecipes,
   addToFavorites,
   removeFromFavorites,
 } from '../../api/recipes';
 
 const initialState = {
   items: [],
-  total: 0,
-  page: 1,
   loading: false,
   error: null,
 };
 
 // Need to revrite with modern API syntacs; invalidate lists on changes
-const recipesSlice = createSlice({
-  name: 'recipes',
+const popularRecipesSlice = createSlice({
+  name: 'popularRecipes',
   initialState: initialState,
-  reducers: {
-    setRecipesPage(state, action) {
-      state.page = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchRecipes.pending, (state) => {
+      .addCase(fetchPopularRecipes.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchRecipes.fulfilled, (state, action) => {
-        state.items = action.payload.recipes;
-        state.total = action.payload.total;
+      .addCase(fetchPopularRecipes.fulfilled, (state, action) => {
+        state.items = action.payload;
         state.loading = false;
       })
-      .addCase(fetchRecipes.rejected, (state, action) => {
+      .addCase(fetchPopularRecipes.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
@@ -52,5 +45,4 @@ const recipesSlice = createSlice({
   },
 });
 
-export const { setRecipesPage } = recipesSlice.actions;
-export const recipesReducer = recipesSlice.reducer;
+export const popularRecipesReducer = popularRecipesSlice.reducer;

@@ -1,75 +1,81 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
+import { fetchFavoriteRecipes, removeFromFavorites } from '../api/recipes.js';
 import {
   selectFavoriteRecipes,
-  selectRecipesError,
-  selectRecipesLoading,
+  selectFavoriteRecipesError,
+  selectFavoriteRecipesLoading,
+  selectFavoriteRecipesPagination,
 } from '../redux/selectors/recipesSelectors.js';
+import { setFavoriteRecipesPage } from '../redux/slices/favoriteRecipesSlice.js';
+import { dispatchResultHandler } from '../utils/dispatchResultHandler.js';
+import { DEFAULT_PAGE_LIMIT } from '../utils/constants.js';
 import { RecipeList } from '../components/RecipeList/RecipeList.jsx';
-import { fetchFavoriteRecipes } from '../api/recipes.js';
-import { useEffect } from 'react';
 import { ListPagination } from '../components/ListPagination/ListPagination.jsx';
 import Loader from '../components/Loader/Loader.jsx';
 import EmptyState from '../components/EmptyState/EmptyState.jsx';
-import toast from 'react-hot-toast';
-
-import { selectRecipesPagination } from '../redux/selectors/paginationSelectors.js';
-import { useRecipeDeletion } from '../hooks/useRecipeDeletion.js';
 
 export default function ProfileFavoritesPage() {
-  const favoriteRecipes = useSelector(selectFavoriteRecipes);
-  const { currentPage, totalPages, perPageLimit } = useSelector(
-    selectRecipesPagination
-  );
-  const loading = useSelector(selectRecipesLoading);
-  const error = useSelector(selectRecipesError);
-
   const dispatch = useDispatch();
 
+  const recipes = useSelector(selectFavoriteRecipes);
+  const { page, totalPages } = useSelector(
+    selectFavoriteRecipesPagination
+  );
+  const loading = useSelector(selectFavoriteRecipesLoading);
+  const error = useSelector(selectFavoriteRecipesError);
+
   useEffect(() => {
-    dispatch(fetchFavoriteRecipes({ page: currentPage, perPageLimit }));
-  }, [dispatch]);
+    if (!loading) {
+      dispatch(
+        fetchFavoriteRecipes({
+          page: page,
+          limit: DEFAULT_PAGE_LIMIT,
+        })
+      );
+    }
+  }, [dispatch, page]);
 
-  const handlePageChange = (page) => {
-    dispatch(fetchFavoriteRecipes({ page, perPageLimit }));
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
-  const handleDelete = useRecipeDeletion({
-    type: 'favorites',
-    page: currentPage,
-    perPageLimit,
-  });
-
-  // Check for error, show toast with message
   useEffect(() => {
-    if (error) {
+    if (error?.message) {
       toast.error(error.message);
     }
   }, [error]);
 
-  // Show loader
-  if (loading) {
-    return <>{loading && <Loader />}</>;
-  }
+  useEffect(() => () => dispatch(setFavoriteRecipesPage(1)));
+
+  const handlePageChange = (page) => {
+    dispatch(setFavoriteRecipesPage(page));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleDelete = async (id) => {
+    dispatchResultHandler(
+      dispatch(removeFromFavorites(id)),
+      'Recipe removed from favorites',
+      'Failed to delete recipe'
+    );
+  };
+
+  if (loading) return <Loader />;
 
   return (
     <div>
-      {!loading && favoriteRecipes.length === 0 ? (
+      {!recipes?.length ? (
         <EmptyState message="Nothing has been added to your favorite recipes list yet. Please browse our recipes and add your favorites for easy access in the future." />
       ) : (
         <RecipeList
-          items={favoriteRecipes}
+          items={recipes}
           columns={1}
           cardType="vertical"
+          isOwner={true}
           onDelete={handleDelete}
         />
       )}
-      {totalPages >= 1 && (
+      {totalPages > 1 && (
         <ListPagination
-          currentPage={currentPage}
+          currentPage={page}
           totalPages={totalPages}
           onPageChange={handlePageChange}
         />

@@ -1,26 +1,35 @@
-import classNames from 'classnames';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
 import { RecipeList } from '../RecipeList/RecipeList';
 import styles from './PopularRecipes.module.scss';
 import Loader from '../Loader/Loader';
-import { useEffect, useState } from 'react';
 import { fetchPopularRecipes } from '../../api/recipes';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectPopularRecipes } from '../../redux/selectors/recipesSelectors';
+import {
+  selectPopularRecipes,
+  selectPopularRecipesError,
+  selectPopularRecipesLoading,
+} from '../../redux/selectors/recipesSelectors';
+import { DEFAULT_POPULAR_PAGE_LIMIT } from '../../utils/constants';
 
 export function PopularRecipes() {
   const dispatch = useDispatch();
+
   const recipes = useSelector(selectPopularRecipes);
-  const [isLoading, setIsLoading] = useState(true);
+  const isLoading = useSelector(selectPopularRecipesLoading);
+  const error = useSelector(selectPopularRecipesError);
 
   useEffect(() => {
-    dispatch(fetchPopularRecipes({ limit: 4 }));
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (recipes.length && isLoading) {
-      setIsLoading(false);
+    if (!isLoading && recipes.length === 0) {
+      dispatch(fetchPopularRecipes({ limit: DEFAULT_POPULAR_PAGE_LIMIT }));
     }
-  }, [isLoading, recipes.length]);
+  }, [dispatch, isLoading, recipes]);
+
+  useEffect(() => {
+    if (error?.message) {
+      toast.error(error.message);
+    }
+  }, [error]);
 
   if (isLoading) return <Loader />;
 
