@@ -1,0 +1,75 @@
+@use '../../styles/variables' as *;
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 2.5rem 0;
+  border: 0px solid;
+  border-bottom: 1px solid $silver;
+}
+
+.userWrapper {
+  display: flex;
+  gap: 1rem;
+}
+
+.userDetailsWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 116px;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+
+  @media (min-width: 768px) {
+    width: 84px;
+    height: 84px;
+  }
+}
+.name {
+  padding-bottom: 0.25rem;
+
+  color: $primary-black;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.5rem; /* 120% */
+  letter-spacing: -0.025rem;
+  text-transform: uppercase;
+}
+.recipeCount {
+  padding-bottom: 0.5rem;
+  color: $silver;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25rem; /* 142.857% */
+  letter-spacing: -0.0175rem;
+}
+.imageList {
+  visibility: hidden;
+  @media (min-width: 768px) {
+    visibility: visible;
+    display: flex;
+    gap: 0.5rem;
+    grow: 1;
+  }
+}
+.imageItem {
+  width: 100px;
+  height: 100px;
+  border-radius: 1rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: $silver;
+}
+
+.button {
+  padding: 10px 24px;
+  border-radius: 1.875rem;
+  border: 1px solid $silver;
+  min-width: 116px;
+}
