@@ -6,7 +6,7 @@ import Icon from '../Icon/Icon';
 import { all } from 'axios';
 
 
-export function CategoryCard({ id, name, imageUrl, onSelect }) {
+export function CategoryCard({ id, name, imageUrl, onSelect, children }) {
   const handleSelect= () => onSelect(id === 'all' ? id : name);
 
   const isAll = !imageUrl;
