@@ -4,6 +4,7 @@ import BackButton from '../BackButton/BackButton';
 import MainTitle from '../MainTitle/MainTitle';
 import { RecipeList } from '../RecipeList/RecipeList';
 import RecipeFilter from '../RecipeFilters/RecipeFilters';
+import EmptyState from '../EmptyState/EmptyState';
 import { ListPagination } from '../ListPagination/ListPagination';
 import { fetchRecipes } from '../../api/recipes';
 import {
@@ -81,7 +82,11 @@ export function Recipes() {
             <Loader />
           ) : (
             <div className={styles.list}>
-              <RecipeList items={recipes} className={styles.list} />
+              {recipes.length === 0 ? (
+                <EmptyState message="No recipes found with your filters. Please try again with different filters." />
+              ) : (
+                <RecipeList items={recipes} className={styles.list} />
+              )}
               <ListPagination
                 currentPage={currentPage}
                 totalPages={totalPages}
