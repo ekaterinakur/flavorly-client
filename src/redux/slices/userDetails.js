@@ -6,6 +6,7 @@ import {
   addToFavorites,
   removeFromFavorites,
 } from '../../api/recipes';
+import { updateUserAvatar } from '../../api/avatar';
 
 const initialState = {
   user: null,
@@ -30,6 +31,10 @@ const userDetailsSlice = createSlice({
       .addCase(userDetails.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+      })
+
+      .addCase(updateUserAvatar.fulfilled, (state, action) => {
+        state.user.avatar = action.payload.user.avatar;
       })
 
       .addCase(createRecipe.fulfilled, (state) => {
