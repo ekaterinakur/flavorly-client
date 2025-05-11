@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { toast } from 'react-hot-toast';
 import { fetchCategories } from '../../api/categories.js';
-import { setSelectedCategory } from '../../redux/slices/categoriesSlice';
+import { setSelectedCategory } from '../../redux/slices/recipesSlice.js';
 
 import MainTitle from '../MainTitle/MainTitle';
 import Loader from '../Loader/Loader';

@@ -5,17 +5,12 @@ const initialState = {
   items: [],
   loading: false,
   error: null,
-  selected: '',
 };
 
 const ingredientsSlice = createSlice({
   name: 'ingredients',
   initialState: initialState,
-  reducers: {
-    changeIngredient(state, { payload }) {
-      state.selected = payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchIngredients.pending, (state) => {
@@ -32,9 +27,6 @@ const ingredientsSlice = createSlice({
       });
   },
 });
-
-// Actions generator
-export const { changeIngredient } = ingredientsSlice.actions;
 
 // Reducer
 export const ingredientsReducer = ingredientsSlice.reducer;

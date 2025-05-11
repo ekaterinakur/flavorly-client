@@ -5,17 +5,12 @@ const initialState = {
   items: [],
   loading: false,
   error: null,
-  selected: '',
 };
 
 const areasSlice = createSlice({
   name: 'areas',
   initialState: initialState,
-  reducers: {
-    changeArea(state, { payload }) {
-      state.selected = payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchAreas.pending, (state) => {
@@ -32,9 +27,6 @@ const areasSlice = createSlice({
       });
   },
 });
-
-// Actions generator
-export const { changeArea } = areasSlice.actions;
 
 // Reducer
 export const areasReducer = areasSlice.reducer;

@@ -6,15 +6,14 @@ import { RecipeList } from '../RecipeList/RecipeList';
 import RecipeFilter from '../RecipeFilters/RecipeFilters';
 import { ListPagination } from '../ListPagination/ListPagination';
 import { fetchRecipes } from '../../api/recipes';
-import { clearSelectedCategory } from '../../redux/slices/categoriesSlice';
-import { selectSelectedCategory } from '../../redux/selectors/categoriesSelectors';
 import {
   selectRecipes,
   selectRecipesLoading,
-  selectRecipesTotal,
-  selectRecipesPage,
+  selectRecipesPagination,
+  selectRecipesFilters,
 } from '../../redux/selectors/recipesSelectors';
-import { setRecipesPage } from '../../redux/slices/recipesSlice';
+import { clearFilters, setRecipesPage } from '../../redux/slices/recipesSlice';
+import { DEFAULT_MAIN_PAGE_LIMIT } from '../../utils/constants';
 
 import styles from './Recipes.module.scss';
 import Loader from '../Loader/Loader';
@@ -22,29 +21,41 @@ import Loader from '../Loader/Loader';
 export function Recipes() {
   const dispatch = useDispatch();
 
-  const selectedCategory = useSelector(selectSelectedCategory);
   const recipes = useSelector(selectRecipes);
   const loading = useSelector(selectRecipesLoading);
-  const total = useSelector(selectRecipesTotal);
-  const currentPage = useSelector(selectRecipesPage);
+  const filters = useSelector(selectRecipesFilters);
+  const { page: currentPage, totalPages } = useSelector(
+    selectRecipesPagination
+  );
 
   useEffect(() => {
-    if (selectedCategory) {
-      dispatch(fetchRecipes(selectedCategory));
-    }
-  }, [dispatch, selectedCategory]);
+    dispatch(
+      fetchRecipes({
+        ...filters,
+        category: filters.category !== 'all' ? filters.category : '',
+        page: 1,
+        limit: DEFAULT_MAIN_PAGE_LIMIT,
+      })
+    );
+  }, [dispatch, filters]);
+
+  // useEffect(() => () => dispatch(clearFilters()));
 
   const handlePageChange = (page) => {
     dispatch(setRecipesPage(page));
-    if (selectedCategory) {
-      dispatch(fetchRecipes({ category: selectedCategory, page }));
-    } else {
-      dispatch(fetchRecipes({ page }));
-    }
+
+    dispatch(
+      fetchRecipes({
+        ...filters,
+        category: filters.category !== 'all' ? filters.category : '',
+        page,
+        limit: DEFAULT_MAIN_PAGE_LIMIT,
+      })
+    );
   };
 
   const handleBackClick = () => {
-    dispatch(clearSelectedCategory());
+    dispatch(clearFilters());
   };
 
   return (
@@ -58,26 +69,29 @@ export function Recipes() {
           />
           <MainTitle
             title={
-              selectedCategory === 'all' ? 'All Recipes' : `${selectedCategory}`
+              filters.category === 'all'
+                ? 'All Recipes'
+                : `${filters.category}`
             }
             subtitle="Go on a taste journey, where every sip is a sophisticated creative chord, and every dessert is an expression of the most refined gastronomic desires."
           />
         </div>
-        {loading ? (
-          <Loader />
-        ) : (
-          <div className={styles.content}>
-            <RecipeFilter className={styles.filter} />
+        <div className={styles.content}>
+          <RecipeFilter className={styles.filter} />
+
+          {loading ? (
+            <Loader />
+          ) : (
             <div className={styles.list}>
               <RecipeList items={recipes} className={styles.list} />
               <ListPagination
-                currentPage={currentPage.toString()}
-                totalPages={Math.ceil(total / 6).toString()}
+                currentPage={currentPage}
+                totalPages={totalPages}
                 onPageChange={handlePageChange}
               />
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </section>
   );

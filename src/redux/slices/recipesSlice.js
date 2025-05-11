@@ -9,6 +9,9 @@ const initialState = {
   items: [],
   total: 0,
   page: 1,
+  category: '',
+  area: '',
+  ingredients: '',
   loading: false,
   error: null,
 };
@@ -20,6 +23,24 @@ const recipesSlice = createSlice({
   reducers: {
     setRecipesPage(state, action) {
       state.page = action.payload;
+    },
+    setSelectedCategory(state, action) {
+      state.category = action.payload;
+      state.page = 1;
+    },
+    setSelectedArea(state, action) {
+      state.area = action.payload;
+      state.page = 1;
+    },
+    setSelectedIngredients(state, action) {
+      state.ingredients = action.payload;
+      state.page = 1;
+    },
+    clearFilters(state) {
+      state.category = '';
+      state.area = '';
+      state.ingredients = '';
+      state.page = 1;
     },
   },
   extraReducers: (builder) => {
@@ -52,5 +73,11 @@ const recipesSlice = createSlice({
   },
 });
 
-export const { setRecipesPage } = recipesSlice.actions;
+export const {
+  setRecipesPage,
+  setSelectedCategory,
+  setSelectedArea,
+  setSelectedIngredients,
+  clearFilters,
+} = recipesSlice.actions;
 export const recipesReducer = recipesSlice.reducer;

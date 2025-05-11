@@ -33,19 +33,27 @@ const userDetailsSlice = createSlice({
       })
 
       .addCase(createRecipe.fulfilled, (state) => {
-        state.user.addedRecipes += 1;
+        if (state.user) {
+          state.user.addedRecipes += 1;
+        }
       })
 
       .addCase(deleteRecipe.fulfilled, (state) => {
-        state.user.addedRecipes -= 1;
+        if (state.user) {
+          state.user.addedRecipes -= 1;
+        }
       })
 
       .addCase(addToFavorites.fulfilled, (state) => {
-        state.user.favoriteRecipes += 1;
+        if (state.user) {
+          state.user.favoriteRecipes += 1;
+        }
       })
 
       .addCase(removeFromFavorites.fulfilled, (state) => {
-        state.user.favoriteRecipes -= 1;
+        if (state.user) {
+          state.user.favoriteRecipes -= 1;
+        }
       });
   },
 });
