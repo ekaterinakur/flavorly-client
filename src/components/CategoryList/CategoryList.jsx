@@ -34,7 +34,6 @@ export function CategoryList() {
   }, [error]);
 
   const handleCategorySelect = (categoryNameOrId) => {
-
     dispatch(setSelectedCategory(categoryNameOrId));
   };
 
@@ -50,10 +49,9 @@ export function CategoryList() {
   const visibleCategories = isMobile
     ? categories.slice(0, 8)
     : categories.slice(0, 11);
-  
-    
+
   const handleToggleShowAll = () => {
-    setShowAll(prevShowAll => !prevShowAll);
+    setShowAll((prevShowAll) => !prevShowAll);
   };
 
   const categoriesToDisplay = showAll ? categories : visibleCategories;
@@ -77,11 +75,13 @@ export function CategoryList() {
           ))}
           {categories.length > visibleCategories.length && (
             <div
-              className={styles.allCategoriesCardButton }
+              className={styles.allCategoriesCardButton}
               onClick={handleToggleShowAll}
               role="button"
               tabIndex={0}
-              aria-label={showAll ? 'Показати менше категорій' : 'Показати всі категорії'}
+              aria-label={
+                showAll ? 'Показати менше категорій' : 'Показати всі категорії'
+              }
             >
               {showAll ? 'Less Categories' : 'All Categories'}
             </div>
