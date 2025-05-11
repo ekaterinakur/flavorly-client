@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthor } from '../../hooks/useAuthor';
 import { useFavoriteRecipe } from '../../hooks/useFavoriteRecipe';
 
-export function RecipeCard({ recipe, isOwner }) {
+export function RecipeCard({ recipe }) {
   const navigate = useNavigate();
   const isMdScreen = useMediaQuery({ query: '(min-width: 768px)' });
 
