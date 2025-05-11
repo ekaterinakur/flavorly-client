@@ -7,6 +7,8 @@
 @use './styles/variables.scss' as *;
 @use './styles/main' as *;
 
+@import 'modern-normalize/modern-normalize.css';
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
