@@ -1,5 +1,5 @@
-import { createSelector } from "@reduxjs/toolkit";
-import { DEFAULT_PAGE_LIMIT } from "../../utils/constants";
+import { createSelector } from '@reduxjs/toolkit';
+import { DEFAULT_PAGE_LIMIT } from '../../utils/constants';
 
 export const selectRecipes = (state) => state.recipes.items;
 export const selectRecipesCategory = (state) => state.recipes.category;
@@ -30,7 +30,8 @@ export const selectCurrentRecipeLoading = (state) => state.recipe.loading;
 export const selectCurrentRecipeError = (state) => state.recipe.error;
 
 export const selectPopularRecipes = (state) => state.popularRecipes.items;
-export const selectPopularRecipesLoading = (state) => state.popularRecipes.loading;
+export const selectPopularRecipesLoading = (state) =>
+  state.popularRecipes.loading;
 export const selectPopularRecipesError = (state) => state.popularRecipes.error;
 
 export const selectUserRecipes = (state) => state.userRecipes.items;
@@ -50,7 +51,8 @@ export const selectUserRecipesError = (state) => state.userRecipes.error;
 
 export const selectFavoriteRecipes = (state) => state.favoriteRecipes.items;
 export const selectFavoriteRecipesPage = (state) => state.favoriteRecipes.page;
-export const selectFavoriteRecipesTotal = (state) => state.favoriteRecipes.total;
+export const selectFavoriteRecipesTotal = (state) =>
+  state.favoriteRecipes.total;
 export const selectFavoriteRecipesPagination = createSelector(
   [selectFavoriteRecipesPage, selectFavoriteRecipesTotal],
   (page, total) => {
@@ -60,5 +62,7 @@ export const selectFavoriteRecipesPagination = createSelector(
     };
   }
 );
-export const selectFavoriteRecipesLoading = (state) => state.favoriteRecipes.loading;
-export const selectFavoriteRecipesError = (state) => state.favoriteRecipes.error;
+export const selectFavoriteRecipesLoading = (state) =>
+  state.favoriteRecipes.loading;
+export const selectFavoriteRecipesError = (state) =>
+  state.favoriteRecipes.error;
