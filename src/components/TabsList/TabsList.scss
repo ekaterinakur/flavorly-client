@@ -10,6 +10,7 @@
 
 .tabs {
   display: flex;
+  gap: 30px;
   border-bottom: 1px solid $silver;
   margin-bottom: 1.5rem;
   max-width: 100%;
@@ -18,7 +19,9 @@
   white-space: nowrap;
 
   @media (min-width: 768px) {
+    gap: 40px;
     margin-bottom: 2.5rem;
+    overflow: hidden;
   }
 }
 
