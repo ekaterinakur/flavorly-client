@@ -32,9 +32,11 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-height: 40px;
 
   @media (min-width: 768px) {
     font-size: 16px;
+    min-height: 48px;
   }
 }
 

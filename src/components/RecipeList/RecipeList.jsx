@@ -23,7 +23,6 @@ export function RecipeList({
               {cardType === 'portrait' ? (
                 <RecipeCard
                   recipe={recipe}
-                  isOwner={isOwner}
                 />
               ) : (
                 <RecipeCardHorizontal
