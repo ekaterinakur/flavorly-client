@@ -10,7 +10,7 @@ export const userFollowers = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-     return handleThunkError(error, { rejectWithValue });
+      return handleThunkError(error, { rejectWithValue });
     }
   }
 );
