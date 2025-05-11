@@ -38,7 +38,7 @@ export const fetchPopularRecipes = createAsyncThunk(
 );
 
 export const createRecipe = createAsyncThunk(
-  'recipes/create',
+  'recipes/createRecipe',
   async (data, thunkAPI) => {
     const formData = new FormData();
 
@@ -67,7 +67,7 @@ export const createRecipe = createAsyncThunk(
 );
 
 export const deleteRecipe = createAsyncThunk(
-  'recipes/delete',
+  'recipes/deleteRecipe',
   async (id, thunkAPI) => {
     try {
       await axios.delete(`/recipes/${id}`);

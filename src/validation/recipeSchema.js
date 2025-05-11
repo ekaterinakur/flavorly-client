@@ -16,11 +16,16 @@ export const recipeSchema = Yup.object().shape({
       'Image must be less than 2MB',
       (file) => file && file.size <= MAX_FILE_SIZE
     ),
-  title: Yup.string().required('Title is required'),
+  title: Yup.string()
+    .min(3, 'Title must be at least 3 characters')
+    .max(50, 'Title must be at most 50 characters')
+    .required('Title is required'),
   description: Yup.string()
+    .min(10, 'Description must be at least 10 characters')
     .max(200, 'Description must be at most 200 characters')
     .nullable(),
   instructions: Yup.string()
+    .min(10, 'Instructions must be at least 10 characters')
     .max(200, 'Instructions must be at most 200 characters')
     .nullable(),
   time: Yup.string().required('Time is required'),

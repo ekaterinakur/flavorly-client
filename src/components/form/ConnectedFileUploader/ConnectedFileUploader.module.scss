@@ -20,7 +20,7 @@ $uploader-width: 100%;
   transition: border-color 0.3s;
 
   &:hover {
-    border-color: lighten($color: $silver, $amount: 2);
+    border-color: rgb($silver, 50%);
   }
 
   @media screen and (min-width: 768px) {

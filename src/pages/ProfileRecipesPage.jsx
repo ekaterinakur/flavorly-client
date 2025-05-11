@@ -13,7 +13,7 @@ import {
 import { setUserRecipesPage } from '../redux/slices/userRecipesSlice.js';
 import { DEFAULT_PAGE_LIMIT } from '../utils/constants.js';
 import { RecipeList } from '../components/RecipeList/RecipeList.jsx';
-import { fetchUserRecipes } from '../api/recipes.js';
+import { fetchUserRecipes, deleteRecipe } from '../api/recipes.js';
 import { ListPagination } from '../components/ListPagination/ListPagination.jsx';
 import Loader from '../components/Loader/Loader.jsx';
 import EmptyState from '../components/EmptyState/EmptyState.jsx';

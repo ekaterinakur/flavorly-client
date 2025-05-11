@@ -40,9 +40,11 @@ const userRecipesSlice = createSlice({
       })
 
       .addCase(deleteRecipe.fulfilled, (state, action) => {
-        state.items = state.items.filter((r) => r.id === action.payload);
-        if (!state.items.length) {
-          state.page = state.page - 1;
+        state.items = state.items.filter((r) => r.id !== action.payload);
+        state.total = Math.max(0, state.total - 1);
+      
+        if (state.items.length === 0 && state.page > 1) {
+          state.page -= 1;
         }
       })
 
