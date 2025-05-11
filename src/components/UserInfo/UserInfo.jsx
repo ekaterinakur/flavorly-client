@@ -60,7 +60,11 @@ const UserInfo = ({ user, isHomePage }) => {
       <Button onClick={handleUserModalClick} className="user-info-btn">
         <div className="user-avatar-wrapper">
           {user.avatar ? (
-            <img src={user.avatar || training_img} className="user-avatar" alt="user-image"></img>
+            <img
+              src={user.avatar || training_img}
+              className="user-avatar"
+              alt="user-image"
+            ></img>
           ) : (
             user.name?.[0]
           )}

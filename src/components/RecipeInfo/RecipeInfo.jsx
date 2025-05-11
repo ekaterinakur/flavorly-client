@@ -8,7 +8,8 @@ import { useFavoriteRecipe } from '../../hooks/useFavoriteRecipe';
 
 export function RecipeInfo({ recipe }) {
   const toggleFavorite = useFavoriteRecipe({
-    id: recipe.id, isFavorite: recipe.isFavorite
+    id: recipe.id,
+    isFavorite: recipe.isFavorite,
   });
 
   return (

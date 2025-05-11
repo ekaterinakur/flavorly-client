@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addToFavorites, fetchFavoriteRecipes, removeFromFavorites } from '../../api/recipes';
+import {
+  addToFavorites,
+  fetchFavoriteRecipes,
+  removeFromFavorites,
+} from '../../api/recipes';
 
 const initialState = {
   items: [],
@@ -37,7 +41,7 @@ const favoriteRecipesSlice = createSlice({
       .addCase(removeFromFavorites.fulfilled, (state, action) => {
         state.items = state.items.filter((r) => r.id !== action.payload);
         state.total = Math.max(0, state.total - 1);
-      
+
         if (state.items.length === 0 && state.page > 1) {
           state.page -= 1;
         }

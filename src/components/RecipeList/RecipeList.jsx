@@ -21,9 +21,7 @@ export function RecipeList({
           {items.map((recipe, idx) => (
             <li key={idx}>
               {cardType === 'portrait' ? (
-                <RecipeCard
-                  recipe={recipe}
-                />
+                <RecipeCard recipe={recipe} />
               ) : (
                 <RecipeCardHorizontal
                   recipe={recipe}

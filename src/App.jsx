@@ -34,7 +34,7 @@ export default function App() {
 
           <Route path="/profile" element={<ProfilePage />}>
             {/* For the first time - redirect */}
-            <Route index element={<Navigate to="my-recipes" replace />} /> 
+            <Route index element={<Navigate to="my-recipes" replace />} />
             <Route path="my-recipes" element={<ProfileRecipesPage />} />
             <Route path="my-favorites" element={<ProfileFavoritesPage />} />
             <Route path="my-followers" element={<ProfileFollowersPage />} />

@@ -2,7 +2,7 @@
 
 .card {
   position: relative;
-  height: 369px;
+  height: 250px;
   border-radius: 24px;
   overflow: hidden;
   cursor: pointer;
@@ -10,6 +10,9 @@
   background-color: $primary-black;
   &:hover {
     transform: translateY(-2px);
+  }
+  @media screen and (min-width: 768px) {
+    height: 369px;
   }
 }
 
