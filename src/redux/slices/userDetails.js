@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { userDetails } from '../../api/userDetails';
+import {
+  createRecipe,
+  deleteRecipe,
+  addToFavorites,
+  removeFromFavorites,
+} from '../../api/recipes';
 
 const initialState = {
   user: null,
@@ -24,6 +30,22 @@ const userDetailsSlice = createSlice({
       .addCase(userDetails.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+      })
+
+      .addCase(createRecipe.fulfilled, (state) => {
+        state.user.addedRecipes += 1;
+      })
+
+      .addCase(deleteRecipe.fulfilled, (state) => {
+        state.user.addedRecipes -= 1;
+      })
+
+      .addCase(addToFavorites.fulfilled, (state) => {
+        state.user.favoriteRecipes += 1;
+      })
+
+      .addCase(removeFromFavorites.fulfilled, (state) => {
+        state.user.favoriteRecipes -= 1;
       });
   },
 });
