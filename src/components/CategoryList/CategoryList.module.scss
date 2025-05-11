@@ -48,5 +48,10 @@
   width: 100%;
   min-height: 250px;
   height: 100%;
+  cursor: pointer;
+
+  &:hover {
+      transform: translateY(-2px);
+    }
 
 }
