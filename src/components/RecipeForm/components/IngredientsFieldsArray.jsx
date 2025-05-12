@@ -10,12 +10,18 @@ import ConnectedInput from '../../form/ConnectedInput/ConnectedInput';
 import IngredientList from '../../IngredientList/IngredientList';
 
 import styles from '../RecipeForm.module.scss';
+import FieldError from '../../form/FieldError/FieldError';
 
 const IngredientsFieldsArray = ({ name }) => {
   const dispatch = useDispatch();
   const ingredients = useSelector(selectIngredients);
 
-  const { control, watch, setValue } = useFormContext();
+  const {
+    control,
+    formState: { errors },
+    watch,
+    setValue,
+  } = useFormContext();
 
   const { append, remove } = useFieldArray({
     control,
@@ -52,13 +58,18 @@ const IngredientsFieldsArray = ({ name }) => {
 
   return (
     <div>
-      <div className={styles.ingredientRow}>
-        <ConnectedIngredientSelect name={'currentIngredient.id'} />
-        <ConnectedInput
-          name={'currentIngredient.measure'}
-          placeholder="Enter quantity"
-          rules={{ required: 'Measure is required' }}
-        />
+      <div className={styles.ingredientFields}>
+        <div className={styles.ingredientRow}>
+          <ConnectedIngredientSelect name={'currentIngredient.id'} />
+          <ConnectedInput
+            name={'currentIngredient.measure'}
+            placeholder="Enter quantity"
+            rules={{ required: 'Measure is required' }}
+          />
+        </div>
+        {errors['ingredients'] && (
+          <FieldError message={errors['ingredients'].message} />
+        )}
       </div>
 
       <Button

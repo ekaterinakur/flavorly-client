@@ -9,13 +9,11 @@ const HomePage = () => {
   const selectedCategory = useSelector(selectRecipesCategory);
 
   return (
-    <>
-      <div className="main-container">
-        <HeroSection />
-        {selectedCategory ? <Recipes /> : <CategoryList />}
-        <Testimonials />
-      </div>
-    </>
+    <div className="main-container">
+      <HeroSection />
+      {selectedCategory ? <Recipes /> : <CategoryList />}
+      <Testimonials />
+    </div>
   );
 };
 

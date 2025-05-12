@@ -13,6 +13,7 @@ const ConnectedSelect = ({
   defaultValue,
   placeholder = 'Select',
   rules,
+  onChange,
 }) => {
   const { control } = useFormContext();
   const [isOpen, setIsOpen] = useState(false);
@@ -29,10 +30,12 @@ const ConnectedSelect = ({
             options={options}
             placeholder={placeholder}
             isSearchable
+            isClearable
             onMenuOpen={() => setIsOpen(true)}
             onMenuClose={() => setIsOpen(false)}
             onChange={(selected) => {
               field.onChange(selected?.value);
+              onChange && onChange(selected?.value);
             }}
             onBlur={field.onBlur}
             classNames={{
@@ -42,7 +45,11 @@ const ConnectedSelect = ({
                 }),
               placeholder: () => styles.selectPlaceholder,
               menu: () => styles.selectMenu,
-              option: () => styles.selectMenuListItem,
+              option: (state) =>
+              classNames(styles.selectMenuListItem, {
+                [styles.selectedOption]: state.isSelected,
+                [styles.focusedOption]: state.isFocused,
+              }),
             }}
             components={{
               DropdownIndicator: () => (

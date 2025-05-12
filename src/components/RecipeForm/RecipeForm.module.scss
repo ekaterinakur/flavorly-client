@@ -90,16 +90,22 @@
   }
 }
 
+.ingredientFields {
+  margin-bottom: 2rem;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 2.5rem;
+  }
+}
+
 .ingredientRow {
   display: flex;
   flex-direction: column;
   align-items: baseline;
   gap: 1.25rem;
-  margin-bottom: 2rem;
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
-    margin-bottom: 2.5rem;
   }
 }
 

@@ -46,9 +46,12 @@ const RecipeForm = ({ onSuccess }) => {
   });
 
   const onSubmit = async (data) => {
+    if (isLoading) return;
+
     const resultAction = await dispatch(createRecipe(data));
 
     if (createRecipe.fulfilled.match(resultAction)) {
+      form.reset();
       toast.success('The recipe created successfully!');
       onSuccess();
     } else {
@@ -136,7 +139,11 @@ const RecipeForm = ({ onSuccess }) => {
               type="submit"
               variant="filled"
               size="medium"
-              disabled={isLoading}
+              disabled={
+                isLoading ||
+                form.formState.isSubmitting ||
+                form.formState.isSubmitted
+              }
             >
               Publish
             </Button>

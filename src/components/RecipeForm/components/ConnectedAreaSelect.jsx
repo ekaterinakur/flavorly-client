@@ -9,7 +9,7 @@ import {
 import Loader from '../../Loader/Loader';
 import ConnectedSelect from '../../form/ConnectedSelect/ConnectedSelect';
 
-const ConnectedAreaSelect = ({ name }) => {
+const ConnectedAreaSelect = ({ name, placeholder, onChange }) => {
   const dispatch = useDispatch();
 
   const isLoading = useSelector(selectIsLoading);
@@ -28,8 +28,8 @@ const ConnectedAreaSelect = ({ name }) => {
       name={name}
       options={options}
       defaultValue="Unknown"
-      placeholder="Select an area"
-      rules={{ required: 'Area is required' }}
+      placeholder={placeholder || "Select an area"}
+      onChange={onChange}
     />
   );
 };

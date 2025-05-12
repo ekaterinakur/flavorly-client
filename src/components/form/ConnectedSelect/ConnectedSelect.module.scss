@@ -61,6 +61,15 @@
   padding: 0.5rem 1.125rem !important;
 }
 
+.selectedOption {
+  background-color: rgb($silver, 50%) !important;
+  color: $primary-black !important;
+}
+
+.focusedOption {
+  background-color: rgb($silver, 20%) !important;
+}
+
 .arrow {
   display: flex;
   align-items: center;

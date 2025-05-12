@@ -41,8 +41,6 @@ export function Recipes() {
     );
   }, [dispatch, filters]);
 
-  // useEffect(() => () => dispatch(clearFilters()));
-
   const handlePageChange = (page) => {
     dispatch(setRecipesPage(page));
 

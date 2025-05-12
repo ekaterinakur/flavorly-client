@@ -7,7 +7,7 @@ import {
 import Loader from '../../Loader/Loader';
 import ConnectedSelect from '../../form/ConnectedSelect/ConnectedSelect';
 
-const ConnectedIngredientSelect = ({ name }) => {
+const ConnectedIngredientSelect = ({ name, placeholder, onChange }) => {
   const isLoading = useSelector(selectIsLoading);
   const options = useSelector(selectIngredientOptions);
 
@@ -19,8 +19,8 @@ const ConnectedIngredientSelect = ({ name }) => {
     <ConnectedSelect
       name={name}
       options={options}
-      placeholder="Select the ingredient"
-      rules={{ required: 'Ingredient is required' }}
+      placeholder={placeholder || "Select the ingredient"}
+      onChange={onChange}
     />
   );
 };

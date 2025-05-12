@@ -9,7 +9,7 @@ import {
 import Loader from '../../Loader/Loader';
 import ConnectedSelect from '../../form/ConnectedSelect/ConnectedSelect';
 
-const ConnectedCategorySelect = ({ name }) => {
+const ConnectedCategorySelect = ({ name, onChange }) => {
   const dispatch = useDispatch();
 
   const isLoading = useSelector(selectIsLoading);
@@ -28,7 +28,7 @@ const ConnectedCategorySelect = ({ name }) => {
       name={name}
       options={options}
       placeholder="Select a category"
-      rules={{ required: 'Category is required' }}
+      onChange={onChange}
     />
   );
 };

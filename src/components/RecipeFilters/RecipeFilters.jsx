@@ -1,46 +1,27 @@
-import Selector from '../Selector/Selector';
-import './RecipeFilters.scss';
-import {
-  selectIngredients,
-  selectIsLoading as selectIngredientsLoading,
-} from '../../redux/selectors/ingredientsSelectors.js';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectAreas,
-  selectIsLoading as selectAreasLoading,
-} from '../../redux/selectors/areasSelectors.js';
-import { fetchIngredients } from '../../api/ingredients.js';
-import { fetchAreas } from '../../api/areas.js';
 import { useEffect } from 'react';
+import { FormProvider, useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { fetchIngredients } from '../../api/ingredients.js';
 import {
   setSelectedArea,
   setSelectedIngredients,
 } from '../../redux/slices/recipesSlice.js';
-import { selectRecipesFilters } from '../../redux/selectors/recipesSelectors.js';
+import ConnectedIngredientSelect from '../RecipeForm/components/ConnectedIngredientSelect.jsx';
+import ConnectedAreaSelect from '../RecipeForm/components/ConnectedAreaSelect.jsx';
+
+import './RecipeFilters.scss';
 
 const RecipeFilter = () => {
   const dispatch = useDispatch();
 
-  const ingredientItems = useSelector(selectIngredients);
-  const ingredientsLoading = useSelector(selectIngredientsLoading);
-  const areasItems = useSelector(selectAreas);
-  const areasLoading = useSelector(selectAreasLoading);
-  const filters = useSelector(selectRecipesFilters);
+  const form = useForm();
 
   useEffect(() => {
-    if (ingredientItems.length === 0) {
-      dispatch(fetchIngredients());
-    }
-  }, [ingredientItems, dispatch]);
+    dispatch(fetchIngredients());
+  }, [dispatch]);
 
-  useEffect(() => {
-    if (areasItems.length === 0) {
-      dispatch(fetchAreas());
-    }
-  }, [areasItems, dispatch]);
-
-  const handleSelectIngredients = (name) => {
-    dispatch(setSelectedIngredients(name));
+  const handleSelectIngredients = (id) => {
+    dispatch(setSelectedIngredients(id));
   };
 
   const handleSelectArea = (name) => {
@@ -48,25 +29,20 @@ const RecipeFilter = () => {
   };
 
   return (
-    <div className="selectors-wrapper">
-      <Selector
-        label="Ingredients"
-        listSelector={ingredientItems}
-        selectedSelector={filters.ingredient}
-        loading={ingredientsLoading}
-        onSelect={handleSelectIngredients}
-        field="id"
-      />
-
-      <Selector
-        label="Areas"
-        listSelector={areasItems}
-        selectedSelector={filters.area}
-        loading={areasLoading}
-        onSelect={handleSelectArea}
-        field="name"
-      />
-    </div>
+    <FormProvider {...form}>
+      <div className="selectors-wrapper">
+        <ConnectedAreaSelect
+          name="area"
+          placeholder="Area"
+          onChange={handleSelectArea}
+        />
+        <ConnectedIngredientSelect
+          name="ingredient"
+          placeholder="Ingredient"
+          onChange={handleSelectIngredients}
+        />
+      </div>
+    </FormProvider>
   );
 };
 
