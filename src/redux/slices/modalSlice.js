@@ -4,6 +4,7 @@ const initialState = {
   isSignUpOpen: false,
   isSignInOpen: false,
   isLogoutOpen: false,
+  isAcceptionOpen: false,
 };
 
 const modalSlice = createSlice({
@@ -16,6 +17,14 @@ const modalSlice = createSlice({
     },
     closeSignUpModal(state) {
       state.isSignUpOpen = false;
+    },
+
+    // Acception Modal Actions
+    openAcceptionModal(state) {
+      state.isAcceptionOpen = true;
+    },
+    closeAcceptionModal(state) {
+      state.isAcceptionOpen = false;
     },
 
     // Sign In Modal Actions
@@ -43,5 +52,7 @@ export const {
   closeSignInModal,
   openLogoutModal,
   closeLogoutModal,
+  openAcceptionModal,
+  closeAcceptionModal,
 } = modalSlice.actions;
 export const modalReducer = modalSlice.reducer;

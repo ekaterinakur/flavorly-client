@@ -5,7 +5,6 @@ import { useState, useEffect, useRef } from 'react';
 import './UserInfo.scss';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon.jsx';
-import training_img from '../../assets/vika_must_be_deleted.png';
 import { logoutUser } from '../../api/logout.js';
 import { selectIsLogoutOpen } from '../../redux/selectors/modalSelectors.js';
 import LogoutModal from '../LogoutModal/LogoutModal.jsx';
@@ -18,6 +17,7 @@ import { clientLogout } from '../../redux/slices/authSlice.js';
 
 const UserInfo = ({ user, isHomePage }) => {
   const isLogoutOpen = useSelector(selectIsLogoutOpen);
+  const [avatarLoadFailed, setAvatarLoadFailed] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -55,18 +55,25 @@ const UserInfo = ({ user, isHomePage }) => {
     };
   }, [isOpenUserModal]);
 
+  useEffect(() => {
+    setAvatarLoadFailed(false);
+  }, [user.avatar]);
+
   return (
     <div className="user-info" ref={userMenuRef}>
       <Button onClick={handleUserModalClick} className="user-info-btn">
         <div className="user-avatar-wrapper">
-          {user.avatar ? (
+          {user.avatar && !avatarLoadFailed ? (
             <img
               src={user.avatar}
               className="user-avatar"
               alt="user-image"
-            ></img>
+              onError={() => {
+                setAvatarLoadFailed(true);
+              }}
+            />
           ) : (
-            user.name?.[0]
+            user.name?.trim()?.[0]?.toUpperCase()
           )}
         </div>
         <span className="user-name">{user.name.toUpperCase()}</span>

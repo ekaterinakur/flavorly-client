@@ -21,6 +21,7 @@ A full-featured recipe-sharing platform built with React, Redux Toolkit, React R
 ## Tech Stack
 
 - **Frontend:**
+
   - React
   - Redux Toolkit
   - React Router 6
@@ -45,22 +46,26 @@ cd recipe-app
 ```
 
 2. **Install dependencies:**
+
 ```bash
 npm ci
 ```
 
 3. **Set environment variables:**
-Create a .env file and add:
-```VITE_API_URL=http://localhost:3000/api```
+   Create a .env file and add:
+   `VITE_API_URL=http://localhost:3000/api`
 
 4. **Start the development server:**
+
 ```bash
 npm run dev
 ```
+
 ---
 
 ## Scripts
-```npm run dev```	Start Vite dev server   
-```npm run build```	Build for production   
-```npm run lint```	Run ESLint   
-```npm run preview```	Preview production build   
+
+`npm run dev` Start Vite dev server  
+`npm run build` Build for production  
+`npm run lint` Run ESLint  
+`npm run preview` Preview production build
