@@ -7,6 +7,8 @@ import {
   removeFromFavorites,
 } from '../../api/recipes';
 import { updateUserAvatar } from '../../api/avatar';
+import { subscribeToUser } from '../../api/subscribe';
+import { unsubscribeFromUser } from '../../api/unsubscribe';
 
 const initialState = {
   user: null,
@@ -64,6 +66,16 @@ const userDetailsSlice = createSlice({
       .addCase(removeFromFavorites.fulfilled, (state) => {
         if (state.user) {
           state.user.favoriteRecipes -= 1;
+        }
+      })
+      .addCase(subscribeToUser.fulfilled, (state) => {
+        if (state.user) {
+          state.user.followers += 1;
+        }
+      })
+      .addCase(unsubscribeFromUser.fulfilled, (state) => {
+        if (state.user) {
+          state.user.followers -= 1;
         }
       });
   },

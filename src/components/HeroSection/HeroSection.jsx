@@ -17,11 +17,7 @@ const HeroSection = () => {
     <section className="hero-section section">
       <div className="container">
         <div className="hero-content">
-          <h1 className="hero-title">
-            <div className="glitch-wrapper">
-              <div className="glitch">Improve Your Culinary Talents </div>
-            </div>
-          </h1>
+          <h1 className="hero-title">Improve Your Culinary Talents</h1>
           <h2 className="hero-subtitle">
             Amazing recipes for beginners in the world of cooking, enveloping
             you in the aromas and tastes of various cuisines.
