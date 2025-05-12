@@ -8,7 +8,9 @@ import './Swiper.scss';
 const Swiper = ({ slides }) => {
   return (
     <SwiperJs
-      pagination={true}
+      pagination={{
+        clickable: true,
+      }}
       loop={true}
       autoplay={{
         delay: 2500,

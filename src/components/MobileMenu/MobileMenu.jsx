@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './MobileMenu.scss';
 
 const MobileMenu = ({ onClose }) => {
+  useEffect(() => {
+    document.body.classList.add('menu-open');
+    return () => {
+      document.body.classList.remove('menu-open');
+    };
+  }, []);
+
   return (
     <div className="container modal-menu">
       <div className="container modal-menu__content">
