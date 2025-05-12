@@ -1,5 +1,10 @@
 @use '../../styles/variables' as *;
 
+// Add body class when menu is open
+body.menu-open {
+  overflow: hidden;
+}
+
 .modal-menu {
   display: none;
 
@@ -15,6 +20,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: auto; // Allow scrolling within menu if needed
   }
 
   .modal-menu__header {
