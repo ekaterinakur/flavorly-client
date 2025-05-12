@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar } from '../Avatar/Avatar.jsx';
 import { IconButton } from '../IconButton/IconButton.jsx';
@@ -12,7 +12,7 @@ import { handleFollow, handleUnfollow } from '../../utils/followHandler.js';
 import Loader from '../Loader/Loader.jsx';
 import { selectIsUploadingAvatar } from '../../redux/selectors/userDetailsSelectors.js';
 
-function UserProfileCard({ user, isOwner, isFollowing }) {
+function UserProfileCard({ user, isOwner }) {
   const fileInputRef = useRef(null);
   const dispatch = useDispatch();
   // console.dir(user);
@@ -122,7 +122,7 @@ function UserProfileCard({ user, isOwner, isFollowing }) {
         >
           Logout
         </Button>
-      ) : isFollowing ? (
+      ) : user?.isFollowing ? (
         <Button
           type="button"
           size="large"

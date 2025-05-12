@@ -1,10 +1,7 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
-import { fetchUserRecipes } from '../../api/recipes';
-import { selectIsFollowing } from '../../redux/selectors/subscriptionsSelectors';
 import { handleFollow, handleUnfollow } from '../../utils/followHandler';
 import { IconButton } from '../IconButton/IconButton';
 import Icon from '../Icon/Icon';
@@ -13,7 +10,7 @@ import { Avatar } from '../Avatar/Avatar';
 
 import style from './UserCardHorizontal.module.scss';
 
-function UserCardHorizontal({ user, isOwner }) {
+function UserCardHorizontal({ user, isFollowings, userId }) {
   const isMdScreen = useMediaQuery({ query: '(min-width: 768px)' });
   const isLgScreen = useMediaQuery({ query: '(min-width: 1440px)' });
 
@@ -22,20 +19,13 @@ function UserCardHorizontal({ user, isOwner }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const recipes = user.recipesArray; // Add real key
-  const isFollowing = useSelector(selectIsFollowing(user.id));
+  const recipes = user.recipesArray;
 
   // Responsive render
   const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
   const visibleCount = isDesktop ? 4 : 3;
   const displayedRecipes = recipes?.slice(0, visibleCount);
   const displayedImages = images?.slice(0, visibleCount);
-
-  useEffect(() => {
-    if (user.id) {
-      dispatch(fetchUserRecipes(user.id));
-    }
-  }, [dispatch, user.id]);
 
   const handleOpen = () => {
     navigate(`/profile/${user.id}`);
@@ -51,24 +41,30 @@ function UserCardHorizontal({ user, isOwner }) {
             Own recipes: {user?.addedRecipesCounter}
           </p>
 
-          {isFollowing ? (
-            <Button
-              className={style.button}
-              variant="outline"
-              size="medium"
-              onClick={() => handleUnfollow(dispatch, user.id, isOwner)}
-            >
-              Unfollow
-            </Button>
-          ) : (
-            <Button
-              className={style.button}
-              variant="outline"
-              size="medium"
-              onClick={() => handleFollow(dispatch, user.id, isOwner)}
-            >
-              Follow
-            </Button>
+          {userId !== user.id && (
+            <>
+              {isFollowings || user?.isFollowing ? (
+                <Button
+                  className={style.button}
+                  variant="outline"
+                  size="medium"
+                  onClick={() =>
+                    handleUnfollow(dispatch, user.id, isFollowings)
+                  }
+                >
+                  Unfollow
+                </Button>
+              ) : (
+                <Button
+                  className={style.button}
+                  variant="outline"
+                  size="medium"
+                  onClick={() => handleFollow(dispatch, user.id, isFollowings)}
+                >
+                  Follow
+                </Button>
+              )}
+            </>
           )}
         </div>
       </div>
@@ -76,7 +72,7 @@ function UserCardHorizontal({ user, isOwner }) {
       {isMdScreen && (
         <ul className={style.imageList}>
           {recipes?.length === 0
-            ? displayedImages.map((item) => (
+            ? displayedImages.map(() => (
                 <li key={nanoid()} className={style.emptyItem}></li>
               ))
             : displayedRecipes.map((recipe) => (

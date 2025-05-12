@@ -1,12 +1,9 @@
 import { useEffect } from 'react';
 import UsersList from '../components/UsersList/UsersList';
 import { useDispatch, useSelector } from 'react-redux';
-import { userFollowers } from '../api/followers';
-import { userDetails } from '../api/userDetails';
 import { selectIsRefreshing } from '../redux/selectors/authSelectors';
 import { useParams } from 'react-router-dom';
 import EmptyState from '../components/EmptyState/EmptyState';
-import { currentUser } from '../api/current';
 import {
   selectFollowing,
   selectSubscriptions,
@@ -34,25 +31,15 @@ export default function ProfileFollowingPage() {
   const error = useSelector(selectSubscriptions).error;
 
   useEffect(() => {
-    // console.log(current);
-    setSubscriptionsPage(1);
-    if (!current) {
-      dispatch(currentUser());
-    }
-  }, [dispatch, current]);
-
-  useEffect(() => {
     const profileId = paramId || current?.id;
     if (!profileId || isRefreshing) return;
-
-    dispatch(userDetails(profileId));
-    dispatch(userFollowers(profileId));
+    
     dispatch(userFollowing(profileId));
   }, [dispatch, paramId, current?.id, isRefreshing]);
 
   // Check for error, show toast with message
   useEffect(() => {
-    if (error) {
+    if (error?.message) {
       toast.error(error.message);
     }
   }, [error]);
@@ -71,7 +58,7 @@ export default function ProfileFollowingPage() {
       {!loading && data?.total === 0 ? (
         <EmptyState message="Your account currently has no subscriptions to other users. Learn more about our users and select those whose content interests you." />
       ) : (
-        <UsersList data={followings} isOwner />
+        <UsersList data={followings} isFollowings />
       )}
       {totalPages >= 1 && (
         <ListPagination

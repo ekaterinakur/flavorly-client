@@ -11,15 +11,13 @@ import TabsList from '../../components/TabsList/TabsList.jsx';
 import UserProfileCard from '../../components/UserProfileCard/UserProfileCard.jsx';
 
 import styles from './ProfilePage.module.scss';
-import { selectIsFollowing } from '../../redux/selectors/subscriptionsSelectors.js';
 
 export default function ProfilePage() {
   const { id: userId } = useParams();
   const dispatch = useDispatch();
   const currentUser = useSelector(selectUser);
   const profileUser = useSelector(selectUserDetails);
-  let isOwner = !userId || userId === currentUser?.id; // якщо id params != юзеру в Redux - це не оунер
-  const isFollowing = useSelector(selectIsFollowing(profileUser?.id));
+  let isOwner = !userId || userId === currentUser?.id;
 
   useEffect(() => {
     const idToFetch = userId || currentUser?.id;
@@ -42,7 +40,6 @@ export default function ProfilePage() {
             <UserProfileCard
               user={profileUser}
               isOwner={isOwner}
-              isFollowing={isFollowing}
             />
             <TabsList isOwner={isOwner} />
           </div>

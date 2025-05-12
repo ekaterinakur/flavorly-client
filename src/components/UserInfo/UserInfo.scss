@@ -64,13 +64,16 @@
     border: 1px solid $white-color;
     border-radius: 15px;
     color: $white-color;
-    padding: 16px;
+    padding: 0.875rem;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
     width: auto;
     margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .user-menu-item {

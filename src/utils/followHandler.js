@@ -1,7 +1,6 @@
 import { subscribeToUser } from '../api/subscribe';
 import { unsubscribeFromUser } from '../api/unsubscribe';
-import { userFollowers } from '../api/followers';
-import { userFollowing } from '../api/following';
+import { userFollowers } from '../api/followers'; 
 import { userDetails } from '../api/userDetails';
 import toast from 'react-hot-toast';
 
@@ -11,13 +10,11 @@ export const handleFollow = async (dispatch, id, isOwner) => {
     await dispatch(subscribeToUser(id)).unwrap();
     if (!isOwner) {
       dispatch(userDetails(id));
-      dispatch(userFollowing());
       dispatch(userFollowers(id));
       toast.success(`You follow user now`);
     }
   } catch (err) {
-    // console.error(err);
-    toast.error(err);
+    toast.error("Failed to follow user");
   }
 };
 
@@ -27,12 +24,10 @@ export const handleUnfollow = async (dispatch, id, isOwner) => {
 
     if (!isOwner) {
       dispatch(userDetails(id));
-      dispatch(userFollowing());
       dispatch(userFollowers(id));
       toast.success('Unfollowed from user');
     }
   } catch (err) {
-    // console.error(err);
-    toast.error(err);
+    toast.error("Failed to unfollow user");
   }
 };
