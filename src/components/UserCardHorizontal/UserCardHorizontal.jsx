@@ -1,5 +1,6 @@
 import style from './UserCardHorizontal.module.scss';
 import { useNavigate } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 import { IconButton } from '../IconButton/IconButton';
 import Icon from '../Icon/Icon';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,8 +14,11 @@ import { nanoid } from '@reduxjs/toolkit';
 import { useMediaQuery } from 'react-responsive';
 
 function UserCardHorizontal({ user }) {
-  // console.log(user);
-  const images = [1, 2, 3, 4]; // Empty State images
+  const isMdScreen = useMediaQuery({ query: '(min-width: 768px)' });
+  const isLgScreen = useMediaQuery({ query: '(min-width: 1440px)' });
+
+  const images = isLgScreen ? [1, 2, 3, 4] : [1, 2, 3];
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -34,7 +38,6 @@ function UserCardHorizontal({ user }) {
   }, [dispatch, user.id]);
 
   const handleOpen = () => {
-    console.log('Open user profile button clicked');
     navigate(`/profile/${user.id}`);
   };
 
@@ -86,7 +89,7 @@ function UserCardHorizontal({ user }) {
             ))}
       </ul>
 
-      <IconButton onClick={handleOpen}>
+      <IconButton className={style.btnOpen} onClick={handleOpen}>
         <Icon name="arrow-up-right" size={18} />
       </IconButton>
     </div>
