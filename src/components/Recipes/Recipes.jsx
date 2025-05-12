@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import BackButton from '../BackButton/BackButton';
 import MainTitle from '../MainTitle/MainTitle';
@@ -21,6 +21,7 @@ import Loader from '../Loader/Loader';
 
 export function Recipes() {
   const dispatch = useDispatch();
+  const recipesRef = useRef(null);
 
   const recipes = useSelector(selectRecipes);
   const loading = useSelector(selectRecipesLoading);
@@ -53,6 +54,11 @@ export function Recipes() {
         limit: DEFAULT_MAIN_PAGE_LIMIT,
       })
     );
+
+    // Scroll to top when changing pages
+    if (recipesRef.current) {
+      recipesRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleBackClick = () => {
@@ -60,7 +66,7 @@ export function Recipes() {
   };
 
   return (
-    <section className="section">
+    <section className="section" ref={recipesRef}>
       <div className="container">
         <div className={styles.header}>
           <BackButton
