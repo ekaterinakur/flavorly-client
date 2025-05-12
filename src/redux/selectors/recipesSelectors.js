@@ -1,5 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { DEFAULT_PAGE_LIMIT } from '../../utils/constants';
+import { DEFAULT_MAIN_PAGE_LIMIT } from '../../utils/constants';
 
 export const selectRecipes = (state) => state.recipes.items;
 export const selectRecipesCategory = (state) => state.recipes.category;
@@ -18,7 +19,7 @@ export const selectRecipesPagination = createSelector(
   (page, total) => {
     return {
       page: page || 1,
-      totalPages: Math.ceil(total / DEFAULT_PAGE_LIMIT),
+      totalPages: Math.ceil(total / DEFAULT_MAIN_PAGE_LIMIT),
     };
   }
 );
