@@ -10,6 +10,7 @@ import { selectIsFollowing } from '../../redux/selectors/subscriptionsSelectors'
 import { handleFollow, handleUnfollow } from '../../utils/followHandler';
 import { Avatar } from '../Avatar/Avatar';
 import { nanoid } from '@reduxjs/toolkit';
+import { useMediaQuery } from 'react-responsive';
 
 function UserCardHorizontal({ user }) {
   // console.log(user);
@@ -19,6 +20,12 @@ function UserCardHorizontal({ user }) {
 
   const recipes = user.recipesArray; // Add real key
   const isFollowing = useSelector(selectIsFollowing(user.id));
+
+  // Responsive render
+  const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
+  const visibleCount = isDesktop ? 4 : 3;
+  const displayedRecipes = recipes?.slice(0, visibleCount);
+  const displayedImages = images?.slice(0, visibleCount);
 
   useEffect(() => {
     if (user.id) {
@@ -65,10 +72,10 @@ function UserCardHorizontal({ user }) {
 
       <ul className={style.imageList}>
         {recipes?.length === 0
-          ? images?.map((item) => (
+          ? displayedImages.map((item) => (
               <li key={nanoid()} className={style.emptyItem}></li>
             ))
-          : recipes?.map((recipe) => (
+          : displayedRecipes.map((recipe) => (
               <li key={nanoid()} className={style.imageItem}>
                 <img
                   src={recipe.thumb}

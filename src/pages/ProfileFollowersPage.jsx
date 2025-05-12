@@ -7,12 +7,16 @@ import { selectIsRefreshing } from '../redux/selectors/authSelectors';
 import { useParams } from 'react-router-dom';
 import EmptyState from '../components/EmptyState/EmptyState';
 import { currentUser } from '../api/current';
-import { selectFollowers } from '../redux/selectors/subscriptionsSelectors';
+import {
+  selectFollowers,
+  selectSubscriptions,
+} from '../redux/selectors/subscriptionsSelectors';
 import { userFollowing } from '../api/following';
 import toast from 'react-hot-toast';
 import { selectUserDetails } from '../redux/selectors/userDetailsSelectors';
 import { setSubscriptionsPage } from '../redux/slices/subscriptionsSlice';
 import { ListPagination } from '../components/ListPagination/ListPagination';
+import Loader from '../components/Loader/Loader';
 
 export default function ProfileFollowersPage() {
   const { id: paramId } = useParams();
@@ -26,8 +30,8 @@ export default function ProfileFollowersPage() {
   const pageLimit = data.limit || 6;
   const totalPages = Math.ceil(total / pageLimit);
   const currentPage = data.page;
-  const loading = data.loading;
-  const error = data.error;
+  const loading = useSelector(selectSubscriptions).isLoading;
+  const error = useSelector(selectSubscriptions).error;
 
   useEffect(() => {
     // console.log(current);

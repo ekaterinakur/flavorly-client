@@ -11,6 +11,7 @@ import { updateUserAvatar } from '../../api/avatar';
 const initialState = {
   user: null,
   isLoading: false,
+  isUploadingAvatar: false,
   error: null,
 };
 
@@ -32,11 +33,16 @@ const userDetailsSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
-
+      .addCase(updateUserAvatar.pending, (state) => {
+        state.isUploadingAvatar = true;
+      })
       .addCase(updateUserAvatar.fulfilled, (state, action) => {
+        state.isUploadingAvatar = false;
         state.user.avatar = action.payload.user.avatar;
       })
-
+      .addCase(updateUserAvatar.rejected, (state) => {
+        state.isUploadingAvatar = false;
+      })
       .addCase(createRecipe.fulfilled, (state) => {
         if (state.user) {
           state.user.addedRecipes += 1;

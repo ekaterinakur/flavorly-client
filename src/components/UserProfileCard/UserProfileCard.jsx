@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Avatar } from '../Avatar/Avatar.jsx';
 import { IconButton } from '../IconButton/IconButton.jsx';
 import Icon from '../Icon/Icon.jsx';
@@ -9,11 +9,14 @@ import Button from '../Button/Button.jsx';
 import { updateUserAvatar } from '../../api/avatar.js';
 import { openLogoutModal } from '../../redux/slices/modalSlice.js';
 import { handleFollow, handleUnfollow } from '../../utils/followHandler.js';
+import Loader from '../Loader/Loader.jsx';
+import { selectIsUploadingAvatar } from '../../redux/selectors/userDetailsSelectors.js';
 
 function UserProfileCard({ user, isOwner, isFollowing }) {
   const fileInputRef = useRef(null);
   const dispatch = useDispatch();
   // console.dir(user);
+  const loadingAvatar = useSelector(selectIsUploadingAvatar);
 
   const handleClick = () => {
     fileInputRef.current.click();
@@ -44,7 +47,16 @@ function UserProfileCard({ user, isOwner, isFollowing }) {
   return (
     <aside className="sidebar">
       <div className="wrapper">
-        <Avatar size="" className="avatar" src={user?.avatar} />
+        <div className="avatar-box">
+          {loadingAvatar ? (
+            <Loader className="avatar" />
+          ) : (
+            <>
+              <Avatar size="" className="avatar" src={user?.avatar} />
+            </>
+          )}
+        </div>
+
         {isOwner && (
           <>
             <IconButton

@@ -61,7 +61,7 @@ const UserInfo = ({ user, isHomePage }) => {
         <div className="user-avatar-wrapper">
           {user.avatar ? (
             <img
-              src={user.avatar || training_img}
+              src={user.avatar}
               className="user-avatar"
               alt="user-image"
             ></img>
