@@ -1,17 +1,17 @@
-import style from './UserCardHorizontal.module.scss';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
-import { IconButton } from '../IconButton/IconButton';
-import Icon from '../Icon/Icon';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { nanoid } from '@reduxjs/toolkit';
 import { fetchUserRecipes } from '../../api/recipes';
-import Button from '../Button/Button';
 import { selectIsFollowing } from '../../redux/selectors/subscriptionsSelectors';
 import { handleFollow, handleUnfollow } from '../../utils/followHandler';
+import { IconButton } from '../IconButton/IconButton';
+import Icon from '../Icon/Icon';
+import Button from '../Button/Button';
 import { Avatar } from '../Avatar/Avatar';
-import { nanoid } from '@reduxjs/toolkit';
-import { useMediaQuery } from 'react-responsive';
+
+import style from './UserCardHorizontal.module.scss';
 
 function UserCardHorizontal({ user }) {
   const isMdScreen = useMediaQuery({ query: '(min-width: 768px)' });
@@ -73,21 +73,23 @@ function UserCardHorizontal({ user }) {
         </div>
       </div>
 
-      <ul className={style.imageList}>
-        {recipes?.length === 0
-          ? displayedImages.map((item) => (
-              <li key={nanoid()} className={style.emptyItem}></li>
-            ))
-          : displayedRecipes.map((recipe) => (
-              <li key={nanoid()} className={style.imageItem}>
-                <img
-                  src={recipe.thumb}
-                  className={style.image}
-                  alt="Recipe thumbnail"
-                />
-              </li>
-            ))}
-      </ul>
+      {isMdScreen && (
+        <ul className={style.imageList}>
+          {recipes?.length === 0
+            ? displayedImages.map((item) => (
+                <li key={nanoid()} className={style.emptyItem}></li>
+              ))
+            : displayedRecipes.map((recipe) => (
+                <li key={nanoid()} className={style.imageItem}>
+                  <img
+                    src={recipe.thumb}
+                    className={style.image}
+                    alt="Recipe thumbnail"
+                  />
+                </li>
+              ))}
+        </ul>
+      )}
 
       <IconButton className={style.btnOpen} onClick={handleOpen}>
         <Icon name="arrow-up-right" size={18} />
