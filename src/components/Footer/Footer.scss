@@ -38,13 +38,27 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 2rem;
-      height: 2rem;
+      width: 2.25rem;
+      height: 2.25rem;
       border: 1px solid $silver;
       border-radius: 50%;
       color: $primary-black;
       transition: all 0.3s;
+
+      @media screen and (min-width: 768px) {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+
+
+      &:hover,
+      &:focus {
+        background-color: $silver;
+      }
+      
     }
+
+
   }
 
   .footer-divider {

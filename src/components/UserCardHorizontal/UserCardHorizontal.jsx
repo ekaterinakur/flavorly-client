@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { fetchUserRecipes } from '../../api/recipes';
 import { selectIsFollowing } from '../../redux/selectors/subscriptionsSelectors';
+import { selectUser } from '../../redux/selectors/authSelectors'; // Renamed to avoid conflict
 import { handleFollow, handleUnfollow } from '../../utils/followHandler';
 import { IconButton } from '../IconButton/IconButton';
 import Icon from '../Icon/Icon';
@@ -24,6 +25,9 @@ function UserCardHorizontal({ user, isOwner }) {
 
   const recipes = user.recipesArray; // Add real key
   const isFollowing = useSelector(selectIsFollowing(user.id));
+  const loggedInUser = useSelector(selectUser);
+
+  const isSelf = loggedInUser && user && loggedInUser.id === user.id;
 
   // Responsive render
   const isDesktop = useMediaQuery({ query: '(min-width: 1440px)' });
@@ -38,7 +42,11 @@ function UserCardHorizontal({ user, isOwner }) {
   }, [dispatch, user.id]);
 
   const handleOpen = () => {
-    navigate(`/profile/${user.id}`);
+    if (isSelf) {
+      navigate('/profile');
+    } else {
+      navigate(`/profile/${user.id}`);
+    }
   };
 
   return (
@@ -51,25 +59,28 @@ function UserCardHorizontal({ user, isOwner }) {
             Own recipes: {user?.addedRecipesCounter}
           </p>
 
-          {isFollowing ? (
-            <Button
-              className={style.button}
-              variant="outline"
-              size="medium"
-              onClick={() => handleUnfollow(dispatch, user.id, isOwner)}
-            >
-              Unfollow
-            </Button>
-          ) : (
-            <Button
-              className={style.button}
-              variant="outline"
-              size="medium"
-              onClick={() => handleFollow(dispatch, user.id, isOwner)}
-            >
-              Follow
-            </Button>
+          {!isSelf && (
+            isFollowing ? (
+              <Button
+                className={style.button}
+                variant="outline"
+                size="medium"
+                onClick={() => handleUnfollow(dispatch, user.id, isOwner)}
+              >
+                Unfollow
+              </Button>
+            ) : (
+              <Button
+                className={style.button}
+                variant="outline"
+                size="medium"
+                onClick={() => handleFollow(dispatch, user.id, isOwner)}
+              >
+                Follow
+              </Button>
+            )
           )}
+
         </div>
       </div>
 
