@@ -89,6 +89,13 @@ const subscriptionsSlice = createSlice({
       .addCase(unsubscribeFromUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.message = action.payload.message;
+
+        state.following.items = state.following.items.filter((r) => r.id !== action.payload);
+        state.following.total = Math.max(0, state.following.total - 1);
+
+        if (state.following.items.length === 0 && state.following.page > 1) {
+          state.following.page -= 1;
+        }
       })
       .addCase(unsubscribeFromUser.rejected, (state, action) => {
         state.isLoading = false;

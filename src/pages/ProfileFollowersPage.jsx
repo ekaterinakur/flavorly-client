@@ -44,8 +44,7 @@ export default function ProfileFollowersPage() {
   useEffect(() => {
     const profileId = paramId || current?.id;
     if (!profileId || isRefreshing) return;
-
-    dispatch(userDetails(profileId));
+    
     dispatch(userFollowers(profileId));
     dispatch(userFollowing(profileId));
   }, [dispatch, paramId, current?.id, isRefreshing]);

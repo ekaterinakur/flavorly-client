@@ -71,7 +71,7 @@ export default function ProfileFollowingPage() {
       {!loading && data?.total === 0 ? (
         <EmptyState message="Your account currently has no subscriptions to other users. Learn more about our users and select those whose content interests you." />
       ) : (
-        <UsersList data={followings} />
+        <UsersList data={followings} isOwner />
       )}
       {totalPages >= 1 && (
         <ListPagination

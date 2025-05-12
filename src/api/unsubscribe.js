@@ -6,9 +6,9 @@ export const unsubscribeFromUser = createAsyncThunk(
   'users/unsubscribe',
   async (userId, { rejectWithValue }) => {
     try {
-      const response = await client.delete(`/users/${userId}/follow`);
+      await client.delete(`/users/${userId}/follow`);
 
-      return response.data;
+      return userId;
     } catch (error) {
       return handleThunkError(error, { rejectWithValue });
     }

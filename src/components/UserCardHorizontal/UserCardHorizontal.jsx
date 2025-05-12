@@ -13,7 +13,7 @@ import { Avatar } from '../Avatar/Avatar';
 
 import style from './UserCardHorizontal.module.scss';
 
-function UserCardHorizontal({ user }) {
+function UserCardHorizontal({ user, isOwner }) {
   const isMdScreen = useMediaQuery({ query: '(min-width: 768px)' });
   const isLgScreen = useMediaQuery({ query: '(min-width: 1440px)' });
 
@@ -56,7 +56,7 @@ function UserCardHorizontal({ user }) {
               className={style.button}
               variant="outline"
               size="medium"
-              onClick={() => handleUnfollow(dispatch, user.id)}
+              onClick={() => handleUnfollow(dispatch, user.id, isOwner)}
             >
               Unfollow
             </Button>
@@ -65,7 +65,7 @@ function UserCardHorizontal({ user }) {
               className={style.button}
               variant="outline"
               size="medium"
-              onClick={() => handleFollow(dispatch, user.id)}
+              onClick={() => handleFollow(dispatch, user.id, isOwner)}
             >
               Follow
             </Button>

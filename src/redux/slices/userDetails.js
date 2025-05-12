@@ -68,14 +68,15 @@ const userDetailsSlice = createSlice({
           state.user.favoriteRecipes -= 1;
         }
       })
+
       .addCase(subscribeToUser.fulfilled, (state) => {
         if (state.user) {
-          state.user.followers += 1;
+          state.user.following += 1;
         }
       })
       .addCase(unsubscribeFromUser.fulfilled, (state) => {
         if (state.user) {
-          state.user.followers -= 1;
+          state.user.following -= 1;
         }
       });
   },
