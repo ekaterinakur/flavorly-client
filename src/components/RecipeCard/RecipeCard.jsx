@@ -24,6 +24,12 @@ export function RecipeCard({ recipe }) {
     window.scrollTo(0, 0);
   };
 
+  const handleImageError = (event) => {
+    event.target.src = defaultRecipeImg;
+    event.target.alt = 'Default image for recipe';
+    event.target.onerror = null;
+  };
+
   return (
     <article>
       {recipe.thumb ? (
@@ -33,15 +39,16 @@ export function RecipeCard({ recipe }) {
           className={styles.image}
           height={isMdScreen ? 275 : 230}
           width="100%"
+          onError={handleImageError}
         />
       ) : (
         <img
-            src={defaultRecipeImg}
-            alt='Default image for recipe'
+          src={defaultRecipeImg}
+          alt="Default image for recipe"
           className={styles.image}
           height={isMdScreen ? 275 : 230}
           width="100%"
-        ></img>
+        />
       )}
 
       <h3 className={styles.title}>{recipe.title}</h3>
