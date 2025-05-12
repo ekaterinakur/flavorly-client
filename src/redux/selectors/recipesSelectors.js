@@ -1,6 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { DEFAULT_PAGE_LIMIT } from '../../utils/constants';
-import { DEFAULT_MAIN_PAGE_LIMIT } from '../../utils/constants';
+import {
+  DEFAULT_PAGE_LIMIT,
+  DEFAULT_MAIN_PAGE_LIMIT,
+} from '../../utils/constants';
 
 export const selectRecipes = (state) => state.recipes.items;
 export const selectRecipesCategory = (state) => state.recipes.category;
