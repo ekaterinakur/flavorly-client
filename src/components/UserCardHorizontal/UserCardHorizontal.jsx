@@ -69,10 +69,10 @@ function UserCardHorizontal({ user }) {
       {isMdScreen && (
         <ul className={style.imageList}>
           {recipes?.length === 0
-            ? images?.map((item) => (
+            ? images?.map(() => (
                 <li key={nanoid()} className={style.emptyItem}></li>
               ))
-            : recipes?.map((recipe) => (
+            : recipes?.slice(0, images.length).map((recipe) => (
                 <li key={nanoid()} className={style.imageItem}>
                   <img
                     src={recipe.thumb}
