@@ -17,6 +17,7 @@ import {
   selectUser,
 } from '../../redux/selectors/authSelectors.js';
 import {
+  selectIsAcceptionOpen,
   selectIsSignInOpen,
   selectIsSignUpOpen,
 } from '../../redux/selectors/modalSelectors.js';
@@ -25,13 +26,17 @@ import {
   closeSignInModal,
   openSignUpModal,
   closeSignUpModal,
+  closeAcceptionModal,
+  openAcceptionModal,
 } from '../../redux/slices/modalSlice.js';
+import AcceptionModal from '../AcceptionModal/AcceptionModal.jsx';
 
 const Header = () => {
   const user = useSelector(selectUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isSignUpOpen = useSelector(selectIsSignUpOpen);
   const isSignInOpen = useSelector(selectIsSignInOpen);
+  const isAcceptionOpen = useSelector(selectIsAcceptionOpen);
 
   const dispatch = useDispatch();
 
@@ -50,11 +55,18 @@ const Header = () => {
     setActiveTab('signin');
     dispatch(openSignInModal());
     dispatch(closeSignUpModal());
+    dispatch(closeAcceptionModal());
+  };
+
+  const handleAcceptionOpen = () => {
+    dispatch(closeSignUpModal());
+    dispatch(openAcceptionModal());
   };
 
   const handleClose = () => {
     dispatch(closeSignUpModal());
     dispatch(closeSignInModal());
+    dispatch(closeAcceptionModal());
   };
 
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
@@ -102,11 +114,18 @@ const Header = () => {
       </div>
 
       <Modal isOpen={isSignUpOpen} onClose={handleClose}>
-        <SignUpModal onSuccess={handleClose} onSwitch={handleOpenSignIn} />
+        <SignUpModal
+          onSuccess={handleAcceptionOpen}
+          onSwitch={handleOpenSignIn}
+        />
       </Modal>
 
       <Modal isOpen={isSignInOpen} onClose={handleClose}>
         <SignInModal onSuccess={handleClose} onSwitch={handleOpenSignUp} />
+      </Modal>
+
+      <Modal isOpen={isAcceptionOpen} onClose={handleClose}>
+        <AcceptionModal onSignIn={handleOpenSignIn} onClose={handleClose} />
       </Modal>
     </header>
   );
