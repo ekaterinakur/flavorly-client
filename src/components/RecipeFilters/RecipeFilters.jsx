@@ -52,9 +52,10 @@ const RecipeFilter = () => {
       <Selector
         label="Ingredients"
         listSelector={ingredientItems}
-        selectedSelector={filters.ingredients}
+        selectedSelector={filters.ingredient}
         loading={ingredientsLoading}
         onSelect={handleSelectIngredients}
+        field="id"
       />
 
       <Selector
@@ -63,6 +64,7 @@ const RecipeFilter = () => {
         selectedSelector={filters.area}
         loading={areasLoading}
         onSelect={handleSelectArea}
+        field="name"
       />
     </div>
   );

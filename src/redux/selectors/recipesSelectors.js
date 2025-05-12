@@ -7,11 +7,11 @@ import {
 export const selectRecipes = (state) => state.recipes.items;
 export const selectRecipesCategory = (state) => state.recipes.category;
 export const selectRecipesArea = (state) => state.recipes.area;
-export const selectRecipesIngredients = (state) => state.recipes.ingredients;
+export const selectRecipesIngredients = (state) => state.recipes.ingredient;
 export const selectRecipesFilters = createSelector(
   [selectRecipesCategory, selectRecipesArea, selectRecipesIngredients],
-  (category, area, ingredients) => {
-    return { category, area, ingredients };
+  (category, area, ingredient) => {
+    return { category, area, ingredient };
   }
 );
 export const selectRecipesPage = (state) => state.recipes.page;

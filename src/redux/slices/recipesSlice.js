@@ -11,7 +11,7 @@ const initialState = {
   page: 1,
   category: '',
   area: '',
-  ingredients: '',
+  ingredient: '',
   loading: false,
   error: null,
 };
@@ -33,13 +33,13 @@ const recipesSlice = createSlice({
       state.page = 1;
     },
     setSelectedIngredients(state, action) {
-      state.ingredients = action.payload;
+      state.ingredient = action.payload;
       state.page = 1;
     },
     clearFilters(state) {
       state.category = '';
       state.area = '';
-      state.ingredients = '';
+      state.ingredient = '';
       state.page = 1;
     },
   },

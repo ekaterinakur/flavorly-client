@@ -9,6 +9,7 @@ function Selector({
   selectedSelector,
   loading,
   onSelect,
+  field,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
@@ -68,7 +69,7 @@ function Selector({
             <li
               className="list-item"
               key={item.id}
-              onClick={() => handleSelect(item.name)}
+              onClick={() => handleSelect(item[field])}
             >
               {item.name}
             </li>
