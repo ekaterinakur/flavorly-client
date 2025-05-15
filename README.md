@@ -69,3 +69,4 @@ npm run dev
 `npm run build` Build for production  
 `npm run lint` Run ESLint  
 `npm run preview` Preview production build
+📝 PR для домашнього завдання — Flavorly Client
